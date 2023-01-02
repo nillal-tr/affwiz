@@ -1,0 +1,16 @@
+body {
+  margin: 30px;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.content {
+  margin-left: 80px;
+}
