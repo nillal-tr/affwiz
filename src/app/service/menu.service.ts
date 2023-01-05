@@ -1,31 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Route } from '@angular/router';
-import { IMenuItem } from '../data-menu';
-import { ContentComponent } from '../content/content-component.component';
-import { AddEditAffTypeComponent } from '../aff-types/add-edit-aff-type/add-edit-aff-type.component';
-import { ViewAffTypeComponent } from '../aff-types/view-aff-type/view-aff-type.component';
-
-
-
-
+import { IMenuItem, menu } from '../data-menu';
+import { ComponentMapping } from './menu.consts';
 
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class MenuService {
 
-  getRoutes(menu: IMenuItem[]) {
+  getRoutes() {
     const routes: Route[] = [];
 
-    const componentMap = this.getComponentMapping();
+    // const componentMap = this.getComponentMapping();
     
 
     menu.forEach((menuItem) => {
       const routeItem: Route = {
         path: menuItem.route,
-        // component: componentMap[menuItem.component],
+        component: ComponentMapping[menuItem.component],
         data: { tabs: menuItem.tabs },
         children: [],
       };
@@ -33,22 +26,23 @@ export class MenuService {
       menuItem.tabs.forEach((tab) => {
         const childRouteItem: Route = {
           path: tab.route,
-          // component: componentMap[tab.component],
+          component: ComponentMapping[tab.component],
         };
         routeItem.children?.push(childRouteItem);
       });
-      routes.push();
+
+      routes.push(routeItem);
     });
 
     return routes;
   }
 
-  getComponentMapping() {
-    return {
-      'ContentComponent': ContentComponent,
-      'AddEditAffTypeComponent': AddEditAffTypeComponent,
-      'ViewAffTypeComponent': ViewAffTypeComponent
-    }
-  }
+  // getComponentMapping() {
+  //   return {
+  //     'ContentComponent': ContentComponent,
+  //     'AddEditAffTypeComponent': AddEditAffTypeComponent,
+  //     'ViewAffTypeComponent': ViewAffTypeComponent
+  //   }
+  // }
   
 }

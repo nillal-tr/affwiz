@@ -1,24 +1,11 @@
-<div>
+<div class="tab-container">
   <div class="tabs" *ngFor="let tab of tabs">
-    <button mat-raised-button class="tab-btn" routerLink="{{tab.route}}">{{tab.name}}</button>
-    
+    <button mat-button class="tab-btn" routerLink="{{tab.route}}">{{tab.name}}</button>
   </div>
 </div>
-<router-outlet></router-outlet>
+<div class="content">
+  <router-outlet></router-outlet>
 
-<!-- 
-<mat-tab-group>
-  <mat-tab label="View" routerLink="view"><router-outlet></router-outlet></mat-tab>
-  <mat-tab label="Edit" routerLink="edit"><router-outlet></router-outlet></mat-tab>
-</mat-tab-group> -->
-
-
-<!-- <mat-tab-group *ngFor="let tab of tabs">
-  <mat-tab label="{{tab.name}}" routerLink="view">  {{tab.name}}
-    <router-outlet></router-outlet></mat-tab>
-  <mat-tab label="Edit" routerLink="edit"><router-outlet></router-outlet></mat-tab>
-</mat-tab-group> -->
-
-
+</div>
 
 

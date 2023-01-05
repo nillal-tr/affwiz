@@ -6,22 +6,24 @@ import { ContentComponent } from './content/content-component.component';
 import { IMenuItem, menu } from './data-menu';
 import { MenuService } from './service/menu.service'
 
+
+
 const routes: Routes = [
-  {
-    path: 'aff-types', 
-    component: ContentComponent,
-    data: { tabs: menu[0].tabs },
-    children: [
-      {
-        path: 'edit',
-        component: AddEditAffTypeComponent
-      },
-      {
-        path: 'view',
-        component: ViewAffTypeComponent
-      }
-    ]
-  },
+  // {
+  //   path: 'aff-types', 
+  //   component: ContentComponent,
+  //   data: { tabs: menu[0].tabs },
+  //   children: [
+  //     {
+  //       path: 'edit',
+  //       component: AddEditAffTypeComponent
+  //     },
+  //     {
+  //       path: 'view',
+  //       component: ViewAffTypeComponent
+  //     }
+  //   ]
+  // },
   {path: '', redirectTo: 'welcome', pathMatch: 'full'},
   {path: '**', redirectTo: 'welcome', pathMatch: 'full'},
 ];
@@ -34,7 +36,8 @@ const routes: Routes = [
 export class AppRoutingModule {
   
   constructor(private menuService: MenuService) { 
-    console.log(menuService)
+    menuService.getRoutes().forEach(element => {
+      routes.push(element)
+    });
   }
-
 }

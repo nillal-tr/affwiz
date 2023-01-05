@@ -1,4 +1,9 @@
 
-<ul class="menu" *ngFor="let menuItem of menuData">
-  <li><a routerLink="{{menuItem.route}}">{{menuItem.name}}</a></li>
+<ul *ngFor="let menuItem of menuData">
+  <div class="menu-item">
+    <li>
+      <a routerLink="{{menuItem.route}}">{{menuItem.name}}</a>
+    </li>
+  </div>
+  <div class="divider"></div>
 </ul>
