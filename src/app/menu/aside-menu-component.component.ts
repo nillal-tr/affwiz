@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { menu } from '../data-menu';
 
 @Component({
   selector: 'app-aside-menu-component',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./aside-menu-component.component.css']
 })
 export class AsideMenuComponentComponent {
-
+  menuName: string = ""
+  menuData = menu
 }

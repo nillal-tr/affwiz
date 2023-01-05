@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { menu } from './data-menu';
+
 
 @Component({
   selector: 'app-root',

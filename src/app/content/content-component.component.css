@@ -1,6 +1,4 @@
-* {
-  min-height: 500px;
-}
+
 
 body {
   margin: 30px;
@@ -8,4 +6,13 @@ body {
 
 .menu {
   margin: 30px;
+}
+
+
+.tabs {
+  padding-bottom: 25px;
+}
+
+.tab-btn {
+  margin-right: 10px;
 }

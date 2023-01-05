@@ -1,26 +1,4 @@
 
-<div class="menu">
-  <div class="menu-item"><a class="link-menu" routerLink='/aff-types'>Affiliate Types/Rates</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>News & Promotions</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Affiliates</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Affiliates Groups</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Categories</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Countries</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Brands</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Languages</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Promo Tools</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Instrument Type</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Pixels</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Rotating Banners</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Links & Landing Pages</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Reports</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Tools</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Users</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Email Notifications</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Audit Logs</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Preferences/Setup</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Logout</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Help</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Updates</a></div>
-  <div class="menu-item"><a class="link-menu" routerLink='/'>Support</a></div>
-</div>
+<ul class="menu" *ngFor="let menuItem of menuData">
+  <li><a routerLink="{{menuItem.route}}">{{menuItem.name}}</a></li>
+</ul>
