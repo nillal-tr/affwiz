@@ -19,6 +19,8 @@ export class ContentComponent implements OnInit {
   ngOnInit(): void {
     this.sub = this.route
     .data
-    .subscribe((v: any) => this.tabs = v.tabs);
+    .subscribe((tabs: any) => { 
+      this.tabs = tabs.tabs
+    });
   }
 }

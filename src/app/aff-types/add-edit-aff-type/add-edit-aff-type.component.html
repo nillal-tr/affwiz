@@ -1,1 +1,193 @@
-<p>add-edit-aff-type works!</p>
+<form [formGroup]="affTypeForm">
+
+<!-- Add A New Affiliate Type -->
+<div class="box">
+  <div class="box-title">Add A New Affiliate Type</div>
+
+  <div class="form-element">
+    <mat-form-field class="input">
+      <mat-label>Description*</mat-label>
+      <input type="text" matInput placeholder="" value="" formControlName="description" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-element">
+    <mat-form-field class="input">
+      <mat-label>Notes</mat-label>
+      <textarea matInput placeholder="" formControlName="notes"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>Tier Calculation Method</mat-label>
+      <mat-select formControlName="tierMethod">
+        <mat-option *ngFor="let tierMethod of tierMethods" [value]="tierMethod.value">
+          {{ tierMethod.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-element">
+    <mat-form-field appearance="fill">
+      <mat-label>Tiers</mat-label>
+      <mat-select formControlName="tiers">
+        <mat-option *ngFor="let tier of tiers" [value]="tier.value">
+          {{ tier.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-element">
+    <mat-form-field class="input">
+      <mat-label>Default Cookie Expiration</mat-label>
+      <input formControlName="cookieExpiration" type="number" matInput placeholder="" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-element">
+    <section class="checkbox">
+      <mat-checkbox formControlName="hideTrackingLinks" class="checkbox">Hide Tracking Links</mat-checkbox>
+    </section>
+  </div>
+
+  <div class="form-element">
+    <section class="checkbox">
+      <mat-checkbox formControlName="hideCreatives" class="checkbox">Hide Creatives</mat-checkbox>
+    </section>
+  </div>
+</div>
+
+<!-- Categories -->
+  <div class="box">
+    <div class="box-title">Categories</div>
+    <div class="form-element">
+      <mat-form-field formControlName="categories"  appearance="fill" matTooltip="Select at least one category">
+        <mat-label>Categories</mat-label>
+        <mat-select multiple>
+          <mat-option *ngFor="let category of categoryList" [value]="category">{{category}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+    </div>
+  </div>
+
+  <!-- Commission Types/Minimum Payout Amount -->
+  <div class="box">
+    <div class="box-title">Commission Types/Minimum Payout Amount</div>
+    
+    <div class="form-element">
+      <section class="checkbox">
+        <mat-checkbox formControlName="copyTrader" #copyTrader class="checkbox">Per Copy Trader Commissions</mat-checkbox>
+      </section>
+    </div>
+
+    <div class="form-element" *ngIf="copyTrader.checked">
+        <div>
+          From 1 to 
+          <mat-form-field class="input">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="9" max="999"/>
+          </mat-form-field>
+          CTs = $ <mat-form-field class="input">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="0" />
+          </mat-form-field></div>
+        <div>From 1 to [number input 1-999] CTs = $ [numberinput]</div>
+        <div>From 1 to [number input 1-999] CTs = $ [numberinput]</div>
+        <div>From 1 and above CTs = [number input]</div>
+    </div>
+
+
+    <div class="row">
+      <div class="form-element">
+        <section class="checkbox">
+          <mat-checkbox formControlName="depositCommission" class="checkbox">Per Deposit Commissions</mat-checkbox>
+        </section>
+      </div>
+  
+      <div class="form-element">
+        <mat-form-field appearance="fill">
+          <mat-label></mat-label>
+          <mat-select formControlName="commissionDropDown">
+            <mat-option *ngFor="let commission of commissions" [value]="commission.value">
+              {{ commission.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-element">
+        <section class="checkbox">
+          <mat-checkbox formControlName="openPositionReq" class="checkbox">Open Position Required</mat-checkbox>
+        </section>
+      </div>
+    </div>
+    
+
+    <div class="form-element">
+      <section class="checkbox">
+        <mat-checkbox formControlName="saleCommission" class="checkbox">Per Sale Commissions</mat-checkbox>
+      </section>
+    </div>
+
+    <div class="form-element">
+      <section class="checkbox">
+        <mat-checkbox formControlName="leadCommissions" class="checkbox">Per Lead Commissions</mat-checkbox>
+      </section>
+    </div>
+
+    <div class="form-element">
+      <section class="checkbox">
+        <mat-checkbox formControlName="registrationCommissions" class="checkbox">Per Registration Commissions</mat-checkbox>
+      </section>
+    </div>
+
+    <div class="form-element">
+      <mat-form-field class="input">
+        <mat-label matTooltip="Set to 0 to payout all commissions">Minimum Commission Payout</mat-label>
+        <input type="number" matInput placeholder="" formControlName="minCommissionPayout"/>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <!-- Tiered Affiliate Display Options -->
+  <div class="box">
+    <div class="box-title">Tiered Affiliate Display Options</div>
+
+    <div class="form-element">
+      <section class="checkbox">
+        <mat-checkbox formControlName="viewTieredAffCount" class="checkbox">Allow Affiliates to View Tiered Affiliate Count</mat-checkbox>
+      </section>
+    </div>
+
+    <div class="form-element">
+      <section class="checkbox">
+        <mat-checkbox formControlName="viewTieredAffDetail" matTooltip=" Note: Fields displayed include Affiliate ID, Email, Contact Name, and Web Site URL" class="checkbox">Allow Affiliates to View Tiered Affiliate Detail</mat-checkbox>
+      </section>
+    </div>
+
+
+  </div>
+
+  <!-- Other -->
+  <div class="box">
+    <div class="box-title">Other</div>
+
+    <div class="form-element">
+      <section class="checkbox">
+        <mat-checkbox formControlName="createCustomLinksAffConsole" class="checkbox">Display Option to Create Custom Links in Affiliate Console</mat-checkbox>
+      </section>
+    </div>
+
+  </div>
+
+  <!-- Button -->
+  <div class="btn-box">
+    <button mat-button class="add-btn">Add New Affiliate Type</button>
+  </div>
+
+  </form>

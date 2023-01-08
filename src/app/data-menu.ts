@@ -96,7 +96,7 @@ export interface Tab {
         {
           name: 'View Affiliate Groups',
           index: 0,
-          route: 'View-affiliate-groups',
+          route: 'view-affiliate-groups',
           component: 'ContentComponent',
         },
         {
