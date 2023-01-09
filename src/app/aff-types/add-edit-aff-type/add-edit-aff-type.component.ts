@@ -16,7 +16,7 @@ interface ITierCalcMethod {
   styleUrls: ['./add-edit-aff-type.component.css']
 })
 export class AddEditAffTypeComponent implements OnInit {
-  
+
   affTypeForm = new FormGroup({
     description: new FormControl(''),
     notes: new FormControl(''),
@@ -26,17 +26,56 @@ export class AddEditAffTypeComponent implements OnInit {
     hideTrackingLinks: new FormControl(''),
     hideCreatives: new FormControl(''),
     categories: new FormControl(''),
+
     copyTrader: new FormControl(''),
+      copyTrader1: new FormControl(''),
+      copyTrader1B: new FormControl(''),
+      copyTrader2: new FormControl(''),
+      copyTrader2B: new FormControl(''),
+      copyTrader3: new FormControl(''),
+      copyTrader3B: new FormControl(''),
+      copyTrader4: new FormControl(''),
+
     depositCommission: new FormControl(''),
+    depositCommissionCPA1: new FormControl(''),
+    depositCommissionCPA1B: new FormControl(''),
+    depositCommissionCPA2: new FormControl(''),
+    depositCommissionCPA2B: new FormControl(''),
+    depositCommissionCPA3: new FormControl(''),
+    depositCommissionCPA3B: new FormControl(''),
+    depositCommissionCPA4: new FormControl(''),
+    depositCommissionCPAD1: new FormControl(''),
+    depositCommissionCPAD2: new FormControl(''),
+
+
     commissionDropDown: new FormControl(''),
     openPositionReq: new FormControl(''),
     saleCommission: new FormControl(''),
+      saleCommission1: new FormControl(''),
+      saleCommission1B: new FormControl(''),
+      saleCommission2: new FormControl(''),
+      saleCommission2B: new FormControl(''),
+      saleCommission3: new FormControl(''),
+      saleCommission3B: new FormControl(''),
+      saleCommission4: new FormControl(''),
+
     leadCommissions: new FormControl(''),
+      leadCommissions1: new FormControl(''),
+      leadCommissions2: new FormControl(''),
+
     registrationCommissions: new FormControl(''),
+      registrationCommissions1: new FormControl(''),
+      registrationCommissions2: new FormControl(''),
+
+
     minCommissionPayout: new FormControl('0'),
     viewTieredAffCount: new FormControl(''),
     viewTieredAffDetail: new FormControl(''),
-    createCustomLinksAffConsole: new FormControl('checked')
+    createCustomLinksAffConsole: new FormControl('checked'),
+
+    tier2Rate: new FormControl(''),
+
+
   })
 
   tierMethods: ITierCalcMethod[] = [

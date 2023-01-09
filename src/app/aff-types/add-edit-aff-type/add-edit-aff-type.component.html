@@ -1,157 +1,422 @@
 <form [formGroup]="affTypeForm">
+  <!-- Add A New Affiliate Type -->
+  <div class="box">
+    <div class="first-title">Add A New Affiliate Type</div>
+    <div class="form-element">
+      <mat-form-field class="field">
+        <mat-label>Description*</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder=""
+          value=""
+          formControlName="description"
+        />
+      </mat-form-field>
+    </div>
 
-<!-- Add A New Affiliate Type -->
-<div class="box">
-  <div class="box-title">Add A New Affiliate Type</div>
+    <div class="form-element">
+      <mat-form-field class="field">
+        <mat-label>Notes</mat-label>
+        <textarea matInput placeholder="" formControlName="notes"></textarea>
+      </mat-form-field>
+    </div>
 
-  <div class="form-element">
-    <mat-form-field class="input">
-      <mat-label>Description*</mat-label>
-      <input type="text" matInput placeholder="" value="" formControlName="description" />
-    </mat-form-field>
+    <div class="form-element">
+      <mat-form-field appearance="fill" class="field">
+        <mat-label>Tier Calculation Method</mat-label>
+        <mat-select formControlName="tierMethod">
+          <mat-option
+            *ngFor="let tierMethod of tierMethods"
+            [value]="tierMethod.value"
+          >
+            {{ tierMethod.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-element">
+      <mat-form-field appearance="fill" class="field">
+        <mat-label>Tiers</mat-label>
+        <mat-select formControlName="tiers" #tiersField>
+          <mat-option *ngFor="let tier of tiers" [value]="tier.value">
+            {{ tier.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- FIX: change the NESTED to be *ngFor -- each tier another row is added-->
+
+      <!-- NESTED option if FIX: bug when clicking the dropdown doesnt disappear -->
+      <div class="form-element" *ngIf="tiersField.value === '2'">
+        <div class="nested-div">
+          <mat-label>Tier 2 Rate</mat-label>
+          <mat-form-field
+            class="field nested-field"
+            matTooltip="Ex. Enter 0.20 for 20%"
+            formControlName="tier2Rate"
+          >
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" max="1" />
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- end of NESTED -->
+    </div>
+
+    <div class="form-element">
+      <mat-form-field class="field">
+        <mat-label>Default Cookie Expiration</mat-label>
+        <input
+          formControlName="cookieExpiration"
+          type="number"
+          matInput
+          placeholder=""
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form-element">
+      <section class="checkbox field">
+        <mat-checkbox formControlName="hideTrackingLinks"
+          >Hide Tracking Links</mat-checkbox
+        >
+      </section>
+    </div>
+
+    <div class="form-element">
+      <section class="checkbox field">
+        <mat-checkbox formControlName="hideCreatives"
+          >Hide Creatives</mat-checkbox
+        >
+      </section>
+    </div>
   </div>
 
-  <div class="form-element">
-    <mat-form-field class="input">
-      <mat-label>Notes</mat-label>
-      <textarea matInput placeholder="" formControlName="notes"></textarea>
-    </mat-form-field>
-  </div>
-
-  <div class="form-element">
-    <mat-form-field appearance="fill">
-      <mat-label>Tier Calculation Method</mat-label>
-      <mat-select formControlName="tierMethod">
-        <mat-option *ngFor="let tierMethod of tierMethods" [value]="tierMethod.value">
-          {{ tierMethod.viewValue }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div class="form-element">
-    <mat-form-field appearance="fill">
-      <mat-label>Tiers</mat-label>
-      <mat-select formControlName="tiers">
-        <mat-option *ngFor="let tier of tiers" [value]="tier.value">
-          {{ tier.viewValue }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div class="form-element">
-    <mat-form-field class="input">
-      <mat-label>Default Cookie Expiration</mat-label>
-      <input formControlName="cookieExpiration" type="number" matInput placeholder="" />
-    </mat-form-field>
-  </div>
-
-  <div class="form-element">
-    <section class="checkbox">
-      <mat-checkbox formControlName="hideTrackingLinks" class="checkbox">Hide Tracking Links</mat-checkbox>
-    </section>
-  </div>
-
-  <div class="form-element">
-    <section class="checkbox">
-      <mat-checkbox formControlName="hideCreatives" class="checkbox">Hide Creatives</mat-checkbox>
-    </section>
-  </div>
-</div>
-
-<!-- Categories -->
+  <!-- Categories -->
   <div class="box">
     <div class="box-title">Categories</div>
     <div class="form-element">
-      <mat-form-field formControlName="categories"  appearance="fill" matTooltip="Select at least one category">
+      <mat-form-field
+        class="field"
+        appearance="fill"
+        
+        matTooltip="Select at least one category"
+      >
         <mat-label>Categories</mat-label>
-        <mat-select multiple>
-          <mat-option *ngFor="let category of categoryList" [value]="category">{{category}}</mat-option>
+        <mat-select multiple formControlName="categories">
+          <mat-option
+            *ngFor="let category of categoryList"
+            [value]="category"
+            >{{ category }}</mat-option
+          >
         </mat-select>
       </mat-form-field>
-      
     </div>
   </div>
 
   <!-- Commission Types/Minimum Payout Amount -->
   <div class="box">
     <div class="box-title">Commission Types/Minimum Payout Amount</div>
-    
+
     <div class="form-element">
-      <section class="checkbox">
-        <mat-checkbox formControlName="copyTrader" #copyTrader class="checkbox">Per Copy Trader Commissions</mat-checkbox>
+      <section class="checkbox field">
+        <mat-checkbox formControlName="copyTrader" #copyTrader
+          >Per Copy Trader Commissions</mat-checkbox
+        >
       </section>
-    </div>
 
-    <div class="form-element" *ngIf="copyTrader.checked">
-        <div>
-          From 1 to 
-          <mat-form-field class="input">
+      <!-- FIX: all nexted fields are missing formControlName -- update and update the ts file, also the defult values of all nested inputs -->
+      <!-- FIX: take the value of the previus field and put it in the HTML in the nested dropdowns below -->
+
+      <!-- NESTED -->
+      <div class="form-element" *ngIf="copyTrader.checked">
+        <div class="nested-div">
+          From 1 to
+          <mat-form-field class="field nested-field" >
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="9" max="999"/>
+            <input type="number" matInput placeholder="" value="9" max="999"  formControlName="copyTrader1"/>
           </mat-form-field>
-          CTs = $ <mat-form-field class="input">
+          CTs = $
+          <mat-form-field class="field nested-field"  >
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="0" />
-          </mat-form-field></div>
-        <div>From 1 to [number input 1-999] CTs = $ [numberinput]</div>
-        <div>From 1 to [number input 1-999] CTs = $ [numberinput]</div>
-        <div>From 1 and above CTs = [number input]</div>
-    </div>
+            <input type="number" matInput placeholder="" value="0" formControlName="copyTrader1B"/>
+          </mat-form-field>
+        </div>
 
+        <div class="nested-div">
+          From XX to
+          <mat-form-field class="field nested-field" >
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="9" max="999" formControlName="copyTrader2"/>
+          </mat-form-field>
+          CTs = $
+          <mat-form-field class="field nested-field" >
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="0" formControlName="copyTrader2B"/>
+          </mat-form-field>
+        </div>
+
+        <div class="nested-div">
+          From YY to
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="9" max="999" formControlName="copyTrader3"/>
+          </mat-form-field>
+          CTs = $
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="0" formControlName="copyTrader3B"/>
+          </mat-form-field>
+        </div>
+
+        <div class="nested-div">
+          From ZZ and above CTs = $
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="9" max="999" formControlName="copyTrader4"/>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- end of NESTED -->
+    </div>
 
     <div class="row">
       <div class="form-element">
-        <section class="checkbox">
-          <mat-checkbox formControlName="depositCommission" class="checkbox">Per Deposit Commissions</mat-checkbox>
+        <section class="checkbox field">
+          <mat-checkbox formControlName="depositCommission" #depositCommission
+            >Per Deposit Commissions</mat-checkbox
+          >
         </section>
       </div>
-  
+
       <div class="form-element">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="field">
           <mat-label></mat-label>
-          <mat-select formControlName="commissionDropDown">
-            <mat-option *ngFor="let commission of commissions" [value]="commission.value">
+          <mat-select formControlName="commissionDropDown" #commissionDropDown>
+            <mat-option
+              *ngFor="let commission of commissions"
+              [value]="commission.value"
+            >
               {{ commission.viewValue }}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-  
+
       <div class="form-element">
-        <section class="checkbox">
-          <mat-checkbox formControlName="openPositionReq" class="checkbox">Open Position Required</mat-checkbox>
+        <section class="checkbox field">
+          <mat-checkbox formControlName="openPositionReq"
+            >Open Position Required</mat-checkbox
+          >
         </section>
       </div>
     </div>
-    
+
+    <!-- NESTED -->
+    <div
+      class="form-element"
+      *ngIf="depositCommission.checked && commissionDropDown.value === 'CPA'"
+    >
+      <div class="nested-div">
+        From 1 to
+        <mat-form-field class="field nested-field">
+          <mat-label></mat-label>
+          <input type="number" matInput placeholder="" max="999" formControlName="depositCommissionCPA1"/>
+        </mat-form-field>
+        CTs = $
+        <mat-form-field class="field nested-field">
+          <mat-label></mat-label>
+          <input type="number" matInput placeholder="" formControlName="depositCommissionCPA1B"/>
+        </mat-form-field>
+      </div>
+
+      <div class="nested-div">
+        From XX to
+        <mat-form-field class="field nested-field">
+          <mat-label></mat-label>
+          <input type="number" matInput placeholder="" max="999" formControlName="depositCommissionCPA2"/>
+        </mat-form-field>
+        CTs = $
+        <mat-form-field class="field nested-field">
+          <mat-label></mat-label>
+          <input type="number" matInput placeholder="" formControlName="depositCommissionCPA2B"/>
+        </mat-form-field>
+      </div>
+
+      <div class="nested-div">
+        From YY to
+        <mat-form-field class="field nested-field">
+          <mat-label></mat-label>
+          <input type="number" matInput placeholder="" max="999" formControlName="depositCommissionCPA3"/>
+        </mat-form-field>
+        CTs = $
+        <mat-form-field class="field nested-field">
+          <mat-label></mat-label>
+          <input type="number" matInput placeholder="" formControlName="depositCommissionCPA3B"/>
+        </mat-form-field>
+      </div>
+
+      <div class="nested-div">
+        From ZZ and above CTs =
+        <mat-form-field class="field nested-field">
+          <mat-label></mat-label>
+          <input type="number" matInput placeholder=""  max="999" formControlName="depositCommissionCPA4"/>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- end of NESTED -->
+
+    <!-- NESTED -->
+    <div
+      class="form-element"
+      *ngIf="depositCommission.checked && commissionDropDown.value === 'CPAD'"
+    >
+      <div class="nested-div">
+        From 1 and above FTDs = $
+        <mat-form-field class="field nested-field">
+          <mat-label></mat-label>
+          <input type="number" matInput placeholder="" max="999" formControlName="depositCommissionCPAD1"/>
+        </mat-form-field>
+      </div>
+
+      <div class="nested-div">
+        Percent of deposit:
+        <mat-form-field class="field nested-field">
+          <mat-label></mat-label>
+          <input type="number" matInput placeholder="1" max="999" formControlName="depositCommissionCPAD2"/>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- end of NESTED -->
 
     <div class="form-element">
-      <section class="checkbox">
-        <mat-checkbox formControlName="saleCommission" class="checkbox">Per Sale Commissions</mat-checkbox>
+      <section class="checkbox field">
+        <mat-checkbox formControlName="saleCommission" #saleCommission
+          >Per Sale Commissions</mat-checkbox
+        >
       </section>
+
+      <!-- NESTED -->
+      <div class="form-element" *ngIf="saleCommission.checked">
+        <div class="nested-div">
+          From 1 to
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="9" max="999" formControlName="saleCommission1" />
+          </mat-form-field>
+          FTDs = %
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="0" formControlName="saleCommission1B" />
+          </mat-form-field>
+        </div>
+
+        <div class="nested-div">
+          From XX to
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="9" max="999" formControlName="saleCommission2" />
+          </mat-form-field>
+          FTDs = %
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="0" formControlName="saleCommission2B"/>
+          </mat-form-field>
+        </div>
+
+        <div class="nested-div">
+          From YY to
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="9" max="999" formControlName="saleCommission3" />
+          </mat-form-field>
+          FTDs = %
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="0" formControlName="saleCommission3B" />
+          </mat-form-field>
+        </div>
+
+        <div class="nested-div">
+          From ZZ and above FTDs = %
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="9" max="999" formControlName="saleCommission4"/>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- end of NESTED -->
     </div>
 
     <div class="form-element">
-      <section class="checkbox">
-        <mat-checkbox formControlName="leadCommissions" class="checkbox">Per Lead Commissions</mat-checkbox>
+      <section class="checkbox field">
+        <mat-checkbox formControlName="leadCommissions" #leadCommissions
+          >Per Lead Commissions</mat-checkbox
+        >
       </section>
+
+      <!-- NESTED -->
+      <div class="form-element" *ngIf="leadCommissions.checked">
+        <div class="nested-div row">
+          Lead Rate
+          <mat-form-field class="field">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="9" max="999" formControlName="leadCommissions1"/>
+          </mat-form-field>
+          <section class="checkbox field">
+            <mat-checkbox formControlName="leadCommissions2"
+              >Set Lead Rate per Country</mat-checkbox
+            >
+          </section>
+          <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
+        </div>
+      </div>
+      <!-- end of NESTED -->
     </div>
 
     <div class="form-element">
-      <section class="checkbox">
-        <mat-checkbox formControlName="registrationCommissions" class="checkbox">Per Registration Commissions</mat-checkbox>
+      <section class="checkbox field">
+        <mat-checkbox
+          formControlName="registrationCommissions"
+          #registrationCommissions
+          >Per Registration Commissions</mat-checkbox
+        >
       </section>
+
+      <!-- NESTED -->
+      <div class="form-element" *ngIf="registrationCommissions.checked">
+        <div class="nested-div row">
+          Registration Rate
+          <mat-form-field class="field">
+            <mat-label></mat-label>
+            <input type="number" matInput placeholder="" value="9" max="999" formControlName="registrationCommissions1"/>
+          </mat-form-field>
+          <section class="checkbox field">
+            <mat-checkbox formControlName="registrationCommissions2"
+              >Set Registration Rate per Country</mat-checkbox
+            >
+          </section>
+          <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
+        </div>
+      </div>
+      <!-- end of NESTED -->
     </div>
 
     <div class="form-element">
-      <mat-form-field class="input">
-        <mat-label matTooltip="Set to 0 to payout all commissions">Minimum Commission Payout</mat-label>
-        <input type="number" matInput placeholder="" formControlName="minCommissionPayout"/>
+      <mat-form-field class="field">
+        <mat-label matTooltip="Set to 0 to payout all commissions"
+          >Minimum Commission Payout</mat-label
+        >
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          formControlName="minCommissionPayout"
+        />
       </mat-form-field>
     </div>
-
   </div>
 
   <!-- Tiered Affiliate Display Options -->
@@ -159,18 +424,22 @@
     <div class="box-title">Tiered Affiliate Display Options</div>
 
     <div class="form-element">
-      <section class="checkbox">
-        <mat-checkbox formControlName="viewTieredAffCount" class="checkbox">Allow Affiliates to View Tiered Affiliate Count</mat-checkbox>
+      <section class="checkbox field">
+        <mat-checkbox formControlName="viewTieredAffCount"
+          >Allow Affiliates to View Tiered Affiliate Count</mat-checkbox
+        >
       </section>
     </div>
 
     <div class="form-element">
-      <section class="checkbox">
-        <mat-checkbox formControlName="viewTieredAffDetail" matTooltip=" Note: Fields displayed include Affiliate ID, Email, Contact Name, and Web Site URL" class="checkbox">Allow Affiliates to View Tiered Affiliate Detail</mat-checkbox>
+      <section class="checkbox field">
+        <mat-checkbox
+          formControlName="viewTieredAffDetail"
+          matTooltip=" Note: Fields displayed include Affiliate ID, Email, Contact Name, and Web Site URL"
+          >Allow Affiliates to View Tiered Affiliate Detail</mat-checkbox
+        >
       </section>
     </div>
-
-
   </div>
 
   <!-- Other -->
@@ -178,16 +447,17 @@
     <div class="box-title">Other</div>
 
     <div class="form-element">
-      <section class="checkbox">
-        <mat-checkbox formControlName="createCustomLinksAffConsole" class="checkbox">Display Option to Create Custom Links in Affiliate Console</mat-checkbox>
+      <section class="checkbox field">
+        <mat-checkbox formControlName="createCustomLinksAffConsole"
+          >Display Option to Create Custom Links in Affiliate
+          Console</mat-checkbox
+        >
       </section>
     </div>
-
   </div>
 
   <!-- Button -->
   <div class="btn-box">
     <button mat-button class="add-btn">Add New Affiliate Type</button>
   </div>
-
-  </form>
+</form>
