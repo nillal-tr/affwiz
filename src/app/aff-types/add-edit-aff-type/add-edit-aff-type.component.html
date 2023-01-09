@@ -1,3 +1,5 @@
+<!--FIX: get the field data from a service (BE) -->
+
 <form [formGroup]="affTypeForm">
   <!-- Add A New Affiliate Type -->
   <div class="box">
@@ -39,29 +41,37 @@
     <div class="form-element">
       <mat-form-field appearance="fill" class="field">
         <mat-label>Tiers</mat-label>
-        <mat-select formControlName="tiers" #tiersField>
+        <mat-select
+          formControlName="tiers"
+          #tiersField
+          (selectionChange)="onSelectChange($event)"
+        >
           <mat-option *ngFor="let tier of tiers" [value]="tier.value">
             {{ tier.viewValue }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <!-- FIX: change the NESTED to be *ngFor -- each tier another row is added-->
-
-      <!-- NESTED option if FIX: bug when clicking the dropdown doesnt disappear -->
-      <div class="form-element" *ngIf="tiersField.value === '2'">
+      <ul class="form-element" *ngIf="tiersField.value !== '1'">
         <div class="nested-div">
-          <mat-label>Tier 2 Rate</mat-label>
-          <mat-form-field
-            class="field nested-field"
-            matTooltip="Ex. Enter 0.20 for 20%"
-            formControlName="tier2Rate"
-          >
-            <mat-label></mat-label>
-            <input type="number" matInput placeholder="" max="1" />
-          </mat-form-field>
+          <li *ngFor="let tier of tiersSubFields; index as i">
+            <mat-label>Tier {{ i + 2 }} Rate </mat-label>
+            <mat-form-field
+              class="field nested-field"
+              matTooltip="Ex. Enter 0.20 for 20%"
+            >
+              <mat-label></mat-label>
+              <input
+                type="number"
+                matInput
+                placeholder=""
+                max="1"
+                formControlName="tier{{ i + 2 }}Rate"
+              />
+            </mat-form-field>
+          </li>
         </div>
-      </div>
+      </ul>
       <!-- end of NESTED -->
     </div>
 
@@ -101,7 +111,6 @@
       <mat-form-field
         class="field"
         appearance="fill"
-        
         matTooltip="Select at least one category"
       >
         <mat-label>Categories</mat-label>
@@ -127,55 +136,104 @@
         >
       </section>
 
-      <!-- FIX: all nexted fields are missing formControlName -- update and update the ts file, also the defult values of all nested inputs -->
-      <!-- FIX: take the value of the previus field and put it in the HTML in the nested dropdowns below -->
-
       <!-- NESTED -->
       <div class="form-element" *ngIf="copyTrader.checked">
         <div class="nested-div">
           From 1 to
-          <mat-form-field class="field nested-field" >
-            <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="9" max="999"  formControlName="copyTrader1"/>
-          </mat-form-field>
-          CTs = $
-          <mat-form-field class="field nested-field"  >
-            <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="0" formControlName="copyTrader1B"/>
-          </mat-form-field>
-        </div>
-
-        <div class="nested-div">
-          From XX to
-          <mat-form-field class="field nested-field" >
-            <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="9" max="999" formControlName="copyTrader2"/>
-          </mat-form-field>
-          CTs = $
-          <mat-form-field class="field nested-field" >
-            <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="0" formControlName="copyTrader2B"/>
-          </mat-form-field>
-        </div>
-
-        <div class="nested-div">
-          From YY to
           <mat-form-field class="field nested-field">
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="9" max="999" formControlName="copyTrader3"/>
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="9"
+              max="999"
+              formControlName="copyTrader1"
+              matTooltip="Up to 999"
+              [(ngModel)]="firstCTvalue"
+            />
           </mat-form-field>
           CTs = $
           <mat-form-field class="field nested-field">
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="0" formControlName="copyTrader3B"/>
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="0"
+              formControlName="copyTrader1B"
+            />
           </mat-form-field>
         </div>
 
         <div class="nested-div">
-          From ZZ and above CTs = $
+          From {{ firstCTvalue }} to
           <mat-form-field class="field nested-field">
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="9" max="999" formControlName="copyTrader4"/>
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="9"
+              max="999"
+              formControlName="copyTrader2"
+              matTooltip="Up to 999"
+              [(ngModel)]="secondCTvalue"
+            />
+          </mat-form-field>
+          CTs = $
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="0"
+              formControlName="copyTrader2B"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="nested-div">
+          From {{ secondCTvalue }} to
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="9"
+              max="999"
+              formControlName="copyTrader3"
+              matTooltip="Up to 999"
+              [(ngModel)]="thirdCTvalue"
+            />
+          </mat-form-field>
+          CTs = $
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="0"
+              formControlName="copyTrader3B"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="nested-div">
+          From {{ thirdCTvalue }} and above CTs = $
+          <mat-form-field class="field nested-field">
+            <mat-label></mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="9"
+              max="999"
+              formControlName="copyTrader4"
+            />
           </mat-form-field>
         </div>
       </div>
@@ -223,12 +281,24 @@
         From 1 to
         <mat-form-field class="field nested-field">
           <mat-label></mat-label>
-          <input type="number" matInput placeholder="" max="999" formControlName="depositCommissionCPA1"/>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            max="999"
+            formControlName="depositCommissionCPA1"
+            matTooltip="Up to 999"
+          />
         </mat-form-field>
         CTs = $
         <mat-form-field class="field nested-field">
           <mat-label></mat-label>
-          <input type="number" matInput placeholder="" formControlName="depositCommissionCPA1B"/>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="depositCommissionCPA1B"
+          />
         </mat-form-field>
       </div>
 
@@ -236,12 +306,24 @@
         From XX to
         <mat-form-field class="field nested-field">
           <mat-label></mat-label>
-          <input type="number" matInput placeholder="" max="999" formControlName="depositCommissionCPA2"/>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            max="999"
+            formControlName="depositCommissionCPA2"
+            matTooltip="Up to 999"
+          />
         </mat-form-field>
         CTs = $
         <mat-form-field class="field nested-field">
           <mat-label></mat-label>
-          <input type="number" matInput placeholder="" formControlName="depositCommissionCPA2B"/>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="depositCommissionCPA2B"
+          />
         </mat-form-field>
       </div>
 
@@ -249,12 +331,24 @@
         From YY to
         <mat-form-field class="field nested-field">
           <mat-label></mat-label>
-          <input type="number" matInput placeholder="" max="999" formControlName="depositCommissionCPA3"/>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            max="999"
+            formControlName="depositCommissionCPA3"
+            matTooltip="Up to 999"
+          />
         </mat-form-field>
         CTs = $
         <mat-form-field class="field nested-field">
           <mat-label></mat-label>
-          <input type="number" matInput placeholder="" formControlName="depositCommissionCPA3B"/>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="depositCommissionCPA3B"
+          />
         </mat-form-field>
       </div>
 
@@ -262,7 +356,13 @@
         From ZZ and above CTs =
         <mat-form-field class="field nested-field">
           <mat-label></mat-label>
-          <input type="number" matInput placeholder=""  max="999" formControlName="depositCommissionCPA4"/>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            max="999"
+            formControlName="depositCommissionCPA4"
+          />
         </mat-form-field>
       </div>
     </div>
@@ -277,7 +377,13 @@
         From 1 and above FTDs = $
         <mat-form-field class="field nested-field">
           <mat-label></mat-label>
-          <input type="number" matInput placeholder="" max="999" formControlName="depositCommissionCPAD1"/>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            max="999"
+            formControlName="depositCommissionCPAD1"
+          />
         </mat-form-field>
       </div>
 
@@ -285,9 +391,42 @@
         Percent of deposit:
         <mat-form-field class="field nested-field">
           <mat-label></mat-label>
-          <input type="number" matInput placeholder="1" max="999" formControlName="depositCommissionCPAD2"/>
+          <input
+            type="number"
+            matInput
+            formControlName="depositCommissionCPAD2"
+            matTooltip="1 for 100%, 0.2 for 20%"
+          />
         </mat-form-field>
       </div>
+
+      <div class="box-title">CPA/CPAD Minimum Commissions</div>
+      <div class="nested-div">
+        Minimum Commission per Trade	$ 
+        <mat-form-field class="field nested-field">
+          <mat-label></mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            max="999"
+            formControlName="depositCommissionCPAD3"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="box-title">CPA/CPAD Per Country Extra Plans</div>
+      <div class="inner-text">
+      Add CPA/CPAD Per Country Extra Plan (Up to 4 Extra Plans Can be Added)
+      </div>
+
+      <!-- Button -->
+        <div class="inner-btn">
+          <button mat-button class="add-btn">Add New Extra Plan</button>
+          <!--FIX: add event on the btn to open more options -->
+        </div>
+
+
     </div>
     <!-- end of NESTED -->
 
@@ -304,46 +443,98 @@
           From 1 to
           <mat-form-field class="field nested-field">
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="9" max="999" formControlName="saleCommission1" />
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="9"
+              max="999"
+              formControlName="saleCommission1"
+              matTooltip="Up to 999"
+              [(ngModel)]="firstSCvalue"
+            />
           </mat-form-field>
           FTDs = %
           <mat-form-field class="field nested-field">
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="0" formControlName="saleCommission1B" />
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="0"
+              formControlName="saleCommission1B"
+            />
           </mat-form-field>
         </div>
 
         <div class="nested-div">
-          From XX to
+          From {{ firstSCvalue }} to
           <mat-form-field class="field nested-field">
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="9" max="999" formControlName="saleCommission2" />
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="9"
+              max="999"
+              formControlName="saleCommission2"
+              matTooltip="Up to 999"
+              [(ngModel)]="secondSCvalue"
+            />
           </mat-form-field>
           FTDs = %
           <mat-form-field class="field nested-field">
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="0" formControlName="saleCommission2B"/>
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="0"
+              formControlName="saleCommission2B"
+            />
           </mat-form-field>
         </div>
 
         <div class="nested-div">
-          From YY to
+          From {{ secondSCvalue }} to
           <mat-form-field class="field nested-field">
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="9" max="999" formControlName="saleCommission3" />
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="9"
+              max="999"
+              formControlName="saleCommission3"
+              matTooltip="Up to 999"
+              [(ngModel)]="thirdSCvalue"
+            />
           </mat-form-field>
           FTDs = %
           <mat-form-field class="field nested-field">
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="0" formControlName="saleCommission3B" />
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="0"
+              formControlName="saleCommission3B"
+            />
           </mat-form-field>
         </div>
 
         <div class="nested-div">
-          From ZZ and above FTDs = %
+          From {{ thirdSCvalue }} and above FTDs = %
           <mat-form-field class="field nested-field">
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="9" max="999" formControlName="saleCommission4"/>
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="9"
+              max="999"
+              formControlName="saleCommission4"
+            />
           </mat-form-field>
         </div>
       </div>
@@ -363,15 +554,40 @@
           Lead Rate
           <mat-form-field class="field">
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="9" max="999" formControlName="leadCommissions1"/>
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="9"
+              max="999"
+              formControlName="leadCommissions1"
+            />
           </mat-form-field>
           <section class="checkbox field">
-            <mat-checkbox formControlName="leadCommissions2"
+            <mat-checkbox formControlName="leadCommissions2" #leadCommissions2
               >Set Lead Rate per Country</mat-checkbox
             >
           </section>
-          <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
+
         </div>
+        <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
+
+        <!-- NESTED -->
+        <div class="form-element" *ngIf="leadCommissions2.checked">
+          <div class="nested-div">
+            aaaa
+            <mat-form-field class="field nested-field">
+              <mat-label></mat-label>
+              <input
+                type="number"
+                matInput
+                placeholder=""
+                formControlName="depositCommissionCPAD1"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end of NESTED -->
       </div>
       <!-- end of NESTED -->
     </div>
@@ -391,15 +607,40 @@
           Registration Rate
           <mat-form-field class="field">
             <mat-label></mat-label>
-            <input type="number" matInput placeholder="" value="9" max="999" formControlName="registrationCommissions1"/>
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              value="9"
+              max="999"
+              formControlName="registrationCommissions1"
+            />
           </mat-form-field>
           <section class="checkbox field">
-            <mat-checkbox formControlName="registrationCommissions2"
+            <mat-checkbox formControlName="registrationCommissions2" #registrationCommissions2
               >Set Registration Rate per Country</mat-checkbox
             >
           </section>
-          <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
         </div>
+       <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
+
+        <!-- NESTED -->
+        <div class="form-element" *ngIf="registrationCommissions2.checked">
+          <div class="nested-div">
+            aaaa
+            <mat-form-field class="field nested-field">
+              <mat-label></mat-label>
+              <input
+                type="number"
+                matInput
+                placeholder=""
+                formControlName="depositCommissionCPAD1"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- end of NESTED -->
+
       </div>
       <!-- end of NESTED -->
     </div>
@@ -459,5 +700,6 @@
   <!-- Button -->
   <div class="btn-box">
     <button mat-button class="add-btn">Add New Affiliate Type</button>
+    <!--FIX: add event on the btn to export data to service -->
   </div>
 </form>

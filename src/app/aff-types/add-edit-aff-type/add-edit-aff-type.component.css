@@ -28,6 +28,13 @@
   margin-top: 40px;
 }
 
+.inner-btn {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+
 .add-btn {
   border: 1px solid black;
   padding: 20px;
@@ -50,4 +57,14 @@
 
 .nested-field {
   width: 15%;
+}
+
+ul {
+  list-style-type: none;
+}
+
+
+.inner-text {
+  text-align: center;
+  font-size: 12px;
 }
