@@ -68,3 +68,26 @@ ul {
   text-align: center;
   font-size: 12px;
 }
+
+.select-all-cb {
+  margin-left: 5px;
+}
+
+label {
+  font-size: 18px !important;
+
+}
+
+.split-view {
+  display: flex;
+  flex-direction: row;
+}
+
+.left-side {
+  margin-right: 20px;
+}
+
+.right-side {
+  margin-left: 20px;
+
+}

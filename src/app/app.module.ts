@@ -22,9 +22,10 @@ import { LongInputComponent } from './form-elements/long-input/long-input.compon
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -55,8 +56,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatSelectModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatTooltipModule 
-  ],
+    MatTooltipModule,
+    FormsModule,
+    HttpClientModule
+    ],
   providers: [],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

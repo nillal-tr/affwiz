@@ -1,17 +1,22 @@
-<!--FIX: get the field data from a service (BE) -->
+<!--FIX: 
+  get the field data from a service (BE) 
+  post the form to BE service 
+  design generally - it doesnt look good
+  design of matirials: checkbox are yellows and rest is purple
+-->
 
-<form [formGroup]="affTypeForm">
+<form [formGroup]="affTypeForm" (ngSubmit)="onSubmit(affTypeForm.value)">
   <!-- Add A New Affiliate Type -->
   <div class="box">
     <div class="first-title">Add A New Affiliate Type</div>
     <div class="form-element">
       <mat-form-field class="field">
-        <mat-label>Description*</mat-label>
+        <mat-label>Description</mat-label>
         <input
           type="text"
+          name="description"
           matInput
           placeholder=""
-          value=""
           formControlName="description"
         />
       </mat-form-field>
@@ -105,6 +110,7 @@
   </div>
 
   <!-- Categories -->
+  <!-- FIX: add search option -->
   <div class="box">
     <div class="box-title">Categories</div>
     <div class="form-element">
@@ -114,8 +120,16 @@
         matTooltip="Select at least one category"
       >
         <mat-label>Categories</mat-label>
-        <mat-select multiple formControlName="categories">
+        <mat-select multiple formControlName="categories" #select>
+          <mat-checkbox
+            class="select-all-cb"
+            [(ngModel)]="allSelected"
+            [ngModelOptions]="{ standalone: true }"
+            (change)="toggleAllSelection()"
+            >Select All</mat-checkbox
+          >
           <mat-option
+            (click)="optionClick()"
             *ngFor="let category of categoryList"
             [value]="category"
             >{{ category }}</mat-option
@@ -146,8 +160,6 @@
               type="number"
               matInput
               placeholder=""
-              value="9"
-              max="999"
               formControlName="copyTrader1"
               matTooltip="Up to 999"
               [(ngModel)]="firstCTvalue"
@@ -160,7 +172,6 @@
               type="number"
               matInput
               placeholder=""
-              value="0"
               formControlName="copyTrader1B"
             />
           </mat-form-field>
@@ -174,8 +185,6 @@
               type="number"
               matInput
               placeholder=""
-              value="9"
-              max="999"
               formControlName="copyTrader2"
               matTooltip="Up to 999"
               [(ngModel)]="secondCTvalue"
@@ -188,7 +197,6 @@
               type="number"
               matInput
               placeholder=""
-              value="0"
               formControlName="copyTrader2B"
             />
           </mat-form-field>
@@ -202,8 +210,6 @@
               type="number"
               matInput
               placeholder=""
-              value="9"
-              max="999"
               formControlName="copyTrader3"
               matTooltip="Up to 999"
               [(ngModel)]="thirdCTvalue"
@@ -216,7 +222,6 @@
               type="number"
               matInput
               placeholder=""
-              value="0"
               formControlName="copyTrader3B"
             />
           </mat-form-field>
@@ -230,8 +235,6 @@
               type="number"
               matInput
               placeholder=""
-              value="9"
-              max="999"
               formControlName="copyTrader4"
             />
           </mat-form-field>
@@ -402,7 +405,8 @@
 
       <div class="box-title">CPA/CPAD Minimum Commissions</div>
       <div class="nested-div">
-        Minimum Commission per Trade	$ 
+        Minimum Commission per Trade $
+        <!--FIX: in the original form this is disabled ???-->
         <mat-form-field class="field nested-field">
           <mat-label></mat-label>
           <input
@@ -417,16 +421,120 @@
 
       <div class="box-title">CPA/CPAD Per Country Extra Plans</div>
       <div class="inner-text">
-      Add CPA/CPAD Per Country Extra Plan (Up to 4 Extra Plans Can be Added)
+        Add CPA/CPAD Per Country Extra Plan (Up to 4 Extra Plans Can be Added)
       </div>
 
       <!-- Button -->
-        <div class="inner-btn">
-          <button mat-button class="add-btn">Add New Extra Plan</button>
-          <!--FIX: add event on the btn to open more options -->
+      <div class="inner-btn">
+        <button #extraPlanBtn [disabled]="clicked === itemsToPush.length" mat-button class="add-btn" (click)="onClickExtraPlanBtn()">
+          Add New Extra Plan
+        </button>
+      </div>
+
+      <!-- when clicked on inner btn -->
+      <!-- FIX:
+            1. add loop to add up to 4 divs
+            2. title of left-side should be dynamic (first, second, etc)
+            3. after 4 divs disable the button
+          -->
+      <div class="form-element" *ngFor="let extraPlanOption of extraPlanOptions">
+        <div class="nested-div split-view">
+          <div class="left-side">Select {{extraPlanOption.name}} Extra Plan Countries</div>
+          <div class="right-side">
+
+            <div class="">
+              From 1 to
+              <mat-form-field class="field nested-field">
+                <mat-label></mat-label>
+                <input
+                  type="number"
+                  matInput
+                  placeholder=""
+                  formControlName="extraPlanCountries1"
+                  matTooltip="Up to 999"
+                  [(ngModel)]="firstEPCvalue"
+                />
+              </mat-form-field>
+              CTs = $
+              <mat-form-field class="field nested-field">
+                <mat-label></mat-label>
+                <input
+                  type="number"
+                  matInput
+                  placeholder=""
+                  formControlName="extraPlanCountries1B"
+                />
+              </mat-form-field>
+            </div>
+
+
+            <div class="">
+              From {{ firstEPCvalue }} to
+              <mat-form-field class="field nested-field">
+                <mat-label></mat-label>
+                <input
+                  type="number"
+                  matInput
+                  placeholder=""
+                  formControlName="extraPlanCountries2"
+                  matTooltip="Up to 999"
+                  [(ngModel)]="secondEPCvalue"
+                />
+              </mat-form-field>
+              CTs = $
+              <mat-form-field class="field nested-field">
+                <mat-label></mat-label>
+                <input
+                  type="number"
+                  matInput
+                  placeholder=""
+                  formControlName="extraPlanCountries2B"
+                />
+              </mat-form-field>
+            </div>
+    
+            <div class="">
+              From {{ secondEPCvalue }} to
+              <mat-form-field class="field nested-field">
+                <mat-label></mat-label>
+                <input
+                  type="number"
+                  matInput
+                  placeholder=""
+                  formControlName="extraPlanCountries3"
+                  matTooltip="Up to 999"
+                  [(ngModel)]="thirdEPCvalue"
+                />
+              </mat-form-field>
+              CTs = $
+              <mat-form-field class="field nested-field">
+                <mat-label></mat-label>
+                <input
+                  type="number"
+                  matInput
+                  placeholder=""
+                  formControlName="extraPlanCountries3B"
+                />
+              </mat-form-field>
+            </div>
+    
+            <div class="">
+              From {{ thirdEPCvalue }} and above CTs = $
+              <mat-form-field class="field nested-field">
+                <mat-label></mat-label>
+                <input
+                  type="number"
+                  matInput
+                  placeholder=""
+                  max="999"
+                  formControlName="extraPlanCountries4"
+                />
+              </mat-form-field>
+            </div>
+          </div>
         </div>
-
-
+      </div>
+      <!-- end of NESTED -->
     </div>
     <!-- end of NESTED -->
 
@@ -447,8 +555,6 @@
               type="number"
               matInput
               placeholder=""
-              value="9"
-              max="999"
               formControlName="saleCommission1"
               matTooltip="Up to 999"
               [(ngModel)]="firstSCvalue"
@@ -461,7 +567,6 @@
               type="number"
               matInput
               placeholder=""
-              value="0"
               formControlName="saleCommission1B"
             />
           </mat-form-field>
@@ -475,8 +580,6 @@
               type="number"
               matInput
               placeholder=""
-              value="9"
-              max="999"
               formControlName="saleCommission2"
               matTooltip="Up to 999"
               [(ngModel)]="secondSCvalue"
@@ -489,7 +592,6 @@
               type="number"
               matInput
               placeholder=""
-              value="0"
               formControlName="saleCommission2B"
             />
           </mat-form-field>
@@ -503,8 +605,6 @@
               type="number"
               matInput
               placeholder=""
-              value="9"
-              max="999"
               formControlName="saleCommission3"
               matTooltip="Up to 999"
               [(ngModel)]="thirdSCvalue"
@@ -517,7 +617,6 @@
               type="number"
               matInput
               placeholder=""
-              value="0"
               formControlName="saleCommission3B"
             />
           </mat-form-field>
@@ -531,8 +630,6 @@
               type="number"
               matInput
               placeholder=""
-              value="9"
-              max="999"
               formControlName="saleCommission4"
             />
           </mat-form-field>
@@ -558,8 +655,6 @@
               type="number"
               matInput
               placeholder=""
-              value="9"
-              max="999"
               formControlName="leadCommissions1"
             />
           </mat-form-field>
@@ -568,14 +663,13 @@
               >Set Lead Rate per Country</mat-checkbox
             >
           </section>
-
         </div>
         <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
 
         <!-- NESTED -->
         <div class="form-element" *ngIf="leadCommissions2.checked">
           <div class="nested-div">
-            aaaa
+            This should be fixed
             <mat-form-field class="field nested-field">
               <mat-label></mat-label>
               <input
@@ -611,23 +705,23 @@
               type="number"
               matInput
               placeholder=""
-              value="9"
-              max="999"
               formControlName="registrationCommissions1"
             />
           </mat-form-field>
           <section class="checkbox field">
-            <mat-checkbox formControlName="registrationCommissions2" #registrationCommissions2
+            <mat-checkbox
+              formControlName="registrationCommissions2"
+              #registrationCommissions2
               >Set Registration Rate per Country</mat-checkbox
             >
           </section>
         </div>
-       <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
+        <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
 
         <!-- NESTED -->
         <div class="form-element" *ngIf="registrationCommissions2.checked">
           <div class="nested-div">
-            aaaa
+            This should be fixed
             <mat-form-field class="field nested-field">
               <mat-label></mat-label>
               <input
@@ -640,7 +734,6 @@
           </div>
         </div>
         <!-- end of NESTED -->
-
       </div>
       <!-- end of NESTED -->
     </div>
@@ -699,7 +792,9 @@
 
   <!-- Button -->
   <div class="btn-box">
-    <button mat-button class="add-btn">Add New Affiliate Type</button>
-    <!--FIX: add event on the btn to export data to service -->
+    <button type="submit" mat-button class="add-btn">
+      Add New Affiliate Type
+    </button>
+    <!--FIX: checkbox data doesnt display in the array -->
   </div>
 </form>
