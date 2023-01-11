@@ -196,16 +196,6 @@ export class AddEditAffTypeComponent implements OnInit {
     this.allSelected = newStatus;
   }
 
-  // Search box in Caterory dropdown
-  getSearchValue(searchValue: any) {
-    this.searchValue = searchValue
-    console.log(searchValue)
-  }
-
-  // createFilterCatArray(filterBy: string) {
-  //   this.filteredCategoriesList = this.categoryList.filter(filterBy)
-  // }
-
 
   // Per Deposit Commissions >CPAD > clicking on Btn to add extra option
   onClickExtraPlanBtn() {

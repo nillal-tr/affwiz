@@ -2,7 +2,7 @@
   get the field data from a service (BE) 
   post the form to BE service 
   design generally - it doesnt look good
-  design of matirials: checkbox are yellows and rest is purple
+  design of matirials: checkboxs are yellows and rest are purple
 -->
 
 <form [formGroup]="affTypeForm" (ngSubmit)="onSubmit(affTypeForm.value)">
@@ -110,7 +110,6 @@
   </div>
 
   <!-- Categories -->
-  <!-- FIX: add search option -->
   <div class="box">
     <div class="box-title">Categories</div>
     <div class="form-element">
@@ -130,7 +129,6 @@
               type="text"
               matInput
               placeholder=""
-              (keyup)="getSearchValue(searchCategories.value)"
               [(ngModel)]="searchCat"
             />
           </mat-form-field>
@@ -440,17 +438,12 @@
 
       <!-- Button -->
       <div class="inner-btn">
-        <button #extraPlanBtn [disabled]="clickedNewExtraPlanBtn === blockToPushwhenClicked.length" mat-button class="add-btn" (click)="onClickExtraPlanBtn()">
+        <button type="button" #extraPlanBtn [disabled]="clickedNewExtraPlanBtn === blockToPushwhenClicked.length" mat-button class="add-btn" (click)="onClickExtraPlanBtn()">
           Add New Extra Plan
         </button>
       </div>
 
       <!-- when clicked on inner btn -->
-      <!-- FIX:
-            1. add loop to add up to 4 divs
-            2. title of left-side should be dynamic (first, second, etc)
-            3. after 4 divs disable the button
-          -->
       <div class="form-element" *ngFor="let extraPlanOption of extraPlanOptions">
         <div class="nested-div split-view">
           <div class="left-side">Select {{extraPlanOption.blockNumber}} Extra Plan Countries</div>
@@ -809,6 +802,5 @@
     <button type="submit" mat-button class="add-btn">
       Add New Affiliate Type
     </button>
-    <!--FIX: checkbox data doesnt display in the array -->
   </div>
 </form>
