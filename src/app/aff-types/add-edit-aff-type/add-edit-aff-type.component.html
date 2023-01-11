@@ -119,8 +119,21 @@
         appearance="fill"
         matTooltip="Select at least one category"
       >
+      <!-- fix: when focus on "search" input: bug when clicking ctrl a is selects all -->
         <mat-label>Categories</mat-label>
         <mat-select multiple formControlName="categories" #select>
+          <mat-form-field class="search-field">
+            <mat-label>Search</mat-label>
+            <input
+              formControlName="searchCategories"
+              #searchCategories
+              type="text"
+              matInput
+              placeholder=""
+              (keyup)="getSearchValue(searchCategories.value)"
+            />
+          </mat-form-field>
+
           <mat-checkbox
             class="select-all-cb"
             [(ngModel)]="allSelected"
@@ -142,7 +155,7 @@
   <!-- Commission Types/Minimum Payout Amount -->
   <div class="box">
     <div class="box-title">Commission Types/Minimum Payout Amount</div>
-
+<!-- copy trader option can be removed?-->
     <div class="form-element">
       <section class="checkbox field">
         <mat-checkbox formControlName="copyTrader" #copyTrader
@@ -426,7 +439,7 @@
 
       <!-- Button -->
       <div class="inner-btn">
-        <button #extraPlanBtn [disabled]="clicked === itemsToPush.length" mat-button class="add-btn" (click)="onClickExtraPlanBtn()">
+        <button #extraPlanBtn [disabled]="clickedNewExtraPlanBtn === blockToPushwhenClicked.length" mat-button class="add-btn" (click)="onClickExtraPlanBtn()">
           Add New Extra Plan
         </button>
       </div>
@@ -439,7 +452,7 @@
           -->
       <div class="form-element" *ngFor="let extraPlanOption of extraPlanOptions">
         <div class="nested-div split-view">
-          <div class="left-side">Select {{extraPlanOption.name}} Extra Plan Countries</div>
+          <div class="left-side">Select {{extraPlanOption.blockNumber}} Extra Plan Countries</div>
           <div class="right-side">
 
             <div class="">

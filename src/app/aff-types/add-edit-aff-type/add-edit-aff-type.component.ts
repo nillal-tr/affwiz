@@ -1,8 +1,14 @@
 import { Component, VERSION, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/core';
 import { HttpClient } from '@angular/common/http';
+import { MatInput } from '@angular/material/input';
 
 interface ITierCalcMethod {
   value: string;
@@ -15,6 +21,7 @@ interface ITierCalcMethod {
   styleUrls: ['./add-edit-aff-type.component.css'],
 })
 export class AddEditAffTypeComponent implements OnInit {
+  // initial values of fields
   firstCTvalue: number = 9;
   secondCTvalue: number = 19;
   thirdCTvalue: number = 29;
@@ -25,18 +32,17 @@ export class AddEditAffTypeComponent implements OnInit {
   secondEPCvalue: number = 19;
   thirdEPCvalue: number = 29;
 
-
-
-  data: any;
-  clickedextraPlanBtn: boolean = false;
-
-
+  // Per Deposit Commissions >CPAD > clicking on Btn to add extra option
   extraPlanOptions: any[] = [];
+  clickedNewExtraPlanBtn = 0;
+  blockToPushwhenClicked = [
+    { blockNumber: 'First' },
+    { blockNumber: 'Second' },
+    { blockNumber: 'Third' },
+    { blockNumber: 'Fourth' },
+  ];
 
-  @ViewChild('select')
-  select!: MatSelect;
-
-  allSelected: boolean = false;
+  // Categories field
   categoryList: string[] = [
     'Arabic Stock Material',
     'Arabic_Bigger_Banners',
@@ -46,25 +52,17 @@ export class AddEditAffTypeComponent implements OnInit {
     'Arnon Test',
   ];
 
-  toggleAllSelection() {
-    if (this.allSelected) {
-      this.select.options.forEach((item: MatOption) => item.select());
-    } else {
-      this.select.options.forEach((item: MatOption) => item.deselect());
-    }
-  }
-  optionClick() {
-    let newStatus = true;
-    this.select.options.forEach((item: MatOption) => {
-      if (!item.selected) {
-        newStatus = false;
-      }
-    });
-    this.allSelected = newStatus;
-  }
+  // select all in Categories
+  @ViewChild('select')
+  select!: MatSelect;
+  allSelected: boolean = false;
 
-  
+  // Search option in the Categories field
+  searchValue: string = "";
+  filteredCategoriesList: string[] = [];
 
+
+  // all form fields
   affTypeForm = new FormGroup({
     description: new FormControl('', Validators.required),
     notes: new FormControl(''),
@@ -80,7 +78,7 @@ export class AddEditAffTypeComponent implements OnInit {
     hideTrackingLinks: new FormControl(''),
     hideCreatives: new FormControl(''),
     categories: new FormControl(''),
-
+    searchCategories: new FormControl(''),
     copyTrader: new FormControl(''),
     copyTrader1: new FormControl('9', Validators.max(999)),
     copyTrader1B: new FormControl(''),
@@ -106,7 +104,6 @@ export class AddEditAffTypeComponent implements OnInit {
     depositCommissionCPAD3: new FormControl(''),
     depositCommissionCPAD4: new FormControl(''),
 
-
     extraPlanCountries1: new FormControl('9', Validators.max(999)),
     extraPlanCountries1B: new FormControl(''),
     extraPlanCountries2: new FormControl('19', [
@@ -117,7 +114,6 @@ export class AddEditAffTypeComponent implements OnInit {
     extraPlanCountries3: new FormControl('29', Validators.max(999)),
     extraPlanCountries3B: new FormControl(''),
     extraPlanCountries4: new FormControl(''),
-
 
     commissionDropDown: new FormControl(''),
     openPositionReq: new FormControl(''),
@@ -142,12 +138,9 @@ export class AddEditAffTypeComponent implements OnInit {
     viewTieredAffCount: new FormControl(''),
     viewTieredAffDetail: new FormControl(''),
     createCustomLinksAffConsole: new FormControl('checked'),
-
-
-
-
   });
 
+  // dropdown fields
   tierMethods: ITierCalcMethod[] = [
     { value: '', viewValue: 'New (Calculate % by Customer NetRevenue)' },
     { value: '', viewValue: 'Old (Calculate % by Affiliate Gross Revenue)' },
@@ -168,10 +161,12 @@ export class AddEditAffTypeComponent implements OnInit {
     { value: 'CPAD', viewValue: 'CPAD' },
   ];
 
+  data: any;
+
   constructor() {}
   ngOnInit() {}
-  
 
+  // Build the tiers sub fields (tier #2 and above selected)
   onSelectChange(event: any) {
     console.log(this.tiersSubFields);
     this.tiersSubFields = [];
@@ -183,23 +178,50 @@ export class AddEditAffTypeComponent implements OnInit {
     }
   }
 
-  
-  clicked = 0;
-  itemsToPush = [
-    {name: "first"},
-    {name: "second"},
-    {name: "third"},
-    {name: "fourth"}
-  ];
-
-  onClickExtraPlanBtn() {
-    if (this.clicked++ < this.itemsToPush.length+1) {
-      this.extraPlanOptions.push(this.itemsToPush[this.clicked-1])
+  // Select All in Cateories
+  toggleAllSelection() {
+    if (this.allSelected) {
+      this.select.options.forEach((item: MatOption) => item.select());
+    } else {
+      this.select.options.forEach((item: MatOption) => item.deselect());
     }
   }
 
+  optionClick() {
+    let newStatus = true;
+    this.select.options.forEach((item: MatOption) => {
+      if (!item.selected) {
+        newStatus = false;
+      }
+    });
+    this.allSelected = newStatus;
+  }
 
+  // Search box in Caterory dropdown
+  getSearchValue(searchValue: any) {
+    this.searchValue = searchValue
+    console.log(searchValue)
+  }
+
+  // createFilterCatArray(filterBy: string) {
+  //   this.filteredCategoriesList = this.categoryList.filter(filterBy)
+  // }
+
+
+  // Per Deposit Commissions >CPAD > clicking on Btn to add extra option
+  onClickExtraPlanBtn() {
+    if (
+      this.clickedNewExtraPlanBtn++ <
+      this.blockToPushwhenClicked.length + 1
+    ) {
+      this.extraPlanOptions.push(
+        this.blockToPushwhenClicked[this.clickedNewExtraPlanBtn - 1]
+      );
+    }
+  }
+
+  // submitting the form
   onSubmit(data: any) {
-    console.log(data)
+    console.log(data);
   }
 }
