@@ -43,14 +43,13 @@ export class AddEditAffTypeComponent implements OnInit {
   ];
 
   // Categories field
-  categoryList: string[] = [
-    'Arabic Stock Material',
-    'Arabic_Bigger_Banners',
-    'Arabic_e-course (GIF)',
-    'Arabic_VIP 30%',
-    'Arabic_VIP 6000',
-    'Arnon Test',
+  categoryList: any[] = [
+    {name: 'Arabic Stock Material'},
+    {name: 'Arabic_Bigger_Banners'},
+    {name: 'Arabic_e-course (GIF)'}
   ];
+
+  searchCat = '';
 
   // select all in Categories
   @ViewChild('select')
@@ -62,7 +61,7 @@ export class AddEditAffTypeComponent implements OnInit {
   filteredCategoriesList: string[] = [];
 
 
-  // all form fields
+  // all form fields - fix: change to json (payments form in Partners project)
   affTypeForm = new FormGroup({
     description: new FormControl('', Validators.required),
     notes: new FormControl(''),
@@ -141,9 +140,9 @@ export class AddEditAffTypeComponent implements OnInit {
   });
 
   // dropdown fields
-  tierMethods: ITierCalcMethod[] = [
-    { value: '', viewValue: 'New (Calculate % by Customer NetRevenue)' },
-    { value: '', viewValue: 'Old (Calculate % by Affiliate Gross Revenue)' },
+  tierOptions: ITierCalcMethod[] = [
+    { value: 'New (Calculate % by Customer NetRevenue)', viewValue: 'New (Calculate % by Customer NetRevenue)' },
+    { value: 'Old (Calculate % by Affiliate Gross Revenue)', viewValue: 'Old (Calculate % by Affiliate Gross Revenue)' },
   ];
 
   tiers: any[] = [

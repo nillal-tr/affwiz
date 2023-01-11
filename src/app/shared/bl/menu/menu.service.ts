@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Route } from '@angular/router';
-import { IMenuItem, menu } from '../data-menu';
+import { IMenuItem, menu } from '../../../data-menu';
 import { ComponentMapping } from './menu.consts';
 
 
@@ -39,7 +39,7 @@ export class MenuService {
 
   // getComponentMapping() {
   //   return {
-  //     'ContentComponent': ContentComponent,
+  //     'MainViewComponent': MainViewComponent,
   //     'AddEditAffTypeComponent': AddEditAffTypeComponent,
   //     'ViewAffTypeComponent': ViewAffTypeComponent
   //   }

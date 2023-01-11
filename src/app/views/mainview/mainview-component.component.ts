@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Tab } from '../data-menu'
+import { Tab } from '../../data-menu'
 
 @Component({
-  selector: 'app-content-component',
-  templateUrl: './content-component.component.html',
-  styleUrls: ['./content-component.component.css']
+  selector: 'app-mainview-component',
+  templateUrl: './mainview-component.component.html',
+  styleUrls: ['./mainview-component.component.css']
 })
-export class ContentComponent implements OnInit {
+export class MainViewComponent implements OnInit {
   tabs: Tab[] | undefined;
   currentTab: string = '';
   sub: Subscription | undefined;

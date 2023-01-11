@@ -34,10 +34,10 @@
         <mat-label>Tier Calculation Method</mat-label>
         <mat-select formControlName="tierMethod">
           <mat-option
-            *ngFor="let tierMethod of tierMethods"
-            [value]="tierMethod.value"
+            *ngFor="let tierOption of tierOptions"
+            [value]="tierOption.value"
           >
-            {{ tierMethod.viewValue }}
+            {{ tierOption.viewValue }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -131,6 +131,7 @@
               matInput
               placeholder=""
               (keyup)="getSearchValue(searchCategories.value)"
+              [(ngModel)]="searchCat"
             />
           </mat-form-field>
 
@@ -143,9 +144,9 @@
           >
           <mat-option
             (click)="optionClick()"
-            *ngFor="let category of categoryList"
+            *ngFor="let category of categoryList | filter:searchCat"
             [value]="category"
-            >{{ category }}</mat-option
+            >{{ category.name }}</mat-option
           >
         </mat-select>
       </mat-form-field>

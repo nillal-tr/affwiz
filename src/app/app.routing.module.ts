@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddEditAffTypeComponent } from './aff-types/add-edit-aff-type/add-edit-aff-type.component';
 import { ViewAffTypeComponent } from './aff-types/view-aff-type/view-aff-type.component';
-import { ContentComponent } from './content/content-component.component';
+import { MainViewComponent } from './views/mainview/mainview-component.component';
 import { IMenuItem, menu } from './data-menu';
-import { MenuService } from './service/menu.service'
+import { MenuService } from './shared/bl/menu/menu.service'
 
 
 
 const routes: Routes = [
   // {
   //   path: 'aff-types', 
-  //   component: ContentComponent,
+  //   component: MainViewComponent,
   //   data: { tabs: menu[0].tabs },
   //   children: [
   //     {

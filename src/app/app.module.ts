@@ -3,10 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { HeaderHeaderComponentComponent } from './header/header-header-component.component';
-import { ContentComponent } from './content/content-component.component';
-import { AsideMenuComponentComponent } from './menu/aside-menu-component.component';
-import { FooterComponentComponent } from './footer/footer-component.component';
+import { HeaderHeaderComponentComponent } from './shared/ui/header/header-header-component.component';
+import { MainViewComponent } from './views/mainview/mainview-component.component';
+import { AsideMenuComponentComponent } from './shared/ui/menu/aside-menu-component.component';
+import { FooterComponentComponent } from './shared/ui/footer/footer-component.component';
 import { AffTypesComponent } from './aff-types/aff-types.component';
 import { ViewAffTypeComponent } from './aff-types/view-aff-type/view-aff-type.component';
 import { AddEditAffTypeComponent } from './aff-types/add-edit-aff-type/add-edit-aff-type.component';
@@ -26,13 +26,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { HttpClientModule } from '@angular/common/http';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderHeaderComponentComponent,
-    ContentComponent,
+    MainViewComponent,
     AsideMenuComponentComponent,
     FooterComponentComponent,
     AffTypesComponent,
@@ -58,7 +59,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatTooltipModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule
     ],
   providers: [],
   bootstrap: [AppComponent],
