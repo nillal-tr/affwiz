@@ -60,7 +60,7 @@
       <ul class="form-element" *ngIf="tiersField.value !== '1'">
         <div class="nested-div">
           <li *ngFor="let tier of tiersSubFields; index as i">
-            <mat-label>Tier {{ i + 2 }} Rate </mat-label>
+            <mat-label>Tier {{ i + 2 }} Rate</mat-label>
             <mat-form-field
               class="field nested-field"
               matTooltip="Ex. Enter 0.20 for 20%"
@@ -118,7 +118,7 @@
         appearance="fill"
         matTooltip="Select at least one category"
       >
-      <!-- fix: when focus on "search" input: bug when clicking ctrl a is selects all -->
+        <!-- fix: when focus on "search" input: bug when clicking ctrl a is selects all -->
         <mat-label>Categories</mat-label>
         <mat-select multiple formControlName="categories" #select>
           <mat-form-field class="search-field">
@@ -142,7 +142,7 @@
           >
           <mat-option
             (click)="optionClick()"
-            *ngFor="let category of categoryList | filter:searchCat"
+            *ngFor="let category of categoryList | filter : searchCat"
             [value]="category"
             >{{ category.name }}</mat-option
           >
@@ -154,7 +154,7 @@
   <!-- Commission Types/Minimum Payout Amount -->
   <div class="box">
     <div class="box-title">Commission Types/Minimum Payout Amount</div>
-<!-- copy trader option can be removed?-->
+    <!-- copy trader option can be removed?-->
     <div class="form-element">
       <section class="checkbox field">
         <mat-checkbox formControlName="copyTrader" #copyTrader
@@ -165,9 +165,8 @@
       <!-- NESTED -->
       <div class="form-element" *ngIf="copyTrader.checked">
         <div class="nested-div">
-          From 1 to
           <mat-form-field class="field nested-field">
-            <mat-label></mat-label>
+            <mat-label>From 1 to</mat-label>
             <input
               type="number"
               matInput
@@ -190,9 +189,8 @@
         </div>
 
         <div class="nested-div">
-          From {{ firstCTvalue }} to
           <mat-form-field class="field nested-field">
-            <mat-label></mat-label>
+            <mat-label>From {{ firstCTvalue }} to</mat-label>
             <input
               type="number"
               matInput
@@ -215,9 +213,8 @@
         </div>
 
         <div class="nested-div">
-          From {{ secondCTvalue }} to
           <mat-form-field class="field nested-field">
-            <mat-label></mat-label>
+            <mat-label>From {{ secondCTvalue }} to</mat-label>
             <input
               type="number"
               matInput
@@ -241,7 +238,7 @@
 
         <div class="nested-div">
           From {{ thirdCTvalue }} and above CTs = $
-          <mat-form-field class="field nested-field">
+          <mat-form-field class="field">
             <mat-label></mat-label>
             <input
               type="number"
@@ -293,9 +290,8 @@
       *ngIf="depositCommission.checked && commissionDropDown.value === 'CPA'"
     >
       <div class="nested-div">
-        From 1 to
         <mat-form-field class="field nested-field">
-          <mat-label></mat-label>
+          <mat-label>From 1 to</mat-label>
           <input
             type="number"
             matInput
@@ -318,9 +314,8 @@
       </div>
 
       <div class="nested-div">
-        From XX to
         <mat-form-field class="field nested-field">
-          <mat-label></mat-label>
+          <mat-label>From XX to</mat-label>
           <input
             type="number"
             matInput
@@ -403,9 +398,8 @@
       </div>
 
       <div class="nested-div">
-        Percent of deposit:
-        <mat-form-field class="field nested-field">
-          <mat-label></mat-label>
+        <mat-form-field class="field">
+          <mat-label>Percent of deposit</mat-label>
           <input
             type="number"
             matInput
@@ -417,18 +411,17 @@
 
       <div class="box-title">CPA/CPAD Minimum Commissions</div>
       <div class="nested-div">
-        Minimum Commission per Trade $
         <!--FIX: in the original form this is disabled ???-->
-        <mat-form-field class="field nested-field">
-          <mat-label></mat-label>
+        <mat-form-field class="field">
+          <mat-label>Minimum Commission per Trade</mat-label>
           <input
             type="number"
             matInput
             placeholder=""
             max="999"
             formControlName="depositCommissionCPAD3"
-          />
-        </mat-form-field>
+          /> </mat-form-field
+        >$
       </div>
 
       <div class="box-title">CPA/CPAD Per Country Extra Plans</div>
@@ -438,17 +431,28 @@
 
       <!-- Button -->
       <div class="inner-btn">
-        <button type="button" #extraPlanBtn [disabled]="clickedNewExtraPlanBtn === blockToPushwhenClicked.length" mat-button class="add-btn" (click)="onClickExtraPlanBtn()">
+        <button
+          type="button"
+          #extraPlanBtn
+          [disabled]="clickedNewExtraPlanBtn === blockToPushwhenClicked.length"
+          mat-button
+          class="add-btn"
+          (click)="onClickExtraPlanBtn()"
+        >
           Add New Extra Plan
         </button>
       </div>
 
       <!-- when clicked on inner btn -->
-      <div class="form-element" *ngFor="let extraPlanOption of extraPlanOptions">
+      <div
+        class="form-element"
+        *ngFor="let extraPlanOption of extraPlanOptions"
+      >
         <div class="nested-div split-view">
-          <div class="left-side">Select {{extraPlanOption.blockNumber}} Extra Plan Countries</div>
+          <div class="left-side">
+            Select {{ extraPlanOption.blockNumber }} Extra Plan Countries
+          </div>
           <div class="right-side">
-
             <div class="">
               From 1 to
               <mat-form-field class="field nested-field">
@@ -474,7 +478,6 @@
               </mat-form-field>
             </div>
 
-
             <div class="">
               From {{ firstEPCvalue }} to
               <mat-form-field class="field nested-field">
@@ -499,7 +502,7 @@
                 />
               </mat-form-field>
             </div>
-    
+
             <div class="">
               From {{ secondEPCvalue }} to
               <mat-form-field class="field nested-field">
@@ -524,7 +527,7 @@
                 />
               </mat-form-field>
             </div>
-    
+
             <div class="">
               From {{ thirdEPCvalue }} and above CTs = $
               <mat-form-field class="field nested-field">
@@ -555,9 +558,8 @@
       <!-- NESTED -->
       <div class="form-element" *ngIf="saleCommission.checked">
         <div class="nested-div">
-          From 1 to
           <mat-form-field class="field nested-field">
-            <mat-label></mat-label>
+            <mat-label>From 1 to</mat-label>
             <input
               type="number"
               matInput
@@ -580,9 +582,8 @@
         </div>
 
         <div class="nested-div">
-          From {{ firstSCvalue }} to
           <mat-form-field class="field nested-field">
-            <mat-label></mat-label>
+            <mat-label>From {{ firstSCvalue }} to</mat-label>
             <input
               type="number"
               matInput
@@ -605,9 +606,8 @@
         </div>
 
         <div class="nested-div">
-          From {{ secondSCvalue }} to
           <mat-form-field class="field nested-field">
-            <mat-label></mat-label>
+            <mat-label>From {{ secondSCvalue }} to</mat-label>
             <input
               type="number"
               matInput
@@ -655,9 +655,8 @@
       <!-- NESTED -->
       <div class="form-element" *ngIf="leadCommissions.checked">
         <div class="nested-div row">
-          Lead Rate
           <mat-form-field class="field">
-            <mat-label></mat-label>
+            <mat-label>Lead Rate</mat-label>
             <input
               type="number"
               matInput
@@ -674,19 +673,29 @@
         <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
 
         <!-- NESTED -->
-        <div class="form-element" *ngIf="leadCommissions2.checked">
-          <div class="nested-div">
-            This should be fixed
-            <mat-form-field class="field nested-field">
-              <mat-label></mat-label>
-              <input
-                type="number"
-                matInput
-                placeholder=""
-                formControlName="depositCommissionCPAD1"
-              />
-            </mat-form-field>
-          </div>
+        <div>
+          <ul class="form-element" *ngIf="leadCommissions2.checked">
+            <div class="nested-div">
+              <li *ngFor="let country of countries" class="row">
+                <section class="checkbox field">
+                  <mat-checkbox formControlName="leadCRateCountryBasedCheckbox">{{
+                    country.viewValue
+                  }}</mat-checkbox>
+
+                  <mat-form-field class="fieldrow">
+                    <mat-label></mat-label>
+                    <input
+                      class=""
+                      type="number"
+                      matInput
+                      placeholder=""
+                      formControlName="leadCRateCountryBasedInput"
+                    />
+                  </mat-form-field>
+                </section>
+              </li>
+            </div>
+          </ul>
         </div>
         <!-- end of NESTED -->
       </div>
@@ -705,9 +714,8 @@
       <!-- NESTED -->
       <div class="form-element" *ngIf="registrationCommissions.checked">
         <div class="nested-div row">
-          Registration Rate
           <mat-form-field class="field">
-            <mat-label></mat-label>
+            <mat-label>Registration Rate</mat-label>
             <input
               type="number"
               matInput
@@ -726,19 +734,29 @@
         <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
 
         <!-- NESTED -->
-        <div class="form-element" *ngIf="registrationCommissions2.checked">
-          <div class="nested-div">
-            This should be fixed
-            <mat-form-field class="field nested-field">
-              <mat-label></mat-label>
-              <input
-                type="number"
-                matInput
-                placeholder=""
-                formControlName="depositCommissionCPAD1"
-              />
-            </mat-form-field>
-          </div>
+        <div>
+          <ul class="form-element" *ngIf="registrationCommissions2.checked">
+            <div class="nested-div">
+              <li *ngFor="let country of countries" class="row">
+                <section class="checkbox field">
+                  <mat-checkbox formControlName="regRateCountryBasedCheckbox">{{
+                    country.viewValue
+                  }}</mat-checkbox>
+
+                  <mat-form-field class="fieldrow">
+                    <mat-label></mat-label>
+                    <input
+                      class=""
+                      type="number"
+                      matInput
+                      placeholder=""
+                      formControlName="regRateCountryBasedInput"
+                    />
+                  </mat-form-field>
+                </section>
+              </li>
+            </div>
+          </ul>
         </div>
         <!-- end of NESTED -->
       </div>

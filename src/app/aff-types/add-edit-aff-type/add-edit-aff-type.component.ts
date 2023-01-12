@@ -98,7 +98,7 @@ export class AddEditAffTypeComponent implements OnInit {
     depositCommissionCPA3: new FormControl('29', Validators.max(999)),
     depositCommissionCPA3B: new FormControl(''),
     depositCommissionCPA4: new FormControl(''),
-    depositCommissionCPAD1: new FormControl(''),
+    depositCommissionCPAD1: new FormControl('1', Validators.min(1)),
     depositCommissionCPAD2: new FormControl('1'),
     depositCommissionCPAD3: new FormControl(''),
     depositCommissionCPAD4: new FormControl(''),
@@ -128,10 +128,14 @@ export class AddEditAffTypeComponent implements OnInit {
     leadCommissions: new FormControl(''),
     leadCommissions1: new FormControl(''),
     leadCommissions2: new FormControl(''),
+      leadRateCountryBasedCheckbox: new FormControl(''),
+      leadRateCountryBasedInput: new FormControl(''),
 
     registrationCommissions: new FormControl(''),
     registrationCommissions1: new FormControl(''),
     registrationCommissions2: new FormControl(''),
+      regRateCountryBasedCheckbox: new FormControl(''),
+      regRateCountryBasedInput: new FormControl(''),
 
     minCommissionPayout: new FormControl('0', Validators.required),
     viewTieredAffCount: new FormControl(''),
@@ -159,6 +163,12 @@ export class AddEditAffTypeComponent implements OnInit {
     { value: 'CPA', viewValue: 'CPA' },
     { value: 'CPAD', viewValue: 'CPAD' },
   ];
+
+  countries: any[] = [
+    {value: 'USA', viewValue: 'USA'},
+    {value: 'Israel', viewValue: 'Israel'},
+    {value: 'Brazil', viewValue: 'Brazil'},
+  ]
 
   data: any;
 
