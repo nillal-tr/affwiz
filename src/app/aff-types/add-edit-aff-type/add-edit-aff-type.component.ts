@@ -44,9 +44,9 @@ export class AddEditAffTypeComponent implements OnInit {
 
   // Categories field
   categoryList: any[] = [
-    {name: 'Arabic Stock Material'},
-    {name: 'Arabic_Bigger_Banners'},
-    {name: 'Arabic_e-course (GIF)'}
+    { name: 'Arabic Stock Material' },
+    { name: 'Arabic_Bigger_Banners' },
+    { name: 'Arabic_e-course (GIF)' },
   ];
 
   searchCat = '';
@@ -57,23 +57,57 @@ export class AddEditAffTypeComponent implements OnInit {
   allSelected: boolean = false;
 
   // Search option in the Categories field
-  searchValue: string = "";
+  searchValue: string = '';
   filteredCategoriesList: string[] = [];
 
+  // dropdown fields
+  tierOptions: ITierCalcMethod[] = [
+    {
+      value: 'New (Calculate % by Customer NetRevenue)',
+      viewValue: 'New (Calculate % by Customer NetRevenue)',
+    },
+    {
+      value: 'Old (Calculate % by Affiliate Gross Revenue)',
+      viewValue: 'Old (Calculate % by Affiliate Gross Revenue)',
+    },
+  ];
+
+  tiers: any[] = [
+    { value: '1', viewValue: '1' },
+    { value: '2', viewValue: '2' },
+    { value: '3', viewValue: '3' },
+    { value: '4', viewValue: '4' },
+    { value: '5', viewValue: '5' },
+  ];
+
+  tiersSubFields: any[] = [];
+
+  commissions: any[] = [
+    { value: 'CPA', viewValue: 'CPA' },
+    { value: 'CPAD', viewValue: 'CPAD' },
+  ];
+
+  countries: any[] = [
+    { value: 'USA', viewValue: 'USA' },
+    { value: 'Israel', viewValue: 'Israel' },
+    { value: 'Brazil', viewValue: 'Brazil' },
+  ];
+
+  data: any;
 
   // all form fields - fix: change to json (payments form in Partners project)
   affTypeForm = new FormGroup({
     description: new FormControl('', Validators.required),
     notes: new FormControl(''),
-    tierMethod: new FormControl(''),
-    tiers: new FormControl(''),
-    tier1Rate: new FormControl(''),
-    tier2Rate: new FormControl(''),
-    tier3Rate: new FormControl(''),
-    tier4Rate: new FormControl(''),
-    tier5Rate: new FormControl(''),
+    tierMethod: new FormControl(this.tierOptions[0].value),
+    tiers: new FormControl('', Validators.required),
+    tier1Rate: new FormControl('', Validators.required),
+    tier2Rate: new FormControl('', Validators.required),
+    tier3Rate: new FormControl('', Validators.required),
+    tier4Rate: new FormControl('', Validators.required),
+    tier5Rate: new FormControl('', Validators.required),
 
-    cookieExpiration: new FormControl('60'),
+    cookieExpiration: new FormControl('60', Validators.required),
     hideTrackingLinks: new FormControl(''),
     hideCreatives: new FormControl(''),
     categories: new FormControl(''),
@@ -128,49 +162,20 @@ export class AddEditAffTypeComponent implements OnInit {
     leadCommissions: new FormControl(''),
     leadCommissions1: new FormControl(''),
     leadCommissions2: new FormControl(''),
-      leadRateCountryBasedCheckbox: new FormControl(''),
-      leadRateCountryBasedInput: new FormControl(''),
+    leadRateCountryBasedCheckbox: new FormControl(''),
+    leadRateCountryBasedInput: new FormControl(''),
 
     registrationCommissions: new FormControl(''),
     registrationCommissions1: new FormControl(''),
     registrationCommissions2: new FormControl(''),
-      regRateCountryBasedCheckbox: new FormControl(''),
-      regRateCountryBasedInput: new FormControl(''),
+    regRateCountryBasedCheckbox: new FormControl(''),
+    regRateCountryBasedInput: new FormControl(''),
 
     minCommissionPayout: new FormControl('0', Validators.required),
     viewTieredAffCount: new FormControl(''),
     viewTieredAffDetail: new FormControl(''),
     createCustomLinksAffConsole: new FormControl('checked'),
   });
-
-  // dropdown fields
-  tierOptions: ITierCalcMethod[] = [
-    { value: 'New (Calculate % by Customer NetRevenue)', viewValue: 'New (Calculate % by Customer NetRevenue)' },
-    { value: 'Old (Calculate % by Affiliate Gross Revenue)', viewValue: 'Old (Calculate % by Affiliate Gross Revenue)' },
-  ];
-
-  tiers: any[] = [
-    { value: '1', viewValue: '1' },
-    { value: '2', viewValue: '2' },
-    { value: '3', viewValue: '3' },
-    { value: '4', viewValue: '4' },
-    { value: '5', viewValue: '5' },
-  ];
-
-  tiersSubFields: any[] = [];
-
-  commissions: any[] = [
-    { value: 'CPA', viewValue: 'CPA' },
-    { value: 'CPAD', viewValue: 'CPAD' },
-  ];
-
-  countries: any[] = [
-    {value: 'USA', viewValue: 'USA'},
-    {value: 'Israel', viewValue: 'Israel'},
-    {value: 'Brazil', viewValue: 'Brazil'},
-  ]
-
-  data: any;
 
   constructor() {}
   ngOnInit() {}
@@ -205,7 +210,6 @@ export class AddEditAffTypeComponent implements OnInit {
     });
     this.allSelected = newStatus;
   }
-
 
   // Per Deposit Commissions >CPAD > clicking on Btn to add extra option
   onClickExtraPlanBtn() {

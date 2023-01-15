@@ -121,7 +121,7 @@
         <!-- fix: when focus on "search" input: bug when clicking ctrl a is selects all -->
         <mat-label>Categories</mat-label>
         <mat-select multiple formControlName="categories" #select>
-          <mat-form-field class="search-field">
+          <mat-form-field class="search-field fieldrow">
             <mat-label>Search</mat-label>
             <input
               formControlName="searchCategories"
@@ -670,17 +670,16 @@
             >
           </section>
         </div>
-        <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
-
         <!-- NESTED -->
         <div>
           <ul class="form-element" *ngIf="leadCommissions2.checked">
             <div class="nested-div">
               <li *ngFor="let country of countries" class="row">
                 <section class="checkbox field">
-                  <mat-checkbox formControlName="leadCRateCountryBasedCheckbox">{{
-                    country.viewValue
-                  }}</mat-checkbox>
+                  <mat-checkbox
+                    formControlName="leadCRateCountryBasedCheckbox"
+                    >{{ country.viewValue }}</mat-checkbox
+                  >
 
                   <mat-form-field class="fieldrow">
                     <mat-label></mat-label>
@@ -731,8 +730,6 @@
             >
           </section>
         </div>
-        <!-- FIX: add another condition here with checkboxs and input fields based on array of countries -->
-
         <!-- NESTED -->
         <div>
           <ul class="form-element" *ngIf="registrationCommissions2.checked">
