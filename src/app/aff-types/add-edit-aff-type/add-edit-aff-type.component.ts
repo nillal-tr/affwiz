@@ -162,15 +162,16 @@ export class AddEditAffTypeComponent implements OnInit {
     leadCommissions: new FormControl(''),
     leadCommissions1: new FormControl(''),
     leadCommissions2: new FormControl(''),
-    leadRateCountryBasedCheckbox: new FormControl(''),
-    leadRateCountryBasedInput: new FormControl(''),
+    leadCRateCountryBasedCheckbox: new FormControl(''),
+    leadCRateCountryBasedInput: new FormControl(''),
+    
 
     registrationCommissions: new FormControl(''),
     registrationCommissions1: new FormControl(''),
     registrationCommissions2: new FormControl(''),
     regRateCountryBasedCheckbox: new FormControl(''),
     regRateCountryBasedInput: new FormControl(''),
-
+    
     minCommissionPayout: new FormControl('0', Validators.required),
     viewTieredAffCount: new FormControl(''),
     viewTieredAffDetail: new FormControl(''),
