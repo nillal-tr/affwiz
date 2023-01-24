@@ -11,17 +11,18 @@
   flex-direction: row;
 }
 
-.content {
+.content-tab {
   margin-left: 25px;
   background-color: rgb(250, 249, 249);
   padding: 20px;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  width: 100%;
 }
 
 .side-menu {
-  width: 15%;
-
+  width: 30%;
+  min-width: 180px
 }
 
 

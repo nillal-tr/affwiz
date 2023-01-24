@@ -1,0 +1,32 @@
+.accordion-btn {
+  width: 100%;
+  background-color: #F0EFEF;
+  text-align: left;
+  height: 45px;
+  border: 0;
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  color: gray;
+}
+
+.accordion-btn:hover {
+  background-color: #cacaca;
+}
+
+.btn-active {
+  color: black;
+}
+
+.btn-notactive {
+  color: gray;
+}
+
+.accordion-content {
+  padding: 10px;
+  font-size: 14px;
+}

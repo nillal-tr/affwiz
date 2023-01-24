@@ -27,6 +27,14 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { HttpClientModule } from '@angular/common/http';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {MatIconModule} from '@angular/material/icon';
+import { AccordionComponent } from './shared/ui/accordion/accordion.component';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { CategoriesComponent } from './aff-types/add-edit-aff-type/categories/categories.component';
+import { NewAffTypeComponent } from './aff-types/add-edit-aff-type/new-aff-type/new-aff-type.component';
+import { CommissionTypeComponent } from './aff-types/add-edit-aff-type/commission-type/commission-type.component';
+import { TieredAffDisplayOptionsComponent } from './aff-types/add-edit-aff-type/tiered-aff-display-options/tiered-aff-display-options.component';
+import { OtherComponent } from './aff-types/add-edit-aff-type/other/other.component';
 
 
 @NgModule({
@@ -43,7 +51,13 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     DropdownComponent,
     MultiSelectComponent,
     ShortInputComponent,
-    LongInputComponent
+    LongInputComponent,
+    AccordionComponent,
+    CategoriesComponent,
+    NewAffTypeComponent,
+    CommissionTypeComponent,
+    TieredAffDisplayOptionsComponent,
+    OtherComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +74,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     MatTooltipModule,
     FormsModule,
     HttpClientModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    MatIconModule,
+    CdkAccordionModule
     ],
   providers: [],
   bootstrap: [AppComponent],

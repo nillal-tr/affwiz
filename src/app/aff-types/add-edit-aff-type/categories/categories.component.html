@@ -1,0 +1,42 @@
+<form [formGroup]="affTypeFormCategories">
+  <!-- Categories -->
+  
+    <div class="form-element">
+      <mat-form-field
+        class="field"
+        appearance="fill"
+        matTooltip="Select at least one category"
+        color="primary"
+      >
+        <!-- fix: when focus on "search" input: bug when clicking ctrl a is selects all -->
+        <mat-label>Categories</mat-label>
+        <mat-select multiple formControlName="categories" #select>
+          <mat-form-field class="search-field fieldrow">
+            <mat-label>Search</mat-label>
+            <input
+              formControlName="searchCategories"
+              #searchCategories
+              type="text"
+              matInput
+              placeholder=""
+              [(ngModel)]="searchCat"
+            />
+          </mat-form-field>
+
+          <mat-checkbox
+            class="select-all-cb"
+            [(ngModel)]="allSelected"
+            [ngModelOptions]="{ standalone: true }"
+            (change)="toggleAllSelection()"
+            >Select All</mat-checkbox
+          >
+          <mat-option
+            (click)="optionClick()"
+            *ngFor="let category of categoryList | filter : searchCat"
+            [value]="category"
+            >{{ category.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+</form>

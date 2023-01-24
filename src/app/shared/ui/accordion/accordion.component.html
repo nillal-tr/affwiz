@@ -1,0 +1,24 @@
+ <!-- start accordion -->
+ <button
+ class="accordion-btn"
+ [ngClass]="[btnActiveStyle]"
+ (click)="onClickAccordionBtn()"
+>
+ Title
+ <mat-icon
+   aria-hidden="false"
+   fontIcon="expand_more"
+   *ngIf="showAccordionContent === false"
+ ></mat-icon
+ ><mat-icon
+   aria-hidden="false"
+   fontIcon="close"
+   *ngIf="showAccordionContent === true"
+ ></mat-icon>
+</button>
+<div class="accordion-content" *ngIf="showAccordionContent === true">
+ <!-- accordion content start -->
+ accordion content
+ <!-- accordion content end -->
+</div>
+<!-- end accordion -->
