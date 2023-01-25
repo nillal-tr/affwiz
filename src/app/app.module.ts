@@ -35,6 +35,11 @@ import { NewAffTypeComponent } from './aff-types/add-edit-aff-type/new-aff-type/
 import { CommissionTypeComponent } from './aff-types/add-edit-aff-type/commission-type/commission-type.component';
 import { TieredAffDisplayOptionsComponent } from './aff-types/add-edit-aff-type/tiered-aff-display-options/tiered-aff-display-options.component';
 import { OtherComponent } from './aff-types/add-edit-aff-type/other/other.component';
+import { CopyTraderCommissionComponent } from './aff-types/add-edit-aff-type/commission-type/copy-trader-commission/copy-trader-commission.component';
+import { DepositCommissionComponent } from './aff-types/add-edit-aff-type/commission-type/deposit-commission/deposit-commission.component';
+import { SaleCommissionComponent } from './aff-types/add-edit-aff-type/commission-type/sale-commission/sale-commission.component';
+import { LeadCommissionComponent } from './aff-types/add-edit-aff-type/commission-type/lead-commission/lead-commission.component';
+import { RegCommissionComponent } from './aff-types/add-edit-aff-type/commission-type/reg-commission/reg-commission.component';
 
 
 @NgModule({
@@ -57,7 +62,12 @@ import { OtherComponent } from './aff-types/add-edit-aff-type/other/other.compon
     NewAffTypeComponent,
     CommissionTypeComponent,
     TieredAffDisplayOptionsComponent,
-    OtherComponent
+    OtherComponent,
+    CopyTraderCommissionComponent,
+    DepositCommissionComponent,
+    SaleCommissionComponent,
+    LeadCommissionComponent,
+    RegCommissionComponent
   ],
   imports: [
     BrowserModule,
