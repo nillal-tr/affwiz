@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-deposit-commission',
@@ -7,4 +8,64 @@ import { Component } from '@angular/core';
 })
 export class DepositCommissionComponent {
 
+  firstEPCvalue: number = 9;
+  secondEPCvalue: number = 19;
+  thirdEPCvalue: number = 29;
+  firstDCvalue: number = 9;
+  secondDCvalue: number = 19;
+  thirdDCvalue: number = 29;
+
+  commissions: any[] = [
+    { value: 'CPA', viewValue: 'CPA' },
+    { value: 'CPAD', viewValue: 'CPAD' },
+  ];
+
+  // Per Deposit Commissions >CPAD > clicking on Btn to add extra option
+  extraPlanOptions: any[] = [];
+  clickedNewExtraPlanBtn = 0;
+  contentNewExtraPlan = [
+    { blockNumber: 'First' },
+    { blockNumber: 'Second' },
+    { blockNumber: 'Third' },
+    { blockNumber: 'Fourth' },
+  ];
+
+  // Per Deposit Commissions > CPAD > clicking on Btn to add extra option
+  onClickExtraPlanBtn() {
+    if (this.clickedNewExtraPlanBtn++ < this.contentNewExtraPlan.length + 1) {
+      this.extraPlanOptions.push(
+        this.contentNewExtraPlan[this.clickedNewExtraPlanBtn - 1]
+      );
+    }
+  }
+
+
+  affTypeFormCommissionTypeDepositCommission = new FormGroup({
+    depositCommission: new FormControl(''),
+    depositCommissionCPA1: new FormControl('9', Validators.max(999)),
+    depositCommissionCPA1B: new FormControl(''),
+    depositCommissionCPA2: new FormControl('19', Validators.max(999)),
+    depositCommissionCPA2B: new FormControl(''),
+    depositCommissionCPA3: new FormControl('29', Validators.max(999)),
+    depositCommissionCPA3B: new FormControl(''),
+    depositCommissionCPA4: new FormControl(''),
+    depositCommissionCPAD1: new FormControl('1', Validators.min(1)),
+    depositCommissionCPAD2: new FormControl('1'),
+    depositCommissionCPAD3: new FormControl(''),
+    depositCommissionCPAD4: new FormControl(''),
+
+    extraPlanCountries1: new FormControl('9', Validators.max(999)),
+    extraPlanCountries1B: new FormControl(''),
+    extraPlanCountries2: new FormControl('19', [
+      Validators.max(999),
+      Validators.min(1),
+    ]),
+    extraPlanCountries2B: new FormControl(''),
+    extraPlanCountries3: new FormControl('29', Validators.max(999)),
+    extraPlanCountries3B: new FormControl(''),
+    extraPlanCountries4: new FormControl(''),
+
+    commissionDropDown: new FormControl(''),
+    openPositionReq: new FormControl(''),
+  })
 }

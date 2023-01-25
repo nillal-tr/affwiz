@@ -1,1 +1,298 @@
-<p>deposit-commission works!</p>
+<form [formGroup]="affTypeFormCommissionTypeDepositCommission">
+  <div class="row">
+    <div class="form-element">
+      <section class="checkbox field">
+        <mat-checkbox formControlName="depositCommission" #depositCommission
+          >Per Deposit Commissions</mat-checkbox
+        >
+      </section>
+    </div>
+
+    <div class="form-element">
+      <mat-form-field appearance="fill" class="field" color="primary">
+        <mat-label></mat-label>
+        <mat-select formControlName="commissionDropDown" #commissionDropDown>
+          <mat-option
+            *ngFor="let commission of commissions"
+            [value]="commission.value"
+          >
+            {{ commission.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-element">
+      <section class="checkbox field">
+        <mat-checkbox formControlName="openPositionReq"
+          >Open Position Required</mat-checkbox
+        >
+      </section>
+    </div>
+  </div>
+
+  <!-- NESTED -->
+  <div
+    class="form-element"
+    *ngIf="depositCommission.checked && commissionDropDown.value === 'CPA'"
+  >
+    <div class="nested-div">
+      <mat-form-field class="field nested-field" color="primary">
+        <mat-label>From 1 to</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          max="999"
+          formControlName="depositCommissionCPA1"
+          matTooltip="Up to 999"
+          [(ngModel)]="firstDCvalue"
+        />
+      </mat-form-field>
+      CTs = $
+      <mat-form-field class="field nested-field">
+        <mat-label></mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          formControlName="depositCommissionCPA1B"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="nested-div">
+      <mat-form-field class="field nested-field" color="primary">
+        <mat-label>From {{ firstDCvalue }} to</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          max="999"
+          formControlName="depositCommissionCPA2"
+          matTooltip="Up to 999"
+          [(ngModel)]="secondDCvalue"
+        />
+      </mat-form-field>
+      CTs = $
+      <mat-form-field class="field nested-field" color="primary">
+        <mat-label></mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          formControlName="depositCommissionCPA2B"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="nested-div">
+      <mat-form-field class="field nested-field" color="primary">
+        <mat-label>From {{ secondDCvalue }} to</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          max="999"
+          formControlName="depositCommissionCPA3"
+          matTooltip="Up to 999"
+          [(ngModel)]="thirdDCvalue"
+        />
+      </mat-form-field>
+      CTs = $
+      <mat-form-field class="field nested-field" color="primary">
+        <mat-label></mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          formControlName="depositCommissionCPA3B"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="nested-div">
+      From {{ thirdDCvalue }} and above CTs =
+      <mat-form-field class="field nested-field" color="primary">
+        <mat-label></mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          max="999"
+          formControlName="depositCommissionCPA4"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- end of NESTED -->
+
+  <!-- NESTED -->
+  <div
+    class="form-element"
+    *ngIf="depositCommission.checked && commissionDropDown.value === 'CPAD'"
+  >
+    <div class="nested-div">
+      From 1 and above FTDs = $
+      <mat-form-field class="field nested-field" color="primary">
+        <mat-label></mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          max="999"
+          formControlName="depositCommissionCPAD1"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="nested-div">
+      <mat-form-field class="field" color="primary">
+        <mat-label>Percent of deposit</mat-label>
+        <input
+          type="number"
+          matInput
+          formControlName="depositCommissionCPAD2"
+          matTooltip="1 for 100%, 0.2 for 20%"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="box-title">CPA/CPAD Minimum Commissions</div>
+    <div class="nested-div">
+      <!--FIX: in the original form this is disabled ???-->
+      <mat-form-field class="field" color="primary">
+        <mat-label>Minimum Commission per Trade</mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          max="999"
+          formControlName="depositCommissionCPAD3"
+        /> </mat-form-field
+      >$
+    </div>
+
+    <div class="box-title">CPA/CPAD Per Country Extra Plans</div>
+    <div class="inner-text">
+      Add CPA/CPAD Per Country Extra Plan (Up to 4 Extra Plans Can be Added)
+    </div>
+
+    <!-- Button -->
+    <div class="inner-btn">
+      <button
+        type="button"
+        #extraPlanBtn
+        [disabled]="clickedNewExtraPlanBtn === contentNewExtraPlan.length"
+        mat-button
+        class="add-btn"
+        (click)="onClickExtraPlanBtn()"
+      >
+        Add New Extra Plan
+      </button>
+    </div>
+
+    <!-- when clicked on inner btn -->
+    <div class="form-element" *ngFor="let extraPlanOption of extraPlanOptions">
+      <div class="nested-div split-view">
+        <div class="left-side">
+          Select {{ extraPlanOption.blockNumber }} Extra Plan Countries
+        </div>
+        <div class="right-side">
+          <div class="">
+            From 1 to
+            <mat-form-field class="field nested-field" color="primary">
+              <mat-label></mat-label>
+              <input
+                type="number"
+                matInput
+                placeholder=""
+                formControlName="extraPlanCountries1"
+                matTooltip="Up to 999"
+                [(ngModel)]="firstEPCvalue"
+              />
+            </mat-form-field>
+            CTs = $
+            <mat-form-field class="field nested-field" color="primary">
+              <mat-label></mat-label>
+              <input
+                type="number"
+                matInput
+                placeholder=""
+                formControlName="extraPlanCountries1B"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="">
+            From {{ firstEPCvalue }} to
+            <mat-form-field class="field nested-field" color="primary">
+              <mat-label></mat-label>
+              <input
+                type="number"
+                matInput
+                placeholder=""
+                formControlName="extraPlanCountries2"
+                matTooltip="Up to 999"
+                [(ngModel)]="secondEPCvalue"
+              />
+            </mat-form-field>
+            CTs = $
+            <mat-form-field class="field nested-field" color="primary">
+              <mat-label></mat-label>
+              <input
+                type="number"
+                matInput
+                placeholder=""
+                formControlName="extraPlanCountries2B"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="">
+            From {{ secondEPCvalue }} to
+            <mat-form-field class="field nested-field" color="primary">
+              <mat-label></mat-label>
+              <input
+                type="number"
+                matInput
+                placeholder=""
+                formControlName="extraPlanCountries3"
+                matTooltip="Up to 999"
+                [(ngModel)]="thirdEPCvalue"
+              />
+            </mat-form-field>
+            CTs = $
+            <mat-form-field class="field nested-field" color="primary">
+              <mat-label></mat-label>
+              <input
+                type="number"
+                matInput
+                placeholder=""
+                formControlName="extraPlanCountries3B"
+              />
+            </mat-form-field>
+          </div>
+
+          <div class="">
+            From {{ thirdEPCvalue }} and above CTs = $
+            <mat-form-field class="field nested-field" color="primary">
+              <mat-label></mat-label>
+              <input
+                type="number"
+                matInput
+                placeholder=""
+                max="999"
+                formControlName="extraPlanCountries4"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of NESTED -->
+  </div>
+  <!-- end of NESTED -->
+
+
+</form>

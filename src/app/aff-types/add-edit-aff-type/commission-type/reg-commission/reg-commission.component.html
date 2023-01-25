@@ -1,1 +1,60 @@
-<p>reg-commission works!</p>
+<form [formGroup]="affTypeFormCommissionTypeRegCommission">
+  <div class="form-element">
+    <section class="checkbox field">
+      <mat-checkbox
+        formControlName="registrationCommissions"
+        #registrationCommissions
+        >Per Registration Commissions</mat-checkbox
+      >
+    </section>
+
+    <!-- NESTED -->
+    <div class="form-element" *ngIf="registrationCommissions.checked">
+      <div class="nested-div row">
+        <mat-form-field class="field" color="primary">
+          <mat-label>Registration Rate</mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="registrationCommissions1"
+          />
+        </mat-form-field>
+        <section class="checkbox field">
+          <mat-checkbox
+            formControlName="registrationCommissions2"
+            #registrationCommissions2
+            >Set Registration Rate per Country</mat-checkbox
+          >
+        </section>
+      </div>
+      <!-- NESTED -->
+      <div>
+        <ul class="form-element" *ngIf="registrationCommissions2.checked">
+          <div class="nested-div">
+            <li *ngFor="let countryitem of countryitems" class="row">
+              <section class="checkbox field">
+                <mat-checkbox formControlName="regRateCountryBasedCheckbox">{{
+                  countryitem.name
+                }}</mat-checkbox>
+
+                <mat-form-field class="fieldrow" color="primary">
+                  <mat-label></mat-label>
+                  <input
+                    class=""
+                    type="number"
+                    matInput
+                    placeholder=""
+                    formControlName="regRateCountryBasedInput"
+                  />
+                </mat-form-field>
+              </section>
+            </li>
+          </div>
+        </ul>
+      </div>
+      <!-- end of NESTED -->
+    </div>
+    <!-- end of NESTED -->
+  </div>
+</form>

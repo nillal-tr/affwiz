@@ -1,1 +1,100 @@
-<p>copt-trader-commission works!</p>
+<form [formGroup]="affTypeFormCommissionTypeCopyTrader">
+
+   <!-- copy trader -->
+   <div class="form-element">
+    <section class="checkbox field">
+      <mat-checkbox formControlName="copyTrader" #copyTrader
+        >Per Copy Trader Commissions</mat-checkbox
+      >
+    </section>
+
+    <!-- NESTED -->
+    <div class="form-element" *ngIf="copyTrader.checked">
+      <div class="nested-div">
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label>From 1 to</mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="copyTrader1"
+            matTooltip="Up to 999"
+            [(ngModel)]="firstCTvalue"
+          />
+        </mat-form-field>
+        CTs = $
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label></mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="copyTrader1B"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="nested-div">
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label>From {{ firstCTvalue }} to</mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="copyTrader2"
+            matTooltip="Up to 999"
+            [(ngModel)]="secondCTvalue"
+          />
+        </mat-form-field>
+        CTs = $
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label></mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="copyTrader2B"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="nested-div">
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label>From {{ secondCTvalue }} to</mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="copyTrader3"
+            matTooltip="Up to 999"
+            [(ngModel)]="thirdCTvalue"
+          />
+        </mat-form-field>
+        CTs = $
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label></mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="copyTrader3B"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="nested-div">
+        From {{ thirdCTvalue }} and above CTs = $
+        <mat-form-field class="field" color="primary">
+          <mat-label></mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="copyTrader4"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- end of NESTED -->
+  </div>
+</form>

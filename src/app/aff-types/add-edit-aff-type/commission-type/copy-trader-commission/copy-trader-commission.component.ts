@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-copy-trader-commission',
@@ -6,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./copy-trader-commission.component.css']
 })
 export class CopyTraderCommissionComponent {
+  firstCTvalue: number = 9;
+  secondCTvalue: number = 19;
+  thirdCTvalue: number = 29;
 
+  affTypeFormCommissionTypeCopyTrader = new FormGroup({
+    copyTrader: new FormControl(''),
+    copyTrader1: new FormControl('9', Validators.max(999)),
+    copyTrader1B: new FormControl(''),
+    copyTrader2: new FormControl('19', [
+      Validators.max(999),
+      Validators.min(1),
+    ]),
+    copyTrader2B: new FormControl(''),
+    copyTrader3: new FormControl('29', Validators.max(999)),
+    copyTrader3B: new FormControl(''),
+    copyTrader4: new FormControl(''),
+  })
 }

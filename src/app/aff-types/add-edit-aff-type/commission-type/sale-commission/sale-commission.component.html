@@ -1,1 +1,98 @@
-<p>sale-commission works!</p>
+<form [formGroup]="affTypeFormCommissionTypeSaleCommission">
+  <div class="form-element">
+    <section class="checkbox field">
+      <mat-checkbox formControlName="saleCommission" #saleCommission
+        >Per Sale Commissions</mat-checkbox
+      >
+    </section>
+
+    <!-- NESTED -->
+    <div class="form-element" *ngIf="saleCommission.checked">
+      <div class="nested-div">
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label>From 1 to</mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="saleCommission1"
+            matTooltip="Up to 999"
+            [(ngModel)]="firstSCvalue"
+          />
+        </mat-form-field>
+        FTDs = %
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label></mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="saleCommission1B"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="nested-div">
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label>From {{ firstSCvalue }} to</mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="saleCommission2"
+            matTooltip="Up to 999"
+            [(ngModel)]="secondSCvalue"
+          />
+        </mat-form-field>
+        FTDs = %
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label></mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="saleCommission2B"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="nested-div">
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label>From {{ secondSCvalue }} to</mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="saleCommission3"
+            matTooltip="Up to 999"
+            [(ngModel)]="thirdSCvalue"
+          />
+        </mat-form-field>
+        FTDs = %
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label></mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="saleCommission3B"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="nested-div">
+        From {{ thirdSCvalue }} and above FTDs = %
+        <mat-form-field class="field nested-field" color="primary">
+          <mat-label></mat-label>
+          <input
+            type="number"
+            matInput
+            placeholder=""
+            formControlName="saleCommission4"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- end of NESTED -->
+  </div>
+</form>
