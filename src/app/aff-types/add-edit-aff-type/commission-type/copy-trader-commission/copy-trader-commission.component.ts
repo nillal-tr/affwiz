@@ -13,15 +13,17 @@ export class CopyTraderCommissionComponent {
 
   affTypeFormCommissionTypeCopyTrader = new FormGroup({
     copyTrader: new FormControl(''),
-    copyTrader1: new FormControl('9', Validators.max(999)),
+    copyTrader1: new FormControl(this.firstCTvalue, Validators.max(999)),
     copyTrader1B: new FormControl(''),
-    copyTrader2: new FormControl('19', [
+    copyTrader2: new FormControl(this.secondCTvalue, [
       Validators.max(999),
       Validators.min(1),
     ]),
     copyTrader2B: new FormControl(''),
-    copyTrader3: new FormControl('29', Validators.max(999)),
+    copyTrader3: new FormControl(this.thirdCTvalue, Validators.max(999)),
     copyTrader3B: new FormControl(''),
     copyTrader4: new FormControl(''),
   })
+
+  
 }

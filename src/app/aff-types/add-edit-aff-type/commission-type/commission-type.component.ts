@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { countries } from '../../../data-countries'
 
 @Component({
   selector: 'app-commission-type',
@@ -8,26 +7,13 @@ import { countries } from '../../../data-countries'
   styleUrls: ['./commission-type.component.css'],
 })
 export class CommissionTypeComponent {
-  countryitems = countries;
 
-
-
-  // lead commission
-
-  // reg commission
-
-
-
-  // fields
+    // accordion commission type
+    commissionTypes = ['Per Copy Trader Commissions', 'Per Deposit Commissions', 'Per Sale Commissions', 'Per Lead Commissions', 'Per Registration Commissions'];
+    expandedIndex = 0;
+  
 
   affTypeFormCommissionType = new FormGroup({
-
-    registrationCommissions: new FormControl(''),
-    registrationCommissions1: new FormControl(''),
-    registrationCommissions2: new FormControl(''),
-    regRateCountryBasedCheckbox: new FormControl(''),
-    regRateCountryBasedInput: new FormControl(''),
-
     minCommissionPayout: new FormControl('0', Validators.required),
   });
 }

@@ -1,9 +1,11 @@
 <!-- Commission Types/Minimum Payout Amount -->
 
 <form [formGroup]="affTypeFormCommissionType">
-  <!-- copy trader -->
-  <app-copy-trader-commission></app-copy-trader-commission>
 
+  
+  <!-- copy trader -->
+  
+    <app-copy-trader-commission></app-copy-trader-commission>
   <!-- Per Deposit Commissions -->
   <app-deposit-commission></app-deposit-commission>
 
@@ -18,7 +20,7 @@
 
   <!-- Minimum Commission Payout -->
   <div class="form-element">
-    <mat-form-field class="field" color="primary">
+    <mat-form-field class="" color="primary">
       <mat-label matTooltip="Set to 0 to payout all commissions"
         >Minimum Commission Payout</mat-label
       >
