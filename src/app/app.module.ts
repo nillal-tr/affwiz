@@ -86,7 +86,7 @@ import { RegCommissionComponent } from './aff-types/add-edit-aff-type/commission
     HttpClientModule,
     Ng2SearchPipeModule,
     MatIconModule,
-    CdkAccordionModule
+    CdkAccordionModule,
     ],
   providers: [],
   bootstrap: [AppComponent],

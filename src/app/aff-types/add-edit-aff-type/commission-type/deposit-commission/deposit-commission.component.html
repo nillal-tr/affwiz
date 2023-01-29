@@ -7,7 +7,7 @@
     </section>
 
     <div class="form-element" *ngIf="depositCommission.checked">
-      <mat-form-field appearance="fill" class="field" color="primary">
+      <mat-form-field appearance="fill" class="" color="primary">
         <mat-label></mat-label>
         <mat-select formControlName="commissionDropDown" #commissionDropDown>
           <mat-option
@@ -136,7 +136,7 @@
         </div>
 
         <div class="nested-div">
-          <mat-form-field class="field" color="primary">
+          <mat-form-field class="field nested-field" color="primary">
             <mat-label>Percent of deposit</mat-label>
             <input
               type="number"
@@ -150,7 +150,7 @@
         <div class="box-title">CPA/CPAD Minimum Commissions</div>
         <div class="nested-div">
           <!--FIX: in the original form this is disabled ???-->
-          <mat-form-field class="field" color="primary">
+          <mat-form-field class="field nested-field" color="primary">
             <mat-label>Minimum Commission per Trade</mat-label>
             <input
               type="number"

@@ -73,7 +73,7 @@ export class DepositCommissionComponent {
     extraPlanCountries3B: new FormControl(''),
     extraPlanCountries4: new FormControl(''),
 
-    commissionDropDown: new FormControl(''),
+    commissionDropDown: new FormControl('Please select'),
     openPositionReq: new FormControl(''),
   });
 
