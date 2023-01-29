@@ -1,104 +1,125 @@
+<!-- Add A New Affiliate Type -->
+<form [formGroup]="affTypeFormAddNew">
+  <div class="form-element">
+    <mat-form-field class="field" color="primary">
+      <mat-label>Description</mat-label>
+      <input
+        type="text"
+        name="description"
+        matInput
+        placeholder=""
+        formControlName="description"
+        #description
+        (change)="addNewItem(description.value)"
+      />
+    </mat-form-field>
+  </div>
 
-  <!-- Add A New Affiliate Type -->
-  <form [formGroup]="affTypeFormAddNew">
+  <div class="form-element">
+    <mat-form-field class="field" color="primary">
+      <mat-label>Notes</mat-label>
+      <textarea
+        matInput
+        placeholder=""
+        formControlName="notes"
+        #notes
+        (change)="addNewItem(notes.value)"
+      ></textarea>
+    </mat-form-field>
+  </div>
 
-    <div class="form-element">
-      <mat-form-field class="field" color="primary">
-        <mat-label>Description</mat-label>
-        <input
-          type="text"
-          name="description"
-          matInput
-          placeholder=""
-          formControlName="description"
-        />
-      </mat-form-field>
-    </div>
+  <div class="form-element">
+    <mat-form-field appearance="fill" class="field" color="primary">
+      <mat-label>Tier Calculation Method</mat-label>
+      <mat-select formControlName="tierMethod">
+        <mat-option
+          *ngFor="let tierOption of tierOptions"
+          [value]="tierOption.value"
+          #tierMethod
+          (change)="addNewItem(tierMethod.value)"
+        >
+          {{ tierOption.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-    <div class="form-element">
-      <mat-form-field class="field" color="primary">
-        <mat-label>Notes</mat-label>
-        <textarea matInput placeholder="" formControlName="notes"></textarea>
-      </mat-form-field>
-    </div>
+  <div class="form-element row">
+    <mat-form-field appearance="fill" class="field" color="primary">
+      <mat-label>Tiers</mat-label>
+      <mat-select
+        formControlName="tiers"
+        #tiersField
+        (selectionChange)="onSelectChange($event)"
+      >
+        <mat-option *ngFor="let tier of tiers" [value]="tier.value">
+          {{ tier.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-    <div class="form-element">
-      <mat-form-field appearance="fill" class="field" color="primary">
-        <mat-label>Tier Calculation Method</mat-label>
-        <mat-select formControlName="tierMethod">
-          <mat-option
-            *ngFor="let tierOption of tierOptions"
-            [value]="tierOption.value"
+    <ul class="form-element" *ngIf="tiersField.value !== '1'">
+      <div class="nested-div">
+        <li *ngFor="let tier of tiersSubFields; index as i">
+          <mat-label>Tier {{ i + 2 }} Rate</mat-label>
+          <mat-form-field
+            class="field"
+            matTooltip="Ex. Enter 0.20 for 20%"
+            color="primary"
+            #tier
+            (change)="addNewItem(tier.value)"
           >
-            {{ tierOption.viewValue }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div class="form-element row">
-      <mat-form-field appearance="fill" class="field" color="primary">
-        <mat-label>Tiers</mat-label>
-        <mat-select
-          formControlName="tiers"
-          #tiersField
-          (selectionChange)="onSelectChange($event)"
-        >
-          <mat-option *ngFor="let tier of tiers" [value]="tier.value">
-            {{ tier.viewValue }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <ul class="form-element" *ngIf="tiersField.value !== '1'">
-        <div class="nested-div">
-          <li *ngFor="let tier of tiersSubFields; index as i">
-            <mat-label>Tier {{ i + 2 }} Rate</mat-label>
-            <mat-form-field
-              class="field nested-field"
-              matTooltip="Ex. Enter 0.20 for 20%"
+            <mat-label></mat-label>
+            <input
+              type="number"
+              matInput
+              placeholder=""
+              max="1"
+              formControlName="tier{{ i + 2 }}Rate"
               color="primary"
-            >
-              <mat-label></mat-label>
-              <input
-                type="number"
-                matInput
-                placeholder=""
-                max="1"
-                formControlName="tier{{ i + 2 }}Rate"
-                color="primary"
-              />
-            </mat-form-field>
-          </li>
-        </div>
-      </ul>
-      <!-- end of NESTED -->
-    </div>
+              #tierRate
+              (change)="addNewItem(tierRate.value)"
+            />
+          </mat-form-field>
+        </li>
+      </div>
+    </ul>
+    <!-- end of NESTED -->
+  </div>
 
-    <div class="form-element">
-      <mat-form-field class="field" color="primary">
-        <mat-label>Default Cookie Expiration</mat-label>
-        <input
-          formControlName="cookieExpiration"
-          type="number"
-          matInput
-          placeholder=""
-        />
-      </mat-form-field>
-    </div>
+  <div class="form-element">
+    <mat-form-field class="field" color="primary">
+      <mat-label>Default Cookie Expiration</mat-label>
+      <input
+        formControlName="cookieExpiration"
+        type="number"
+        matInput
+        placeholder=""
+        #cookieExpiration
+        (change)="addNewItem(cookieExpiration.value)"
+      />
+    </mat-form-field>
+  </div>
 
-    <div class="form-element">
-      <section class="checkbox field">
-        <mat-checkbox formControlName="hideTrackingLinks"
-          >Hide Tracking Links</mat-checkbox
-        >
-      </section>
-    </div>
+  <div class="form-element">
+    <section class="checkbox field">
+      <mat-checkbox
+        formControlName="hideTrackingLinks"
+        #hideTrackingLinks
+        (change)="addNewItem(hideTrackingLinks.value)"
+        >Hide Tracking Links</mat-checkbox
+      >
+    </section>
+  </div>
 
-    <div class="form-element">
-      <section class="checkbox field">
-        <mat-checkbox formControlName="hideCreatives"
-          >Hide Creatives</mat-checkbox
-        >
-      </section>
-    </div>
+  <div class="form-element">
+    <section class="checkbox field">
+      <mat-checkbox
+        formControlName="hideCreatives"
+        #hideCreatives
+        (change)="addNewItem(hideCreatives.value)"
+        >Hide Creatives</mat-checkbox
+      >
+    </section>
+  </div>
+</form>

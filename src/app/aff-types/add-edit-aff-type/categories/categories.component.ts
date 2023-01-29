@@ -2,19 +2,21 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css', '../../../shared/bl/form-control/form-style.css']
+  styleUrls: [
+    './categories.component.css',
+    '../../../shared/bl/form-control/form-style.css',
+  ],
 })
 export class CategoriesComponent {
-
   affTypeFormCategories = new FormGroup({
     categories: new FormControl(''),
     searchCategories: new FormControl(''),
-
-  })
+  });
 
   // Categories field
   categoryList: any[] = [
@@ -26,30 +28,40 @@ export class CategoriesComponent {
   searchCat = '';
 
   // select all in Categories
-  @ViewChild('select')
-  select!: MatSelect;
+  @ViewChild('selectCategories')
+  selectCategories!: MatSelect;
   allSelected: boolean = false;
 
   // Search option in the Categories field
   searchValue: string = '';
   filteredCategoriesList: string[] = [];
 
-    // Select All in Cateories
-    toggleAllSelection() {
-      if (this.allSelected) {
-        this.select.options.forEach((item: MatOption) => item.select());
-      } else {
-        this.select.options.forEach((item: MatOption) => item.deselect());
+  // Select All in Cateories
+  toggleAllSelection() {
+    if (this.allSelected) {
+      this.selectCategories.options.forEach((item: MatOption) => item.select());
+    } else {
+      this.selectCategories.options.forEach((item: MatOption) =>
+        item.deselect()
+      );
+    }
+  }
+
+  optionClick() {
+    let newStatus = true;
+    this.selectCategories.options.forEach((item: MatOption) => {
+      if (!item.selected) {
+        newStatus = false;
       }
-    }
+    });
+    this.allSelected = newStatus;
+  }
+
+  @Output() affTypeFormCategoriesEvent = new EventEmitter<FormGroup>();
+
+  // output of the form to the parent component
+  addNewItem(value: FormGroup) {
+    this.affTypeFormCategoriesEvent.emit(value);
+  }
   
-    optionClick() {
-      let newStatus = true;
-      this.select.options.forEach((item: MatOption) => {
-        if (!item.selected) {
-          newStatus = false;
-        }
-      });
-      this.allSelected = newStatus;
-    }
 }

@@ -1,4 +1,5 @@
 import { Component, VERSION, OnInit, ViewChild } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -7,7 +8,19 @@ import { Component, VERSION, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./add-edit-aff-type.component.css', '../../shared/bl/form-control/form-style.css'],
 })
 export class AddEditAffTypeComponent implements OnInit {
-  data: any;
+  
+  // get data from nested components
+  dataAddAffTypeForm: any = [];
+  isFormValid: boolean = false;
+
+  addItem(dataAddAffTypeForm: FormGroup) {
+    this.dataAddAffTypeForm.push(dataAddAffTypeForm);
+    if(dataAddAffTypeForm) {
+      this.isFormValid = true;
+      console.log(this.isFormValid);
+
+    }
+  }
 
   // accordion
   affTypesSections = ['Add A New Affiliate Type', 'Categories', 'Commission Types/Minimum Payout Amount', 'Tiered Affiliate Display Options', 'Other'];
@@ -19,7 +32,9 @@ export class AddEditAffTypeComponent implements OnInit {
 
   
   // submitting the form
-  onSubmit(data: any) {
-    console.log(data);
+  onSubmit() {
+    console.log(this.dataAddAffTypeForm);
+    console.log("form valid?")
+    console.log(this.isFormValid);
   }
 }

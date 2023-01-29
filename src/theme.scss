@@ -1,7 +1,16 @@
 @use "@angular/material" as mat;
+@use "@material/button";
+@use "@material/checkbox";
+@use "@material/form-field";
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/textfield";
+
 
 @include mat.core();
 
+// colors
 $my-app-primary: mat.define-palette(mat.$green-palette);
 $my-app-accent: mat.define-palette(mat.$green-palette, 500, 400);
 $my-app-warn: mat.define-palette(mat.$red-palette);
@@ -18,5 +27,8 @@ $my-app-theme: mat.define-light-theme(
 
 @include mat.all-component-themes($my-app-theme);
 
+
+@include checkbox.core-styles;
+@include form-field.core-styles;
 
 

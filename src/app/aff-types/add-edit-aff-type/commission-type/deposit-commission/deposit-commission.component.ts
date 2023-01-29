@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {MDCTextField} from '@material/textfield';
 
 @Component({
   selector: 'app-deposit-commission',
@@ -14,8 +15,8 @@ export class DepositCommissionComponent {
   firstEPCvalue: number = 9;
   secondEPCvalue: number = 19;
   thirdEPCvalue: number = 29;
-
   
+
 
   commissions: any[] = [
     { value: 'CPA', viewValue: 'CPA' },

@@ -30,6 +30,12 @@
           *ngIf="accordionItem.expanded"
         >
         </mat-icon>
+        <mat-icon
+          aria-hidden="false"
+          fontIcon="check_circle_outline"
+          *ngIf="isFormValid"
+        >
+        </mat-icon>
       </span>
     </div>
     <div
@@ -41,9 +47,15 @@
     >
       <!-- Content accordion start -->
 
-      <app-new-aff-type *ngIf="index === 0"></app-new-aff-type>
-
-      <app-categories *ngIf="index === 1"></app-categories>
+      <app-new-aff-type
+        *ngIf="index === 0"
+        (affTypeFormAddNewAffTypeEvent)="addItem($event)"
+        ></app-new-aff-type
+      >
+      <app-categories
+        *ngIf="index === 1"
+        (affTypeFormCategoriesEvent)="addItem($event)"
+      ></app-categories>
       <app-commission-type *ngIf="index === 2"></app-commission-type>
       <app-tiered-aff-display-options
         *ngIf="index === 3"
@@ -55,7 +67,7 @@
 
 <!-- Button -->
 <div class="btn-box">
-  <button type="submit" mat-button class="add-btn">
+  <button type="submit" mat-button class="add-btn" (click)="onSubmit()">
     Add New Affiliate Type
   </button>
 </div>
