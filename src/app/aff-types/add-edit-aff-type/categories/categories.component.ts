@@ -6,7 +6,7 @@ import { MatSelect } from '@angular/material/select';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css']
+  styleUrls: ['./categories.component.css', '../../../shared/bl/form-control/form-style.css']
 })
 export class CategoriesComponent {
 

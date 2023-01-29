@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-sale-commission',
   templateUrl: './sale-commission.component.html',
-  styleUrls: ['./sale-commission.component.css']
+  styleUrls: ['./sale-commission.component.css', '../../../../shared/bl/form-control/form-style.css']
 })
 export class SaleCommissionComponent {
   firstSCvalue: number = 9;

@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-deposit-commission',
   templateUrl: './deposit-commission.component.html',
-  styleUrls: ['./deposit-commission.component.css'],
+  styleUrls: ['./deposit-commission.component.css', '../../../../shared/bl/form-control/form-style.css'],
 })
 export class DepositCommissionComponent {
   firstDCvalue: number = 9;

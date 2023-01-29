@@ -10,7 +10,7 @@ interface ITierCalcMethod {
 @Component({
   selector: 'app-new-aff-type',
   templateUrl: './new-aff-type.component.html',
-  styleUrls: ['./new-aff-type.component.css']
+  styleUrls: ['./new-aff-type.component.css','../../../shared/bl/form-control/form-style.css']
 })
 export class NewAffTypeComponent {
   

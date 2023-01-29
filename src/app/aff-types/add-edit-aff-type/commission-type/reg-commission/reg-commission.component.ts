@@ -5,7 +5,7 @@ import { countries } from 'src/app/data-countries';
 @Component({
   selector: 'app-reg-commission',
   templateUrl: './reg-commission.component.html',
-  styleUrls: ['./reg-commission.component.css']
+  styleUrls: ['./reg-commission.component.css', '../../../../shared/bl/form-control/form-style.css']
 })
 export class RegCommissionComponent {
   countryitems = countries;
