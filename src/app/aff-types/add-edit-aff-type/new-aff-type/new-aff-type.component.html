@@ -10,7 +10,7 @@
         placeholder=""
         formControlName="description"
         #description
-        (change)="addNewItem(description.value)"
+        (change)="addNewItem()"
       />
     </mat-form-field>
   </div>
@@ -23,7 +23,7 @@
         placeholder=""
         formControlName="notes"
         #notes
-        (change)="addNewItem(notes.value)"
+        (change)="addNewItem()"
       ></textarea>
     </mat-form-field>
   </div>
@@ -36,7 +36,7 @@
           *ngFor="let tierOption of tierOptions"
           [value]="tierOption.value"
           #tierMethod
-          (change)="addNewItem(tierMethod.value)"
+          (change)="addNewItem()"
         >
           {{ tierOption.viewValue }}
         </mat-option>
@@ -67,7 +67,7 @@
             matTooltip="Ex. Enter 0.20 for 20%"
             color="primary"
             #tier
-            (change)="addNewItem(tier.value)"
+            (change)="addNewItem()"
           >
             <mat-label></mat-label>
             <input
@@ -78,7 +78,7 @@
               formControlName="tier{{ i + 2 }}Rate"
               color="primary"
               #tierRate
-              (change)="addNewItem(tierRate.value)"
+              (change)="addNewItem()"
             />
           </mat-form-field>
         </li>
@@ -96,7 +96,7 @@
         matInput
         placeholder=""
         #cookieExpiration
-        (change)="addNewItem(cookieExpiration.value)"
+        (change)="addNewItem()"
       />
     </mat-form-field>
   </div>
@@ -106,7 +106,7 @@
       <mat-checkbox
         formControlName="hideTrackingLinks"
         #hideTrackingLinks
-        (change)="addNewItem(hideTrackingLinks.value)"
+        (change)="addNewItem()"
         >Hide Tracking Links</mat-checkbox
       >
     </section>
@@ -117,7 +117,7 @@
       <mat-checkbox
         formControlName="hideCreatives"
         #hideCreatives
-        (change)="addNewItem(hideCreatives.value)"
+        (change)="addNewItem()"
         >Hide Creatives</mat-checkbox
       >
     </section>

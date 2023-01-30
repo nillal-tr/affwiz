@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { FormSubmitting } from 'src/app/shared/bl/form-control/form-submitting.service';
 
 interface ITierCalcMethod {
   value: string;
@@ -33,20 +34,6 @@ export class NewAffTypeComponent {
   ];
 
   affTypeFormAddNew: FormGroup;
-  // affTypeFormAddNew = new FormGroup({
-  //   description: new FormControl('', Validators.required),
-  //   notes: new FormControl(''),
-  //   tierMethod: new FormControl(this.tierOptions[0].value),
-  //   tiers: new FormControl('', Validators.required),
-  //   // tier2Rate: new FormControl('', Validators.required),
-  //   // tier3Rate: new FormControl('', Validators.required),
-  //   // tier4Rate: new FormControl('', Validators.required),
-  //   // tier5Rate: new FormControl('', Validators.required),
-
-  //   cookieExpiration: new FormControl('60', Validators.required),
-  //   hideTrackingLinks: new FormControl(''),
-  //   hideCreatives: new FormControl(''),
-  // });
 
   tiers: any[] = [
     { value: '1', viewValue: '1' },
@@ -61,18 +48,12 @@ export class NewAffTypeComponent {
   @Output() affTypeFormAddNewAffTypeEvent = new EventEmitter<any>();
 
 
-
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private formSubmitting: FormSubmitting) {
     this.affTypeFormAddNew = this.formBuilder.group({
       description: new FormControl('', Validators.required),
       notes: new FormControl(''),
       tierMethod: new FormControl(this.tierOptions[0].value),
-      tiers: new FormControl('', Validators.required),
-      // tier2Rate: new FormControl('', Validators.required),
-      // tier3Rate: new FormControl('', Validators.required),
-      // tier4Rate: new FormControl('', Validators.required),
-      // tier5Rate: new FormControl('', Validators.required),
-  
+      tiers: new FormControl('', Validators.required),  
       cookieExpiration: new FormControl('60', Validators.required),
       hideTrackingLinks: new FormControl(''),
       hideCreatives: new FormControl(''),
@@ -80,16 +61,14 @@ export class NewAffTypeComponent {
   }
 
   ngOnInit() {
-    
   }
 
-  // output of the form to the parent component
-  addNewItem(value: string) {
-    if (this.affTypeFormAddNew.valid) {
-      console.log("valid form")
-      this.affTypeFormAddNewAffTypeEvent.emit(this.affTypeFormAddNew.controls);
-    }
+  // output of the form to the parent component - based on to service 
+  addNewItem() {
+    this.formSubmitting.shareFieldsDataToParent(this.affTypeFormAddNew, this.affTypeFormAddNewAffTypeEvent);
   }
+
+  
 
   // Build the tiers sub fields (tier #2 and above selected)
   onSelectChange(event: any) {

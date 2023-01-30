@@ -23,12 +23,6 @@ export class FormControlService {
   setFormControls<T>(settings: formControlsOption<T>) {
     settings.controlsSettings.forEach(control => {
       let showControl: boolean = true;
-      // if (settings.isPrivate) {
-      //   showControl = control.showForPrivate ? showControl : false;
-      // }
-      // if (!settings.isPrivate) {
-      //   showControl = control.showForCorporate ? showControl : false;
-      // }
       if (showControl) { 
         settings.fg.addControl(control.name, settings.fb.control({ value: settings.formPreviousData[control.name] }, control.validations))
       }

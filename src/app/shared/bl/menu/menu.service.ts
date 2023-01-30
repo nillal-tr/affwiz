@@ -10,10 +10,7 @@ import { ComponentMapping } from './menu.consts';
 export class MenuService {
 
   getRoutes() {
-    const routes: Route[] = [];
-
-    // const componentMap = this.getComponentMapping();
-    
+    const routes: Route[] = [];    
 
     menu.forEach((menuItem) => {
       const routeItem: Route = {
@@ -36,13 +33,5 @@ export class MenuService {
 
     return routes;
   }
-
-  // getComponentMapping() {
-  //   return {
-  //     'MainViewComponent': MainViewComponent,
-  //     'AddEditAffTypeComponent': AddEditAffTypeComponent,
-  //     'ViewAffTypeComponent': ViewAffTypeComponent
-  //   }
-  // }
   
 }
