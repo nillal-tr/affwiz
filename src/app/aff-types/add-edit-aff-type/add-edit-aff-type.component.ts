@@ -11,15 +11,9 @@ export class AddEditAffTypeComponent implements OnInit {
   
   // get data from nested components
   dataAddAffTypeForm: any = [];
-  isFormValid: boolean = false;
 
   addItem(dataAddAffTypeForm: FormGroup) {
     this.dataAddAffTypeForm.push(dataAddAffTypeForm);
-    if(dataAddAffTypeForm) {
-      this.isFormValid = true;
-      console.log(this.isFormValid);
-
-    }
   }
 
   // accordion
@@ -33,8 +27,6 @@ export class AddEditAffTypeComponent implements OnInit {
   
   // submitting the form
   onSubmit() {
-    console.log(this.dataAddAffTypeForm);
-    console.log("form valid?")
-    console.log(this.isFormValid);
+    console.log(this.dataAddAffTypeForm);  
   }
 }

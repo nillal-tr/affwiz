@@ -1,28 +1,63 @@
-.box-title, .first-title {
-  text-align: center;
-  color: gray;
-  font-size: 16px;
-  padding: 12px;
-  margin-bottom: 15px;
-  border-bottom: 1px solid #F0EFEF;
+::ng-deep .field .mdc-text-field {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+::ng-deep
+  .mat-mdc-text-field-wrapper.mdc-text-field--outlined
+  .mat-mdc-form-field-infix {
+  padding-top: 13px;
+  padding-bottom: 13px;
+  min-height: 46px;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper .mdc-list-item {
+  font-size: 14px;
+}
+
+::ng-deep .mat-mdc-form-field-bottom-align {
+  height: 10px;
+}
+
+::ng-deep .mat-mdc-option {
+  font-size: 14px;
+}
+
+::ng-deep .mat-mdc-select-value {
+  font-size: 14px;
+}
+
+
+::ng-deep .mdc-text-field {
+  font-size: 14px;
+}
+
+.form-element {
+  width: 100%;
 }
 
 .box-title {
-  margin-top: 55px;
-
+  color: gray;
+  font-size: 16px;
+  margin-bottom: 7px;
 }
 
+.sub-title {
+  color: gray;
+  font-size: 16px;
+  margin-bottom: 11px;
+  margin-top: 28px;
+  font-weight: 300;
+}
 
 .btn-box {
   text-align: center;
   margin-top: 40px;
 }
 
+
 .inner-btn {
-  text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
-
 }
 
 .add-btn {
@@ -33,30 +68,96 @@
 .row {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
+}
+
+.container-div {
+  display: flex;
+  align-items: center;
+}
+
+.main-divider {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  width: 75%;
+  margin-left: 0;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgb(199 199 199 / 22%);
+
+}
+.sub-divider {
+  margin-top: 12px;
+  margin-bottom: 18px;
+  width: 65%;
+  margin-left: 0;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.country-row {
+  display: flex;
+  flex-direction: column;
 }
 
 .field {
-  width: 50%;
-  margin: 0px 10px 0px 10px;
-}
-
-.nested-div {
-  padding: 0px 55px;
-  height: 10%
+  width: 40%;
+  min-width: 80px;
+  margin: 0px 10px 0px 0px;
+  flex-shrink: 0;
 }
 
 .nested-field {
-  width: 15%;
+  width: 14%;
+  min-width: 70px;
 }
+
+.country-checkbox {
+  width: 180px;
+}
+
+.label {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+
+.nested-label {
+  font-size: 14px;
+  margin-right: 10px;
+  width: 35%;
+}
+
+.country-name {
+  margin-right: 5px;
+}
+
+span.label {
+  padding-left: 21px;
+  margin-right: 10px;
+}
+
+.nested-div {
+  padding: 0px 40px;
+  height: 10%;
+  font-size: 14px;
+}
+
+
 
 ul {
   list-style-type: none;
+  padding-inline-start: 0px;
+  margin: 0px;
 }
 
-
 .inner-text {
-  text-align: center;
   font-size: 12px;
+  margin-top: 10px;
+
 }
 
 .select-all-cb {
@@ -65,7 +166,6 @@ ul {
 
 label {
   font-size: 18px !important;
-
 }
 
 .split-view {
@@ -79,15 +179,12 @@ label {
 
 .right-side {
   margin-left: 20px;
-
 }
 
 .search-field {
   width: 50%;
-  
 }
 
 .fieldrow {
   margin-left: 10px;
 }
-

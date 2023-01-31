@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FormSubmitting {
-  shareFieldsDataToParent(formName: any, outputName: any) {
-    if (formName.valid) {
-      outputName.emit(formName.controls);
-    }
-  }
+export class FormSubmittingService {
+  
 }

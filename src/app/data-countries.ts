@@ -19,7 +19,7 @@ const countries: ICountryItem[] = [
     name: 'Italy'
   },
   {
-    name: 'Norway'
+    name: 'United States'
   },
 
 ]

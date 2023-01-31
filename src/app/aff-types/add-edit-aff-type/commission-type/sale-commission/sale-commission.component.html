@@ -1,6 +1,6 @@
 <form [formGroup]="affTypeFormCommissionTypeSaleCommission">
   <div class="form-element">
-    <section class="checkbox field">
+    <section class="checkbox">
       <mat-checkbox formControlName="saleCommission" #saleCommission
         >Per Sale Commissions</mat-checkbox
       >
@@ -9,8 +9,8 @@
     <!-- NESTED -->
     <div class="form-element" *ngIf="saleCommission.checked">
       <div class="nested-div">
-        <mat-form-field class="field nested-field" color="primary">
-          <mat-label>From 1 to</mat-label>
+        <mat-form-field class="field nested-field" color="primary" appearance="outline">
+          <mat-label class="label">From 1 to</mat-label>
           <input
             type="number"
             matInput
@@ -20,21 +20,21 @@
             [(ngModel)]="firstSCvalue"
           />
         </mat-form-field>
-        FTDs = %
-        <mat-form-field class="field nested-field" color="primary">
-          <mat-label></mat-label>
+        FTDs = 
+        <mat-form-field class="field nested-field" color="primary" appearance="outline">
+          <mat-label class="label"></mat-label>
           <input
             type="number"
             matInput
             placeholder=""
             formControlName="saleCommission1B"
-          />
+          /><span matTextPrefix>%&nbsp;</span>
         </mat-form-field>
       </div>
 
       <div class="nested-div">
-        <mat-form-field class="field nested-field" color="primary">
-          <mat-label>From {{ firstSCvalue }} to</mat-label>
+        <mat-form-field class="field nested-field" color="primary" appearance="outline">
+          <mat-label class="label">From {{ firstSCvalue }} to</mat-label>
           <input
             type="number"
             matInput
@@ -44,21 +44,21 @@
             [(ngModel)]="secondSCvalue"
           />
         </mat-form-field>
-        FTDs = %
-        <mat-form-field class="field nested-field" color="primary">
-          <mat-label></mat-label>
+        FTDs = 
+        <mat-form-field class="field nested-field" color="primary" appearance="outline">
+          <mat-label class="label"></mat-label>
           <input
             type="number"
             matInput
             placeholder=""
             formControlName="saleCommission2B"
-          />
+          /><span matTextPrefix>%&nbsp;</span>
         </mat-form-field>
       </div>
 
       <div class="nested-div">
-        <mat-form-field class="field nested-field" color="primary">
-          <mat-label>From {{ secondSCvalue }} to</mat-label>
+        <mat-form-field class="field nested-field" color="primary" appearance="outline">
+          <mat-label class="label">From {{ secondSCvalue }} to</mat-label>
           <input
             type="number"
             matInput
@@ -68,28 +68,28 @@
             [(ngModel)]="thirdSCvalue"
           />
         </mat-form-field>
-        FTDs = %
-        <mat-form-field class="field nested-field" color="primary">
-          <mat-label></mat-label>
+        FTDs = 
+        <mat-form-field class="field nested-field" color="primary" appearance="outline">
+          <mat-label class="label"></mat-label>
           <input
             type="number"
             matInput
             placeholder=""
             formControlName="saleCommission3B"
-          />
+          /><span matTextPrefix>%&nbsp;</span>
         </mat-form-field>
       </div>
 
       <div class="nested-div">
-        From {{ thirdSCvalue }} and above FTDs = %
-        <mat-form-field class="field nested-field" color="primary">
-          <mat-label></mat-label>
+        From {{ thirdSCvalue }} and above FTDs = 
+        <mat-form-field class="field nested-field" color="primary" appearance="outline">
+          <mat-label class="label"></mat-label>
           <input
             type="number"
             matInput
             placeholder=""
             formControlName="saleCommission4"
-          />
+          /><span matTextPrefix>%&nbsp;</span>
         </mat-form-field>
       </div>
     </div>

@@ -7,17 +7,18 @@
       appearance="fill"
       matTooltip="Select at least one category"
       color="primary"
+      appearance="outline"
     >
       <!-- fix: when focus on "search" input: bug when clicking ctrl a is selects all -->
-      <mat-label>Categories</mat-label>
+      <mat-label class="label">Categories</mat-label>
       <mat-select
         multiple
         formControlName="categories"
         #selectCategories
         (ngModelChange)="addNewItem(selectCategories.value)"
       >
-        <mat-form-field class="search-field fieldrow">
-          <mat-label>Search</mat-label>
+        <mat-form-field class="search-field fieldrow" appearance="outline">
+          <mat-label class="label">Search</mat-label>
           <input
             formControlName="searchCategories"
             #searchCategories
@@ -40,6 +41,7 @@
           *ngFor="let category of categoryList | filter : searchCat"
           [value]="category"
           #categories
+          class="label"
           >{{ category.name }}</mat-option
         >
       </mat-select>

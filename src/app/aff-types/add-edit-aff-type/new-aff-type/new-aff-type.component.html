@@ -1,8 +1,8 @@
 <!-- Add A New Affiliate Type -->
 <form [formGroup]="affTypeFormAddNew">
   <div class="form-element">
-    <mat-form-field class="field" color="primary">
-      <mat-label>Description</mat-label>
+    <mat-form-field class="field" color="primary" appearance="outline">
+      <mat-label class="label">Description</mat-label>
       <input
         type="text"
         name="description"
@@ -16,8 +16,8 @@
   </div>
 
   <div class="form-element">
-    <mat-form-field class="field" color="primary">
-      <mat-label>Notes</mat-label>
+    <mat-form-field class="field" color="primary" appearance="outline">
+      <mat-label class="label">Notes</mat-label>
       <textarea
         matInput
         placeholder=""
@@ -29,8 +29,8 @@
   </div>
 
   <div class="form-element">
-    <mat-form-field appearance="fill" class="field" color="primary">
-      <mat-label>Tier Calculation Method</mat-label>
+    <mat-form-field appearance="fill" class="field" color="primary" appearance="outline">
+      <mat-label class="label">Tier Calculation Method</mat-label>
       <mat-select formControlName="tierMethod">
         <mat-option
           *ngFor="let tierOption of tierOptions"
@@ -45,8 +45,8 @@
   </div>
 
   <div class="form-element row">
-    <mat-form-field appearance="fill" class="field" color="primary">
-      <mat-label>Tiers</mat-label>
+    <mat-form-field appearance="fill" class="field" color="primary" appearance="outline">
+      <mat-label class="label">Tiers</mat-label>
       <mat-select
         formControlName="tiers"
         #tiersField
@@ -61,15 +61,16 @@
     <ul class="form-element" *ngIf="tiersField.value !== '1'">
       <div class="nested-div">
         <li *ngFor="let tier of tiersSubFields; index as i">
-          <mat-label>Tier {{ i + 2 }} Rate</mat-label>
+          <mat-label class="label">Tier {{ i + 2 }} Rate</mat-label>
           <mat-form-field
             class="field"
             matTooltip="Ex. Enter 0.20 for 20%"
             color="primary"
+            appearance="outline"
             #tier
             (change)="addNewItem()"
           >
-            <mat-label></mat-label>
+            <mat-label class="label"></mat-label>
             <input
               type="number"
               matInput
@@ -77,6 +78,7 @@
               max="1"
               formControlName="tier{{ i + 2 }}Rate"
               color="primary"
+              appearance="outline"
               #tierRate
               (change)="addNewItem()"
             />
@@ -88,8 +90,8 @@
   </div>
 
   <div class="form-element">
-    <mat-form-field class="field" color="primary">
-      <mat-label>Default Cookie Expiration</mat-label>
+    <mat-form-field class="field" color="primary" appearance="outline">
+      <mat-label class="label">Default Cookie Expiration</mat-label>
       <input
         formControlName="cookieExpiration"
         type="number"

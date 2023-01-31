@@ -1,16 +1,21 @@
 <form [formGroup]="affTypeFormCommissionTypeLeadCommission">
   <div class="form-element">
-    <section class="checkbox field">
+    <section class="checkbox">
       <mat-checkbox formControlName="leadCommissions" #leadCommissions
         >Per Lead Commissions</mat-checkbox
       >
     </section>
 
     <!-- NESTED -->
-    <div class="form-element" *ngIf="leadCommissions.checked">
-      <div class="nested-div row">
-        <mat-form-field class="field" color="primary">
-          <mat-label>Lead Rate</mat-label>
+    <div class="" *ngIf="leadCommissions.checked">
+      <div class="nested-div container-div">
+        <span class="nested-label">Lead Rate</span
+        ><mat-form-field
+          class="field nested-field"
+          color="primary"
+          appearance="outline"
+        >
+          <mat-label class="label"></mat-label>
           <input
             type="number"
             matInput
@@ -18,7 +23,7 @@
             formControlName="leadCommissions1"
           />
         </mat-form-field>
-        <section class="checkbox field">
+        <section class="checkbox">
           <mat-checkbox formControlName="leadCommissions2" #leadCommissions2
             >Set Lead Rate per Country</mat-checkbox
           >
@@ -26,16 +31,25 @@
       </div>
       <!-- NESTED -->
       <div>
-        <ul class="form-element" *ngIf="leadCommissions2.checked">
+        <ul class="" *ngIf="leadCommissions2.checked">
           <div class="nested-div">
-            <li *ngFor="let countryitem of countryitems" class="row">
-              <section class="checkbox field">
-                <mat-checkbox formControlName="leadCRateCountryBasedCheckbox">{{
-                  countryitem.name
-                }}</mat-checkbox>
+            <li *ngFor="let countryitem of countryitems" class="country-row">
+              <section class="checkbox">
+                <mat-checkbox
+                  class="country-checkbox"
+                  formControlName="leadCRateCountryBasedCheckbox"
+                >
+                  <span class="country-name">
+                    {{ countryitem.name }}
+                  </span>
+                </mat-checkbox>
 
-                <mat-form-field class="fieldrow" color="primary">
-                  <mat-label></mat-label>
+                <mat-form-field
+                  class="nested-field"
+                  color="primary"
+                  appearance="outline"
+                >
+                  <mat-label class="label"></mat-label>
                   <input
                     class=""
                     type="number"

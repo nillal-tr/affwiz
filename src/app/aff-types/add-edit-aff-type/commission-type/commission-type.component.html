@@ -1,30 +1,14 @@
 <!-- Commission Types/Minimum Payout Amount -->
 
 <form [formGroup]="affTypeFormCommissionType">
-
-  
-  <!-- copy trader -->
-  
-    <app-copy-trader-commission></app-copy-trader-commission>
-  <!-- Per Deposit Commissions -->
-  <app-deposit-commission></app-deposit-commission>
-
-  <!-- Per Sale Commissions -->
-  <app-sale-commission></app-sale-commission>
-
-  <!-- Per Lead Commissions -->
-  <app-lead-commission></app-lead-commission>
-
-  <!-- Per Registration Commissions -->
-  <app-reg-commission></app-reg-commission>
-  
-
   <!-- Minimum Commission Payout -->
   <div class="form-element">
-    <mat-form-field class="" color="primary">
-      <mat-label matTooltip="Set to 0 to payout all commissions"
-        >Minimum Commission Payout</mat-label
-      >
+    <span class="label">Minimum Commission Payout</span>
+    <mat-form-field class="nested-field" color="primary" appearance="outline">
+      <mat-label
+        class="label"
+        matTooltip="Set to 0 to payout all commissions"
+      ></mat-label>
       <input
         type="number"
         matInput
@@ -33,4 +17,40 @@
       />
     </mat-form-field>
   </div>
+  
+  <div class="divider-container"><hr class="main-divider" /></div>
+
+  <div class="checkbox-section">
+    <app-copy-trader-commission></app-copy-trader-commission>
+  </div>
+
+  <div class="divider-container"><hr class="main-divider" /></div>
+
+
+  <div class="checkbox-section">
+    <app-deposit-commission></app-deposit-commission>
+  </div>
+
+  <div class="divider-container"><hr class="main-divider" /></div>
+
+
+  <div class="checkbox-section">
+    <app-sale-commission></app-sale-commission>
+  </div>
+
+  <div class="divider-container"><hr class="main-divider" /></div>
+
+
+  <div class="checkbox-section">
+    <app-lead-commission></app-lead-commission>
+  </div>
+
+  <div class="divider-container"><hr class="main-divider" /></div>
+
+
+  <div class="checkbox-section">
+    <app-reg-commission></app-reg-commission>
+  </div>
+
+  
 </form>
