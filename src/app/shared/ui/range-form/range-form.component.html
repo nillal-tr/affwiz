@@ -1,0 +1,113 @@
+<form [formGroup]="rangeForm">
+  <div class="nested-div">
+    <mat-form-field
+      class="field nested-field"
+      color="primary"
+      appearance="outline"
+    >
+      <mat-label class="label">From {{label1}} to</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder=""
+        formControlName="field1"
+        matTooltip="Up to 999"
+        [(ngModel)]="placeholder1"
+      />
+    </mat-form-field>
+    {{ unit }} =
+    <mat-form-field
+      class="field nested-field"
+      color="primary"
+      appearance="outline"
+    >
+      <mat-label class="label"></mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder=""
+        formControlName="field2"
+      /><span matTextPrefix>{{ unitSymbol }}&nbsp;</span>
+    </mat-form-field>
+  </div>
+  <div class="nested-div">
+    <mat-form-field
+      class="field nested-field"
+      color="primary"
+      appearance="outline"
+    >
+      <mat-label class="label">From {{ label2 }} to</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder=""
+        formControlName="field3"
+        matTooltip="Up to 999"
+        [(ngModel)]="placeholder2"
+      />
+    </mat-form-field>
+    {{ unit }} =
+    <mat-form-field
+      class="field nested-field"
+      color="primary"
+      appearance="outline"
+    >
+      <mat-label class="label"></mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder=""
+        formControlName="field4"
+      /><span matTextPrefix>{{ unitSymbol }}&nbsp;</span>
+    </mat-form-field>
+  </div>
+
+  <div class="nested-div">
+    <mat-form-field
+      class="field nested-field"
+      color="primary"
+      appearance="outline"
+    >
+      <mat-label class="label">From {{ label3 }} to</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder=""
+        formControlName="field5"
+        matTooltip="Up to 999"
+        [(ngModel)]="placeholder3"
+      />
+    </mat-form-field>
+    CTs =
+    <mat-form-field
+      class="field nested-field"
+      color="primary"
+      appearance="outline"
+    >
+      <mat-label class="label"></mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder=""
+        formControlName="field6"
+      /><span matTextPrefix>{{ unitSymbol }}&nbsp;</span>
+    </mat-form-field>
+  </div>
+
+  <div class="nested-div">
+    From {{ label4 }} and above {{ unit }} =
+    <mat-form-field
+      class="field nested-field"
+      color="primary"
+      appearance="outline"
+    >
+      <mat-label class="label"></mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder=""
+        formControlName="field7"
+      /><span matTextPrefix>{{ unitSymbol }}&nbsp;</span>
+    </mat-form-field>
+  </div>
+</form>

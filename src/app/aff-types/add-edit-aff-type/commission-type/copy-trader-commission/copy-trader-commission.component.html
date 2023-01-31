@@ -1,5 +1,7 @@
 <form [formGroup]="affTypeFormCommissionTypeCopyTrader">
-  <!-- copy trader -->
+  <!-- new -->
+
+  <!-- copy trader ORIGINAL-->
   <div class="form-element">
     <section class="checkbox">
       <mat-checkbox formControlName="copyTrader" #copyTrader
@@ -9,6 +11,7 @@
 
     <!-- NESTED -->
     <div class="form-element view-to-the-right" *ngIf="copyTrader.checked">
+      <app-range-form [placeholder1]="999" > </app-range-form>
       <div class="nested-div">
         <mat-form-field
           class="field nested-field"
@@ -25,7 +28,7 @@
             [(ngModel)]="firstCTvalue"
           />
         </mat-form-field>
-        CTs = 
+        CTs =
         <mat-form-field
           class="field nested-field"
           color="primary"
@@ -57,7 +60,7 @@
             [(ngModel)]="secondCTvalue"
           />
         </mat-form-field>
-        CTs = 
+        CTs =
         <mat-form-field
           class="field nested-field"
           color="primary"
@@ -89,7 +92,7 @@
             [(ngModel)]="thirdCTvalue"
           />
         </mat-form-field>
-        CTs = 
+        CTs =
         <mat-form-field
           class="field nested-field"
           color="primary"
@@ -106,7 +109,7 @@
       </div>
 
       <div class="nested-div">
-        From {{ thirdCTvalue }} and above CTs = 
+        From {{ thirdCTvalue }} and above CTs =
         <mat-form-field
           class="field nested-field"
           color="primary"
