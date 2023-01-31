@@ -24,6 +24,7 @@ export class DepositCommissionComponent {
   ];
 
   // Per Deposit Commissions >CPAD > clicking on Btn to add extra option
+  extraPlanOptionsLimit: number = 4;
   extraPlanOptions: any[] = [];
   clickedNewExtraPlanBtn = 0;
   contentNewExtraPlan = [
@@ -79,12 +80,42 @@ export class DepositCommissionComponent {
   });
 
 
+
   // Per Deposit Commissions > CPAD > clicking on Btn to add extra option
   onClickExtraPlanBtn() {
-    if (this.clickedNewExtraPlanBtn++ < this.contentNewExtraPlan.length + 1) {
-      this.extraPlanOptions.push(
-        this.contentNewExtraPlan[this.clickedNewExtraPlanBtn - 1]
-      );
+    console.log("onClickExtraPlanBtn function");
+    this.clickedNewExtraPlanBtn++
+    this.extraPlanOptions.push(
+      this.contentNewExtraPlan[this.extraPlanOptions.length]
+    )
+
+    // old
+    // if (this.clickedNewExtraPlanBtn++ < this.contentNewExtraPlan.length + 1) {
+    //   this.extraPlanOptions.push(
+    //     this.contentNewExtraPlan[this.clickedNewExtraPlanBtn - 1]
+    //   );
+    // }
+    // console.log("clickedNewExtraPlanBtn:");
+    // console.log(this.clickedNewExtraPlanBtn);
+    console.log("extraPlanOptions:");
+    console.log(this.extraPlanOptions);
+  }
+
+  
+
+  onClickCloseIcon(event: any) {
+    console.log("onClickCloseIcon function");
+    const id = Number(event.srcElement.parentElement.attributes.id.nodeValue);
+    console.log(id);
+    if(id === 0) {
+      this.extraPlanOptions.shift();
+    } else if (id > 1) {
+      this.extraPlanOptions.splice(id, id-1);
+    } else if (id === 1 ) {
+      this.extraPlanOptions.splice(id, id);
+
     }
+    console.log("extraPlanOptions:");
+    console.log(this.extraPlanOptions);
   }
 }

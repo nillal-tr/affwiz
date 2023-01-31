@@ -1,7 +1,10 @@
 <form [formGroup]="affTypeFormCommissionTypeDepositCommission">
   <div class="form-element">
     <section class="checkbox">
-      <mat-checkbox formControlName="depositCommission" #depositCommission class="main-checkbox"
+      <mat-checkbox
+        formControlName="depositCommission"
+        #depositCommission
+        class="main-checkbox"
         >Per Deposit Commissions
       </mat-checkbox>
     </section>
@@ -9,9 +12,13 @@
       <div class="form-element" *ngIf="depositCommission.checked">
         <mat-form-field class="" color="primary" appearance="outline">
           <mat-label class="label"></mat-label>
-          <mat-select formControlName="commissionDropDown" #commissionDropDown placeholder="Please choose">
+          <mat-select
+            formControlName="commissionDropDown"
+            #commissionDropDown
+            placeholder="Please choose"
+          >
             <mat-option
-            *ngFor="let commission of commissions"
+              *ngFor="let commission of commissions"
               [value]="commission.value"
             >
               {{ commission.viewValue }}
@@ -209,28 +216,38 @@
             <!-- Button -->
             <div class="inner-btn">
               <button
+                *ngIf="clickedNewExtraPlanBtn < 1"
                 type="button"
                 #extraPlanBtn
-                [disabled]="
-                  clickedNewExtraPlanBtn === contentNewExtraPlan.length
-                "
                 mat-button
                 class="add-btn"
                 (click)="onClickExtraPlanBtn()"
                 appearance="outline"
+                [disabled]="
+                extraPlanOptions.length === extraPlanOptionsLimit
+              "
               >
                 Add New Extra Plan
               </button>
             </div>
 
-            <!-- when clicked on inner btn -->
+            <!-- when clicked on the inner btn -->
             <div
               class="form-element"
-              *ngFor="let extraPlanOption of extraPlanOptions"
+              *ngFor="let extraPlanOption of extraPlanOptions; let i = index"
             >
               <div class="">
                 <div class="sub-title">
-                  Select {{ extraPlanOption.blockNumber }} Extra Plan Countries:
+                  Select {{contentNewExtraPlan[i].blockNumber}} Extra Plan Countries:
+                  <div class="close-area">
+                    <button
+                      class="close-btn"
+                      id="{{ i }}"
+                      (click)="onClickCloseIcon($event)"
+                    >
+                      <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+                    </button>
+                  </div>
                 </div>
                 <div class="">
                   <div class="">
@@ -304,13 +321,14 @@
                   </div>
 
                   <div class="">
-                    
                     <mat-form-field
                       class="field nested-field"
                       color="primary"
                       appearance="outline"
                     >
-                      <mat-label class="label">From {{ secondEPCvalue }} to</mat-label>
+                      <mat-label class="label"
+                        >From {{ secondEPCvalue }} to</mat-label
+                      >
                       <input
                         type="number"
                         matInput
@@ -359,6 +377,21 @@
                 </div>
               </div>
             </div>
+
+            <button
+              *ngIf="clickedNewExtraPlanBtn >= 1"
+              type="button"
+              #extraPlanBtn
+              [disabled]="
+                extraPlanOptions.length === extraPlanOptionsLimit
+              "
+              mat-button
+              class="add-btn"
+              (click)="onClickExtraPlanBtn()"
+              appearance="outline"
+            >
+              Add New Extra Plan
+            </button>
             <!-- end of NESTED -->
           </div>
         </div>
