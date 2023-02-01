@@ -41,6 +41,9 @@ export class DepositCommissionComponent {
   affTypeFormCommissionTypeDepositCommission = new FormGroup({
     depositCommission: new FormControl(''),
     commissionDropDown: new FormControl('Please select'),
+    depositCommissionCPAD1: new FormControl(''),
+    depositCommissionCPAD2: new FormControl(''),
+    depositCommissionCPAD3: new FormControl(''),
     openPositionReq: new FormControl(''),
   });
 

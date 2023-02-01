@@ -1,5 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+export interface IField {
+  fieldName: string;
+  placeholder: number;
+  label: number;
+  placeholderAfter?: number;
+}
 
 @Component({
   selector: 'app-range-form-v2',
@@ -33,10 +39,8 @@ export class RangeFormV2Component {
 
 
   @Input() label4 = this.fieldThree.placeholder;
-
   @Input() unit: string = 'FTDs';
   @Input() unitSymbol: string = '$';
-
   @Input() maxPleaceholder = 999;
 
   rangeForm = new FormGroup({
@@ -76,7 +80,6 @@ export class RangeFormV2Component {
   }
 
   formFunctionality(event: any) {
-    console.log(event);
     let fieldName = event.target?.name;
 
     this.fieldOne.placeholderAfter = this.fieldOne.placeholder;
@@ -120,9 +123,3 @@ export class RangeFormV2Component {
   }
 }
 
-export interface IField {
-  fieldName: string;
-  placeholder: number;
-  label: number;
-  placeholderAfter?: number;
-}
