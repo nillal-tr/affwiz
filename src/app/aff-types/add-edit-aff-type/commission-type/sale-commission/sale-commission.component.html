@@ -8,8 +8,7 @@
 
     <!-- NESTED -->
     <div class="form-element" *ngIf="saleCommission.checked">
-      <div class="nested-div">
-        <app-range-form-v2
+      <app-range-form-v2
         [placeholder1]="placeholderParent1"
         [placeholder2]="placeholderParent2"
         [placeholder3]="placeholderParent3"
@@ -20,10 +19,6 @@
         [unit]="unitParent"
         [unitSymbol]="unitSymbolParent"
       ></app-range-form-v2>
-
-
-        
-      </div>
     </div>
     <!-- end of NESTED -->
   </div>
