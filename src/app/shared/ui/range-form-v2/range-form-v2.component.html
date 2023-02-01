@@ -1,1 +1,126 @@
-<p>range-form-v2 works!</p>
+<form [formGroup]="rangeForm">
+  <div class="nested-div">
+    <div class="container-div">
+      <mat-form-field
+        class="field nested-field"
+        color="primary"
+        appearance="outline"
+      >
+        <mat-label class="label">From {{ fieldOne.label }} to</mat-label>
+        <input
+          type="number"
+          name="{{fieldOne.fieldName}}"
+          matInput
+          placeholder="{{fieldOne.placeholder}}"
+          formControlName="{{fieldOne.fieldName}}"
+          matTooltip="Up to {{maxPleaceholder}}"
+          (input)="formFunctionality($event)"
+        />
+      </mat-form-field>
+
+      <span class="nested-label-top-rows">{{ unit }} = </span>
+      <mat-form-field
+        class="field nested-field"
+        color="primary"
+        appearance="outline"
+      >
+        <mat-label class="label"></mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          formControlName="field4"
+        /><span matTextPrefix>{{ unitSymbol }}&nbsp;</span>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="nested-div">
+    <div class="container-div">
+      <mat-form-field
+        class="field nested-field"
+        color="primary"
+        appearance="outline"
+      >
+        <mat-label class="label">From {{ fieldTwo.label }} to</mat-label>
+        <input
+          type="number"
+          matInput
+          name="{{fieldTwo.fieldName}}"
+          placeholder="{{fieldTwo.placeholder}}"
+          formControlName="{{fieldTwo.fieldName}}"
+          matTooltip="Up to {{maxPleaceholder}}" 
+          (input)="formFunctionality($event)"
+        />
+      </mat-form-field>
+      <span class="nested-label-top-rows">{{ unit }} =</span>
+      <mat-form-field
+        class="field nested-field"
+        color="primary"
+        appearance="outline"
+      >
+        <mat-label class="label"></mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          formControlName="field5"
+        /><span matTextPrefix>{{ unitSymbol }}&nbsp;</span>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="nested-div">
+    <div class="container-div">
+      <mat-form-field
+        class="field nested-field"
+        color="primary"
+        appearance="outline"
+      >
+        <mat-label class="label">From {{ fieldThree.label }} to</mat-label>
+        <input
+          type="number"
+          matInput
+          name="{{fieldThree.fieldName}}"
+          placeholder="{{fieldThree.placeholder}}"
+          formControlName="{{fieldThree.fieldName}}"
+          matTooltip="Up to {{maxPleaceholder}}"
+          (input)="formFunctionality($event)"
+        />
+      </mat-form-field>
+      <span class="nested-label-top-rows">{{ unit }} =</span>
+      <mat-form-field
+        class="field nested-field"
+        color="primary"
+        appearance="outline"
+      >
+        <mat-label class="label"></mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          formControlName="field6"
+        /><span matTextPrefix>{{ unitSymbol }}&nbsp;</span>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="nested-div">
+    <div class="container-div">
+      <span class="nested-label-last-row">From {{ label4 }} and above {{ unit }} =</span>
+
+      <mat-form-field
+        class="field nested-field"
+        color="primary"
+        appearance="outline"
+      >
+        <mat-label class="label"></mat-label>
+        <input
+          type="number"
+          matInput
+          placeholder=""
+          formControlName="field7"
+        /><span matTextPrefix>{{ unitSymbol }}&nbsp;</span>
+      </mat-form-field>
+    </div>
+  </div>
+</form>

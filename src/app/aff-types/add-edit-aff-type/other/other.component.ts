@@ -12,7 +12,15 @@ export class OtherComponent {
     createCustomLinksAffConsole: new FormControl('checked'),
   })
 
-  constructor() {}
-  ngOnInit() {}
+  placeholderParent1 = 5;
+  placeholderParent2 = 10;
+  placeholderParent3 = 29;
+
+  labelParent1 = 1;
+  labelParent2 = this.placeholderParent1;
+  labelParent3 = this.placeholderParent2;
+  labelParent4 = this.placeholderParent3;
+  unitParent = 'FTDs';
+  unitSymbolParent = '$'
 
 }
