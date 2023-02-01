@@ -8,14 +8,17 @@ import {MDCTextField} from '@material/textfield';
   styleUrls: ['./deposit-commission.component.css', '../../../../shared/bl/form-control/form-style.css'],
 })
 export class DepositCommissionComponent {
-  firstDCvalue: number = 9;
-  secondDCvalue: number = 19;
-  thirdDCvalue: number = 29;
-
-  firstEPCvalue: number = 9;
-  secondEPCvalue: number = 19;
-  thirdEPCvalue: number = 29;
   
+  placeholderParent1 = 9;
+  placeholderParent2 = 19;
+  placeholderParent3 = 29;
+
+  labelParent1 = 1;
+  labelParent2 = this.placeholderParent1;
+  labelParent3 = this.placeholderParent2;
+  labelParent4 = this.placeholderParent3;
+  unitParent = 'FTDs';
+  unitSymbolParent = '$'
 
 
   commissions: any[] = [
@@ -37,44 +40,6 @@ export class DepositCommissionComponent {
   // fields
   affTypeFormCommissionTypeDepositCommission = new FormGroup({
     depositCommission: new FormControl(''),
-    depositCommissionCPA1: new FormControl(
-      this.firstDCvalue,
-      Validators.max(999)
-    ),
-    depositCommissionCPA1B: new FormControl(''),
-    depositCommissionCPA2: new FormControl(
-      this.secondDCvalue,
-      Validators.max(999)
-    ),
-    depositCommissionCPA2B: new FormControl(''),
-    depositCommissionCPA3: new FormControl(
-      this.thirdDCvalue,
-      Validators.max(999)
-    ),
-    depositCommissionCPA3B: new FormControl(''),
-    depositCommissionCPA4: new FormControl(''),
-    depositCommissionCPAD1: new FormControl('1', Validators.min(1)),
-    depositCommissionCPAD2: new FormControl('1'),
-    depositCommissionCPAD3: new FormControl(''),
-    depositCommissionCPAD4: new FormControl(''),
-
-    extraPlanCountries1: new FormControl(
-      this.firstEPCvalue,
-      Validators.max(999)
-    ),
-    extraPlanCountries1B: new FormControl(''),
-    extraPlanCountries2: new FormControl(this.secondEPCvalue, [
-      Validators.max(999),
-      Validators.min(1),
-    ]),
-    extraPlanCountries2B: new FormControl(''),
-    extraPlanCountries3: new FormControl(
-      this.thirdEPCvalue,
-      Validators.max(999)
-    ),
-    extraPlanCountries3B: new FormControl(''),
-    extraPlanCountries4: new FormControl(''),
-
     commissionDropDown: new FormControl('Please select'),
     openPositionReq: new FormControl(''),
   });

@@ -111,12 +111,11 @@ export class RangeFormV2Component {
 
     // block the user from typing below the validation
     if (this.fieldTwo.placeholderAfter < this.fieldTwo.label) {
-      console.log("working")
-      this.rangeForm.controls.field2.disable();
+      // this.rangeForm.controls.field2.disable();
     }
 
     if (this.fieldThree.placeholderAfter < this.fieldThree.label) {
-      this.rangeForm.controls.field3.disable();
+      // this.rangeForm.controls.field3.disable();
     }
   }
 }

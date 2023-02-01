@@ -28,117 +28,17 @@
 
         <!-- NESTED -->
         <div class="form-element" *ngIf="commissionDropDown.value === 'CPA'">
-          <div class="">
-            <mat-form-field
-              class="nested-field"
-              color="primary"
-              appearance="outline"
-            >
-              <mat-label>From 1 to</mat-label>
-              <input
-                type="number"
-                matInput
-                placeholder=""
-                formControlName="depositCommissionCPA1"
-                matTooltip="Up to 999"
-                [(ngModel)]="firstDCvalue"
-              />
-            </mat-form-field>
-            FTDs =
-            <mat-form-field class="nested-field" appearance="outline">
-              <mat-label></mat-label>
-              <input
-                type="number"
-                matInput
-                placeholder=""
-                formControlName="depositCommissionCPA1B"
-              /><span matTextPrefix>$&nbsp;</span>
-            </mat-form-field>
-          </div>
-
-          <div class="">
-            <mat-form-field
-              class="nested-field"
-              color="primary"
-              appearance="outline"
-            >
-              <mat-label>From {{ firstDCvalue }} to</mat-label>
-              <input
-                type="number"
-                matInput
-                placeholder=""
-                max="999"
-                formControlName="depositCommissionCPA2"
-                matTooltip="Up to 999"
-                [(ngModel)]="secondDCvalue"
-              />
-            </mat-form-field>
-            FTDs =
-            <mat-form-field
-              class="nested-field"
-              color="primary"
-              appearance="outline"
-            >
-              <mat-label></mat-label>
-              <input
-                type="number"
-                matInput
-                placeholder=""
-                formControlName="depositCommissionCPA2B"
-              /><span matTextPrefix>$&nbsp;</span>
-            </mat-form-field>
-          </div>
-
-          <div class="">
-            <mat-form-field
-              class="nested-field"
-              color="primary"
-              appearance="outline"
-            >
-              <mat-label>From {{ secondDCvalue }} to</mat-label>
-              <input
-                type="number"
-                matInput
-                placeholder=""
-                max="999"
-                formControlName="depositCommissionCPA3"
-                matTooltip="Up to 999"
-                [(ngModel)]="thirdDCvalue"
-              />
-            </mat-form-field>
-            FTDs =
-            <mat-form-field
-              class="nested-field"
-              color="primary"
-              appearance="outline"
-            >
-              <mat-label></mat-label>
-              <input
-                type="number"
-                matInput
-                placeholder=""
-                formControlName="depositCommissionCPA3B"
-              /><span matTextPrefix>$&nbsp;</span>
-            </mat-form-field>
-          </div>
-
-          <div class="">
-            From {{ thirdDCvalue }} and above FTDs =
-            <mat-form-field
-              class="nested-field"
-              color="primary"
-              appearance="outline"
-            >
-              <mat-label></mat-label>
-              <input
-                type="number"
-                matInput
-                placeholder=""
-                max="999"
-                formControlName="depositCommissionCPA4"
-              /><span matTextPrefix>$&nbsp;</span>
-            </mat-form-field>
-          </div>
+          <app-range-form-v2
+            [placeholder1]="placeholderParent1"
+            [placeholder2]="placeholderParent2"
+            [placeholder3]="placeholderParent3"
+            [label1]="labelParent1"
+            [label2]="labelParent2"
+            [label3]="labelParent3"
+            [label4]="labelParent4"
+            [unit]="unitParent"
+            [unitSymbol]="unitSymbolParent"
+          ></app-range-form-v2>
         </div>
         <!-- end of NESTED -->
 
@@ -223,9 +123,7 @@
                 class="add-btn"
                 (click)="onClickExtraPlanBtn()"
                 appearance="outline"
-                [disabled]="
-                extraPlanOptions.length === extraPlanOptionsLimit
-              "
+                [disabled]="extraPlanOptions.length === extraPlanOptionsLimit"
               >
                 Add New Extra Plan
               </button>
@@ -238,7 +136,8 @@
             >
               <div class="">
                 <div class="sub-title">
-                  Select {{contentNewExtraPlan[i].blockNumber}} Extra Plan Countries:
+                  Select {{ contentNewExtraPlan[i].blockNumber }} Extra Plan
+                  Countries:
                   <div class="close-area">
                     <button
                       class="close-btn"
@@ -251,128 +150,17 @@
                 </div>
                 <div class="">
                   <div class="">
-                    <mat-form-field
-                      class="field nested-field"
-                      color="primary"
-                      appearance="outline"
-                    >
-                      <mat-label class="label">From 1 to</mat-label>
-                      <input
-                        type="number"
-                        matInput
-                        placeholder=""
-                        formControlName="extraPlanCountries1"
-                        matTooltip="Up to 999"
-                        [(ngModel)]="firstEPCvalue"
-                        appearance="outline"
-                      />
-                    </mat-form-field>
-                    FTDs =
-                    <mat-form-field
-                      class="field nested-field"
-                      color="primary"
-                      appearance="outline"
-                    >
-                      <mat-label class="label"></mat-label>
-                      <input
-                        type="number"
-                        matInput
-                        placeholder=""
-                        formControlName="extraPlanCountries1B"
-                        appearance="outline"
-                      /><span matTextPrefix>$&nbsp;</span>
-                    </mat-form-field>
-                  </div>
-
-                  <div class="">
-                    <mat-form-field
-                      class="field nested-field"
-                      color="primary"
-                      appearance="outline"
-                    >
-                      <mat-label class="label"
-                        >From {{ firstEPCvalue }} to</mat-label
-                      >
-                      <input
-                        type="number"
-                        matInput
-                        placeholder=""
-                        formControlName="extraPlanCountries2"
-                        matTooltip="Up to 999"
-                        appearance="outline"
-                        [(ngModel)]="secondEPCvalue"
-                      />
-                    </mat-form-field>
-                    FTDs =
-                    <mat-form-field
-                      class="field nested-field"
-                      color="primary"
-                      appearance="outline"
-                    >
-                      <mat-label class="label"></mat-label>
-                      <input
-                        type="number"
-                        matInput
-                        placeholder=""
-                        appearance="outline"
-                        formControlName="extraPlanCountries2B"
-                      /><span matTextPrefix>$&nbsp;</span>
-                    </mat-form-field>
-                  </div>
-
-                  <div class="">
-                    <mat-form-field
-                      class="field nested-field"
-                      color="primary"
-                      appearance="outline"
-                    >
-                      <mat-label class="label"
-                        >From {{ secondEPCvalue }} to</mat-label
-                      >
-                      <input
-                        type="number"
-                        matInput
-                        placeholder=""
-                        formControlName="extraPlanCountries3"
-                        matTooltip="Up to 999"
-                        [(ngModel)]="thirdEPCvalue"
-                        appearance="outline"
-                      />
-                    </mat-form-field>
-                    FTDs =
-                    <mat-form-field
-                      class="field nested-field"
-                      color="primary"
-                      appearance="outline"
-                    >
-                      <mat-label class="label"></mat-label>
-                      <input
-                        type="number"
-                        matInput
-                        placeholder=""
-                        formControlName="extraPlanCountries3B"
-                        appearance="outline"
-                      /><span matTextPrefix>$&nbsp;</span>
-                    </mat-form-field>
-                  </div>
-
-                  <div class="">
-                    From {{ thirdEPCvalue }} and above FTDs =
-                    <mat-form-field
-                      class="field nested-field"
-                      color="primary"
-                      appearance="outline"
-                    >
-                      <mat-label class="label"></mat-label>
-                      <input
-                        type="number"
-                        matInput
-                        placeholder=""
-                        max="999"
-                        formControlName="extraPlanCountries4"
-                        appearance="outline"
-                      /><span matTextPrefix>$&nbsp;</span>
-                    </mat-form-field>
+                    <app-range-form-v2
+                      [placeholder1]="placeholderParent1"
+                      [placeholder2]="placeholderParent2"
+                      [placeholder3]="placeholderParent3"
+                      [label1]="labelParent1"
+                      [label2]="labelParent2"
+                      [label3]="labelParent3"
+                      [label4]="labelParent4"
+                      [unit]="unitParent"
+                      [unitSymbol]="unitSymbolParent"
+                    ></app-range-form-v2>
                   </div>
                 </div>
               </div>
@@ -382,9 +170,7 @@
               *ngIf="clickedNewExtraPlanBtn >= 1"
               type="button"
               #extraPlanBtn
-              [disabled]="
-                extraPlanOptions.length === extraPlanOptionsLimit
-              "
+              [disabled]="extraPlanOptions.length === extraPlanOptionsLimit"
               mat-button
               class="add-btn"
               (click)="onClickExtraPlanBtn()"

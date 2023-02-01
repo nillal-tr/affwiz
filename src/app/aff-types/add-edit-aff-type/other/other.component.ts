@@ -12,8 +12,9 @@ export class OtherComponent {
     createCustomLinksAffConsole: new FormControl('checked'),
   })
 
-  placeholderParent1 = 5;
-  placeholderParent2 = 10;
+
+  placeholderParent1 = 9;
+  placeholderParent2 = 19;
   placeholderParent3 = 29;
 
   labelParent1 = 1;

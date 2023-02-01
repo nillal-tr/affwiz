@@ -7,18 +7,20 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./sale-commission.component.css', '../../../../shared/bl/form-control/form-style.css']
 })
 export class SaleCommissionComponent {
-  firstSCvalue: number = 9;
-  secondSCvalue: number = 19;
-  thirdSCvalue: number = 29;
   
+  placeholderParent1 = 9;
+  placeholderParent2 = 19;
+  placeholderParent3 = 29;
+
+  labelParent1 = 1;
+  labelParent2 = this.placeholderParent1;
+  labelParent3 = this.placeholderParent2;
+  labelParent4 = this.placeholderParent3;
+  unitParent = 'FTDs';
+  unitSymbolParent = '$'
+
+
   affTypeFormCommissionTypeSaleCommission = new FormGroup({
     saleCommission: new FormControl(''),
-    saleCommission1: new FormControl('9', Validators.max(999)),
-    saleCommission1B: new FormControl(''),
-    saleCommission2: new FormControl('19', Validators.max(999)),
-    saleCommission2B: new FormControl(''),
-    saleCommission3: new FormControl('29', Validators.max(999)),
-    saleCommission3B: new FormControl(''),
-    saleCommission4: new FormControl(''),
   })
 }
