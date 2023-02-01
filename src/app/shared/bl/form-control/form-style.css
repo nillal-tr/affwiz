@@ -201,3 +201,16 @@ label {
   background-color: #ffffff00;
   cursor: pointer;
 }
+
+/* form range style */
+.nested-label-top-rows {
+  font-size: 14px;
+  margin-right: 10px;
+  width: 5%;
+}
+
+.nested-label-last-row {
+  font-size: 14px;
+  margin-right: 10px;
+  width: 20%;
+}

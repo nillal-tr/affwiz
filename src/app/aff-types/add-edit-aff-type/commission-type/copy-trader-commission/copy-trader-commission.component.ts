@@ -7,23 +7,33 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./copy-trader-commission.component.css', '../../../../shared/bl/form-control/form-style.css']
 })
 export class CopyTraderCommissionComponent {
-  firstCTvalue: number = 9;
-  secondCTvalue: number = 19;
-  thirdCTvalue: number = 29;
+  // old
+  // firstCTvalue: number = 9;
+  // secondCTvalue: number = 19;
+  // thirdCTvalue: number = 29;
+  
+  // new way
+  labelParent1 = 1;
 
+  placeholderParent1: number = 9; //9
+  placeholderParent2: number = 19; //19
+  placeholderParent3: number = 29;  //29
+
+  // labelParent2: number = this.placeholderParent1; 
+  // labelParent3: number = this.placeholderParent2;
+  // labelParent4: number = this.placeholderParent3;
+
+  labelParent2: number = 9; 
+  labelParent3: number = 19;
+  labelParent4: number = 29;
+
+  unitParent: string = 'CTs';
+  unitSymbolParent: string = '$';
+
+
+  // how to get it from the child?
   affTypeFormCommissionTypeCopyTrader = new FormGroup({
     copyTrader: new FormControl(''),
-    copyTrader1: new FormControl(this.firstCTvalue, Validators.max(999)),
-    copyTrader1B: new FormControl(''),
-    copyTrader2: new FormControl(this.secondCTvalue, [
-      Validators.max(999),
-      Validators.min(1),
-    ]),
-    copyTrader2B: new FormControl(''),
-    copyTrader3: new FormControl(this.thirdCTvalue, Validators.max(999)),
-    copyTrader3B: new FormControl(''),
-    copyTrader4: new FormControl(''),
   })
-
-  
 }
+
