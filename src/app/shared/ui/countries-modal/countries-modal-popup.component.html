@@ -19,10 +19,7 @@
       <!-- fix: when focus on "search" input: bug when clicking ctrl a is selects all -->
       <mat-label class="label">Countries</mat-label>
       <mat-select multiple formControlName="countries" #selectcountries>
-        <mat-form-field
-          class="search-field fieldrow search-field"
-          appearance="outline"
-        >
+        <mat-form-field class="search-field" appearance="outline">
           <mat-label class="label">Search</mat-label>
           <input
             formControlName="searchcountries"
@@ -30,7 +27,6 @@
             type="text"
             matInput
             placeholder=""
-            class="search-input"
             [(ngModel)]="searchCat"
           />
         </mat-form-field>
@@ -58,7 +54,8 @@
           </div>
           <!-- input for rate per country -->
           <div class="input-country">
-            <mat-form-field *ngFor="let country of countryList | filter : searchCat"
+            <mat-form-field
+              *ngFor="let country of countryList | filter : searchCat"
               class="rate-country-input"
               color="primary"
               appearance="outline"
@@ -75,11 +72,22 @@
             </mat-form-field>
           </div>
         </div>
-        <button>Save</button>
+        <div class="submit-area">
+          <button
+            type="button"
+            #extraPlanBtn
+            [disabled]="!selectcountries.value.length"
+            mat-button
+            class="save-btn-rate-per-country"
+            (click)="dialogRef.close(selectcountries.value)"
+            appearance="outline"
+          >
+            Save
+          </button>
+        </div>
       </mat-select>
     </mat-form-field>
   </div>
-  
 </form>
 
 <div class="submit-area">
