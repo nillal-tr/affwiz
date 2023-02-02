@@ -71,7 +71,6 @@ export class countriesModalPopupComponent {
 
   optionClick() {
     let itemSelected = true;
-    console.log("something was clicked in dropdown")
     this.selectcountries.options.forEach((item: MatOption) => {
       if (!item.selected) {
         itemSelected = false;      }

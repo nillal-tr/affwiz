@@ -41,6 +41,10 @@ button + button {
   display: contents;
 }
 
+.search-input {
+  width: 80px;
+}
+
 .rate-country-input {
   width: 20%;
   padding-top: 8px;

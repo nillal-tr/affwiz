@@ -228,3 +228,8 @@ label {
 .countries-field {
   width: 100%;
 }
+
+.suffix {
+  padding: 10px;
+  font-size: 12px;
+}
