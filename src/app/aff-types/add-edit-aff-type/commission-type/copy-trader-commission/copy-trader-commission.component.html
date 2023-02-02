@@ -8,6 +8,7 @@
 
     <!-- NESTED -->
     <div class="form-element view-to-the-right" *ngIf="copyTrader.checked">
+      <div class="nested-div">
       <app-range-form-v2
         [placeholder1]="placeholderParent1"
         [placeholder2]="placeholderParent2"
@@ -19,6 +20,7 @@
         [unit]="unitParent"
         [unitSymbol]="unitSymbolParent"
       ></app-range-form-v2>
+    </div>
     </div>
     <!-- end of NESTED -->
   </div>

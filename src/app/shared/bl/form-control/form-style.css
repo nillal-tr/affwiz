@@ -152,6 +152,11 @@ span.label {
   font-size: 14px;
 }
 
+.nested-div-range-form {
+  padding: 0px 0px;
+  height: 10%;
+  font-size: 14px;
+}
 
 
 ul {
@@ -206,11 +211,11 @@ label {
 .nested-label-top-rows {
   font-size: 14px;
   margin-right: 10px;
-  width: 8%;
+  width: 13.5%;
 }
 
 .nested-label-last-row {
   font-size: 14px;
   margin-right: 10px;
-  width: 23%;
+  width: 29%;
 }
