@@ -42,6 +42,7 @@ import { LeadCommissionComponent } from './aff-types/add-edit-aff-type/commissio
 import { RegCommissionComponent } from './aff-types/add-edit-aff-type/commission-type/reg-commission/reg-commission.component';
 import { RangeFormComponent } from './shared/ui/range-form/range-form.component';
 import { RangeFormV2Component } from './shared/ui/range-form-v2/range-form-v2.component';
+import { CountriesModalComponent } from './shared/ui/countries-modal/countries-modal.component';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { RangeFormV2Component } from './shared/ui/range-form-v2/range-form-v2.co
     LeadCommissionComponent,
     RegCommissionComponent,
     RangeFormComponent,
-    RangeFormV2Component
+    RangeFormV2Component,
+    CountriesModalComponent
   ],
   imports: [
     BrowserModule,

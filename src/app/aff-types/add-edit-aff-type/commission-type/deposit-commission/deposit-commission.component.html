@@ -114,7 +114,7 @@
             </div>
 
             <!-- Button -->
-            <div class="inner-btn">
+            <div class="inner-btn-add-extra-plan">
               <button
                 *ngIf="clickedNewExtraPlanBtn < 1"
                 type="button"
@@ -181,8 +181,8 @@
         </div>
         <!-- end of NESTED -->
 
-        <div class="form-element" *ngIf="commissionDropDown.selected">
-          <div class="divider-container"><hr class="sub-divider" /></div>
+        <div class="form-element last-one" *ngIf="commissionDropDown.selected">
+          <!-- <div class="divider-container"><hr class="sub-divider" /></div> -->
           <section class="checkbox nested-checkbox">
             <mat-checkbox formControlName="openPositionReq"
               >Open Position Required</mat-checkbox

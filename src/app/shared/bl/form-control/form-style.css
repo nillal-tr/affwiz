@@ -35,6 +35,9 @@
   width: 100%;
 }
 
+.form-element.last-one {
+  margin-bottom: 20px;
+}
 .box-title {
   color: gray;
   font-size: 16px;
@@ -60,14 +63,15 @@
 }
 
 
-.inner-btn {
+.inner-btn-add-extra-plan {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .add-btn {
   border: 1px solid black;
   padding: 20px;
+  margin-bottom: 10px;
 }
 
 .row {
