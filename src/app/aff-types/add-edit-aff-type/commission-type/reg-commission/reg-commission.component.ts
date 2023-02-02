@@ -9,6 +9,7 @@ import { countries } from 'src/app/data-countries';
 })
 export class RegCommissionComponent {
   countryitems = countries;
+  rateTypeParent = 'registration';
   
   affTypeFormCommissionTypeRegCommission = new FormGroup({
 

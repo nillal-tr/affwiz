@@ -42,7 +42,8 @@ import { LeadCommissionComponent } from './aff-types/add-edit-aff-type/commissio
 import { RegCommissionComponent } from './aff-types/add-edit-aff-type/commission-type/reg-commission/reg-commission.component';
 import { RangeFormComponent } from './shared/ui/range-form/range-form.component';
 import { RangeFormV2Component } from './shared/ui/range-form-v2/range-form-v2.component';
-import { CountriesModalComponent } from './shared/ui/countries-modal/countries-modal.component';
+import {DialogModule} from '@angular/cdk/dialog';
+import { countriesModalComponent, countriesModalPopupComponent } from './shared/ui/countries-modal/countries-modal.component';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { CountriesModalComponent } from './shared/ui/countries-modal/countries-m
     RegCommissionComponent,
     RangeFormComponent,
     RangeFormV2Component,
-    CountriesModalComponent
+    countriesModalComponent,
+    countriesModalPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -93,6 +95,7 @@ import { CountriesModalComponent } from './shared/ui/countries-modal/countries-m
     Ng2SearchPipeModule,
     MatIconModule,
     CdkAccordionModule,
+    DialogModule,
     ],
   providers: [],
   bootstrap: [AppComponent],

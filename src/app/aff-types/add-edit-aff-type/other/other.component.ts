@@ -7,7 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./other.component.css','../../../shared/bl/form-control/form-style.css']
 })
 export class OtherComponent {
-
+  rateTypeParent = 'lead'
   affTypeFormOther = new FormGroup({
     createCustomLinksAffConsole: new FormControl('checked'),
   })

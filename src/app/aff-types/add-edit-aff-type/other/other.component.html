@@ -1,14 +1,16 @@
-
 <!-- Other -->
 <form [formGroup]="affTypeFormOther">
+  <div class="form-element">
+    <section class="checkbox">
+      <mat-checkbox formControlName="createCustomLinksAffConsole"
+        >Display Option to Create Custom Links in Affiliate
+        Console</mat-checkbox
+      >
+    </section>
+  </div>
+  <div class="test" style="margin-top: 20px; margin-bottom: 20px; color: red;">
+    TEST:
+    <app-countries-modal [rateType]="rateTypeParent"></app-countries-modal>
+  </div>
 
-
-    <div class="form-element">
-      <section class="checkbox">
-        <mat-checkbox formControlName="createCustomLinksAffConsole"
-          >Display Option to Create Custom Links in Affiliate
-          Console</mat-checkbox
-        >
-      </section>
-    </div>
 </form>

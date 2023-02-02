@@ -1,0 +1,58 @@
+:host {
+  display: block;
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px 16px 16px;
+}
+
+button + button {
+  margin-left: 8px;
+  text-align: center;
+}
+
+
+#modal-title {
+  margin-bottom: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.submit-area {
+  text-align: center;
+}
+
+.top-area-modal {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+.save-btn-rate-per-country {
+  border: 1px solid black;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.options-container {
+  display: flex;
+}
+
+.search-field {
+  display: contents;
+}
+
+.rate-country-input {
+  width: 20%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  min-height: 39px;
+  display: contents;
+}
+
+.short-input {
+  height: 22px;
+}
+
+.country-name-input {
+  margin-bottom: 10px;
+}

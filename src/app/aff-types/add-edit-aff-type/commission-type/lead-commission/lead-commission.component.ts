@@ -9,6 +9,7 @@ import { countries } from 'src/app/data-countries';
 })
 export class LeadCommissionComponent {
   countryitems = countries;
+  rateTypeParent = 'lead';
   
   affTypeFormCommissionTypeLeadCommission = new FormGroup({
     leadCommissions: new FormControl(''),

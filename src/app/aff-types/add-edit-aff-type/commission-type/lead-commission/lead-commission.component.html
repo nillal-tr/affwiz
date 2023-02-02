@@ -23,47 +23,8 @@
             formControlName="leadCommissions1"
           />
         </mat-form-field>
-        <section class="checkbox">
-          <mat-checkbox formControlName="leadCommissions2" #leadCommissions2
-            >Set Lead Rate per Country</mat-checkbox
-          >
-        </section>
+        <app-countries-modal [rateType]="rateTypeParent"></app-countries-modal>
       </div>
-      <!-- NESTED -->
-      <div>
-        <ul class="" *ngIf="leadCommissions2.checked">
-          <div class="nested-div">
-            <li *ngFor="let countryitem of countryitems" class="country-row">
-              <section class="checkbox">
-                <mat-checkbox
-                  class="country-checkbox"
-                  formControlName="leadCRateCountryBasedCheckbox"
-                >
-                  <span class="country-name">
-                    {{ countryitem.name }}
-                  </span>
-                </mat-checkbox>
-
-                <mat-form-field
-                  class="nested-field"
-                  color="primary"
-                  appearance="outline"
-                >
-                  <mat-label class="label"></mat-label>
-                  <input
-                    class=""
-                    type="number"
-                    matInput
-                    placeholder=""
-                    formControlName="leadCRateCountryBasedInput"
-                  />
-                </mat-form-field>
-              </section>
-            </li>
-          </div>
-        </ul>
-      </div>
-      <!-- end of NESTED -->
     </div>
     <!-- end of NESTED -->
   </div>
