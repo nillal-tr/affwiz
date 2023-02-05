@@ -11,13 +11,11 @@
     >
       <!-- fix: when focus on "search" input: bug when clicking ctrl a is selects all -->
       <mat-label class="label">Categories</mat-label>
-      <mat-select
-        multiple
-        formControlName="categories"
-        #selectCategories
-        (ngModelChange)="addNewItem(selectCategories.value)"
-      >
-        <mat-form-field class="search-field fieldrow" appearance="outline">
+      <mat-select multiple formControlName="categories" #selectCategories>
+        <mat-form-field
+          class="search-field fieldrow"
+          appearance="outline"
+        >
           <mat-label class="label">Search</mat-label>
           <input
             formControlName="searchCategories"
@@ -34,6 +32,7 @@
           [(ngModel)]="allSelected"
           [ngModelOptions]="{ standalone: true }"
           (change)="toggleAllSelection()"
+          (change)="addNewItem()"
           >Select All</mat-checkbox
         >
         <mat-option

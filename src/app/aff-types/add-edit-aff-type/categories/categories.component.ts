@@ -1,8 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
-import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-categories',
@@ -13,12 +12,8 @@ import { Output, EventEmitter } from '@angular/core';
   ],
 })
 export class CategoriesComponent {
-  affTypeFormCategories = new FormGroup({
-    categories: new FormControl(''),
-    searchCategories: new FormControl(''),
-  });
 
-  // Categories field
+  // Categories field (mock)
   categoryList: any[] = [
     { name: 'Arabic Stock Material' },
     { name: 'Arabic_Bigger_Banners' },
@@ -36,6 +31,26 @@ export class CategoriesComponent {
   searchValue: string = '';
   filteredCategoriesList: string[] = [];
 
+  affTypeFormCategories: FormGroup;
+
+  @Output() affTypeFormCategoriesEvent = new EventEmitter<any>();
+
+  constructor(private formBuilder: FormBuilder) {
+    this.affTypeFormCategories = this.formBuilder.group({
+      categories: new FormControl(''),
+      searchCategories: new FormControl(''),
+    });
+  }
+
+  // output of the form to the parent component - based on to service
+  addNewItem() {
+    console.log('add new item func runs');
+    if (this.affTypeFormCategories.valid) {
+      this.affTypeFormCategoriesEvent.emit(this.affTypeFormCategories.controls);
+      console.log(this.affTypeFormCategories.controls);
+    }
+  }
+
   // Select All in Cateories
   toggleAllSelection() {
     if (this.allSelected) {
@@ -48,6 +63,7 @@ export class CategoriesComponent {
   }
 
   optionClick() {
+    this.addNewItem();
     let newStatus = true;
     this.selectCategories.options.forEach((item: MatOption) => {
       if (!item.selected) {
@@ -56,12 +72,4 @@ export class CategoriesComponent {
     });
     this.allSelected = newStatus;
   }
-
-  @Output() affTypeFormCategoriesEvent = new EventEmitter<FormGroup>();
-
-  // output of the form to the parent component
-  addNewItem(value: FormGroup) {
-    this.affTypeFormCategoriesEvent.emit(value);
-  }
-  
 }

@@ -9,11 +9,44 @@ import { FormGroup } from '@angular/forms';
 })
 export class AddEditAffTypeComponent implements OnInit {
   
-  // get data from nested components
+  // get data from nested components (accordion sections)
+  dataNewAffType: any = [];
+  dataCategories: any = [];
+  dataComissionTypes: any = [];
+  dataTieredAffDisplayOptions: any = [];
+  dataOther: any = [];
+
+  // get data all accordions together
   dataAddAffTypeForm: any = [];
 
-  addItem(dataAddAffTypeForm: FormGroup) {
-    this.dataAddAffTypeForm.push(dataAddAffTypeForm);
+  innerBtnSave() {
+    
+  }
+
+
+  // add data to data arrays
+  addItemNewAffType(data: FormGroup) {
+    this.dataNewAffType.push(data);
+  }
+
+  addItemCategories(data: FormGroup) {
+    this.dataCategories.push(data);
+  }
+
+  addItemComissionTypes(data: FormGroup) {
+    this.dataComissionTypes.push(data);
+  }
+
+  addItemTieredAffDisplayOptions(data: FormGroup) {
+    this.dataTieredAffDisplayOptions.push(data);
+  }
+
+  addItemOther(data: FormGroup) {
+    this.dataOther.push(data);
+  }
+
+  addAccordionSectionsDataToOneFile() {
+    // if there are no errors all data will be pushed to dataAddAffTypeForm
   }
 
   // accordion
@@ -27,6 +60,21 @@ export class AddEditAffTypeComponent implements OnInit {
   
   // submitting the form
   onSubmit() {
+    console.log("SUBMITTING:");
+    console.log(this.dataNewAffType);
+    console.log(this.dataCategories);
+    console.log(this.dataComissionTypes);
+    console.log(this.dataTieredAffDisplayOptions);
+    console.log(this.dataOther);
+
+    // push all arrays to one array
+    this.dataAddAffTypeForm.push(this.dataNewAffType);
+    this.dataAddAffTypeForm.push(this.dataCategories);
+    this.dataAddAffTypeForm.push(this.dataComissionTypes);
+    this.dataAddAffTypeForm.push(this.dataTieredAffDisplayOptions);
+    this.dataAddAffTypeForm.push(this.dataOther);
+
+    console.log("all form --- still not working");  
     console.log(this.dataAddAffTypeForm);  
   }
 }

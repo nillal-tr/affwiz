@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sale-commission',
@@ -20,7 +20,23 @@ export class SaleCommissionComponent {
   unitSymbolParent = '$'
 
 
-  affTypeFormCommissionTypeSaleCommission = new FormGroup({
-    saleCommissionCheckbox: new FormControl(''),
-  })
+  affTypeFormCommissionTypeSaleCommission: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.affTypeFormCommissionTypeSaleCommission = this.formBuilder.group({
+      saleCommissionCheckbox: new FormControl(''),
+    })
+  }
+
+  @Output() affTypeFormCommissionTypeSaleCommissionEvent = new EventEmitter<any>();
+
+    // output of the form to the parent component
+    addNewItem() {
+      console.log('add new item func runs');
+      if (this.affTypeFormCommissionTypeSaleCommission.valid) {
+        this.affTypeFormCommissionTypeSaleCommissionEvent.emit(this.affTypeFormCommissionTypeSaleCommission.controls);
+        console.log(this.affTypeFormCommissionTypeSaleCommission.controls);
+      }
+    }
+  
 }

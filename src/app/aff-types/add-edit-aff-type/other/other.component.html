@@ -2,7 +2,9 @@
 <form [formGroup]="affTypeFormOther">
   <div class="form-element">
     <section class="checkbox">
-      <mat-checkbox formControlName="createCustomLinksAffConsole"
+      <mat-checkbox 
+      formControlName="createCustomLinksAffConsole"
+      (change)="addNewItem()"
         >Display Option to Create Custom Links in Affiliate
         Console</mat-checkbox
       >

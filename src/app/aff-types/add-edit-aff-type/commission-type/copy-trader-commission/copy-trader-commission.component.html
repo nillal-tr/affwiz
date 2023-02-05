@@ -1,7 +1,7 @@
 <form [formGroup]="affTypeFormCommissionTypeCopyTrader">
   <div class="form-element">
     <section class="checkbox">
-      <mat-checkbox formControlName="copyTraderCheckbox" #copyTrader
+      <mat-checkbox formControlName="copyTraderCheckbox" #copyTrader (change)="addNewItem()"
         >Per Copy Trader Commissions</mat-checkbox
       >
     </section>

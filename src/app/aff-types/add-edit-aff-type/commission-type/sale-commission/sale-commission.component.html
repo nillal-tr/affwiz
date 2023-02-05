@@ -1,7 +1,7 @@
 <form [formGroup]="affTypeFormCommissionTypeSaleCommission">
   <div class="form-element">
     <section class="checkbox">
-      <mat-checkbox formControlName="saleCommissionCheckbox" #saleCommission
+      <mat-checkbox formControlName="saleCommissionCheckbox" #saleCommission (change)="addNewItem()"
         >Per Sale Commissions</mat-checkbox
       >
     </section>

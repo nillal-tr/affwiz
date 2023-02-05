@@ -36,6 +36,7 @@
           [(ngModel)]="allSelected"
           [ngModelOptions]="{ standalone: true }"
           (change)="toggleAllSelection()"
+          (change)="addNewItem()"
           >Select All
         </mat-checkbox>
 
@@ -68,6 +69,7 @@
                 placeholder=""
                 formControlName="valueRatePerCountry"
                 [(ngModel)]="country.rate"
+                (change)="addNewItem()"
               />
             </mat-form-field>
           </div>

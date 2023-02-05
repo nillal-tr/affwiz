@@ -5,6 +5,7 @@
         formControlName="depositCommissionCheckbox"
         #depositCommission
         class="main-checkbox"
+        (change)="addNewItem()"
         >Per Deposit Commissions
       </mat-checkbox>
     </section>
@@ -16,6 +17,7 @@
             formControlName="commissionDropDown"
             #commissionDropDown
             placeholder="Please choose"
+            (selectionChange)="addNewItem()"
           >
             <mat-option
               *ngFor="let commission of commissions"
@@ -61,6 +63,7 @@
                   placeholder=""
                   max="999"
                   formControlName="depositCommissionCPADFTD"
+                  (change)="addNewItem()"
                 /><span matTextPrefix>$&nbsp;</span>
               </mat-form-field>
             </div>
@@ -77,6 +80,7 @@
                   matInput
                   formControlName="depositCommissionCPADPercentDeposit"
                   matTooltip="1 for 100%, 0.2 for 20%"
+                  (change)="addNewItem()"
                 />
               </mat-form-field>
             </div>
@@ -100,6 +104,7 @@
                   placeholder=""
                   max="999"
                   formControlName="depositCommissionCPADMinComissionPerTrade"
+                  (change)="addNewItem()"
                 /><span matTextPrefix>$&nbsp;</span>
               </mat-form-field>
             </div>
@@ -112,23 +117,7 @@
               Add CPA/CPAD Per Country Extra Plan (Up to 4 Extra Plans Can be
               Added)
             </div>
-
-            <!-- Button -->
-            <div class="inner-btn-add-extra-plan">
-              <button
-                *ngIf="clickedNewExtraPlanBtn < 1"
-                type="button"
-                #extraPlanBtn
-                mat-button
-                class="add-btn"
-                (click)="onClickExtraPlanBtn()"
-                appearance="outline"
-                [disabled]="extraPlanOptions.length === extraPlanOptionsLimit"
-              >
-                Add New Extra Plan
-              </button>
-            </div>
-
+            
             <!-- when clicked on the inner btn -->
             <div
               class="form-element"
@@ -142,7 +131,7 @@
                     <button
                       class="close-btn"
                       id="{{ i }}"
-                      (click)="onClickCloseIcon($event)"
+                      (click)="onClickCloseIcon($event, i)"
                     >
                       <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
                     </button>
@@ -165,7 +154,7 @@
             </div>
 
             <button
-              *ngIf="clickedNewExtraPlanBtn >= 1"
+          
               type="button"
               #extraPlanBtn
               [disabled]="extraPlanOptions.length === extraPlanOptionsLimit"
@@ -184,7 +173,7 @@
         <div class="form-element last-one" *ngIf="commissionDropDown.selected">
           <!-- <div class="divider-container"><hr class="sub-divider" /></div> -->
           <section class="checkbox nested-checkbox">
-            <mat-checkbox formControlName="openPositionReq"
+            <mat-checkbox formControlName="openPositionReq" (change)="addNewItem()"
               >Open Position Required</mat-checkbox
             >
           </section>

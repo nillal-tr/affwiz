@@ -14,6 +14,11 @@ interface ITierCalcMethod {
   viewValue: string;
 }
 
+interface Itiers {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-new-aff-type',
   templateUrl: './new-aff-type.component.html',
@@ -34,9 +39,7 @@ export class NewAffTypeComponent {
     },
   ];
 
-  affTypeFormAddNew: FormGroup;
-
-  tiers: any[] = [
+  tiers: Itiers[] = [
     { value: '1', viewValue: '1' },
     { value: '2', viewValue: '2' },
     { value: '3', viewValue: '3' },
@@ -44,14 +47,14 @@ export class NewAffTypeComponent {
     { value: '5', viewValue: '5' },
   ];
 
-  tiersSubFields: any[] = [];
+  tiersSubFields: number[] = [];
+
+  affTypeFormAddNew: FormGroup;
 
   @Output() affTypeFormAddNewAffTypeEvent = new EventEmitter<any>();
+  @Output() innerSaveBtnEvent = new EventEmitter<any>();
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private formSubmitting: FormSubmittingService
-  ) {
+  constructor(private formBuilder: FormBuilder) {
     this.affTypeFormAddNew = this.formBuilder.group({
       description: new FormControl('', Validators.required),
       notes: new FormControl(''),
@@ -63,18 +66,17 @@ export class NewAffTypeComponent {
     });
   }
 
-  ngOnInit() {}
-
-  // output of the form to the parent component - based on to service
+  // output of the form to the parent component
   addNewItem() {
     console.log('add new item func runs');
     if (this.affTypeFormAddNew.valid) {
       this.affTypeFormAddNewAffTypeEvent.emit(this.affTypeFormAddNew.controls);
+      console.log(this.affTypeFormAddNew.controls);
     }
   }
 
   // Build the tiers sub fields (tier #2 and above selected)
-  onSelectChange(event: any) {
+  onSelectChangeTiersDropdown(event: any) {
     this.tiersSubFields = [];
     if (event.value === '1') {
       this.addNewItem();
@@ -82,11 +84,21 @@ export class NewAffTypeComponent {
     }
     for (let i = 1; i < event.value; i++) {
       this.tiersSubFields.push(i);
-      const controlTierSubRate = new FormControl('', [Validators.required, Validators.min(0)]);
+      const controlTierSubRate = new FormControl('', [
+        Validators.required,
+        Validators.min(0),
+      ]);
       this.affTypeFormAddNew.addControl(`tier${i + 1}Rate`, controlTierSubRate);
     }
-    // console.log(this.tiersSubFields);
-
+    console.log(this.tiersSubFields);
     this.addNewItem();
+  }
+
+  onClickinnerBtnSave() {
+    console.log(Object.values(this.affTypeFormAddNew.controls)[0].valid);
+    let x = Object.values(this.affTypeFormAddNew.controls);
+    // for(let i=0; i< 5 ; i++)
+    // console.log(this.affTypeFormAddNewAffTypeEvent)
+    // this.innerSaveBtnEvent.emit(this.affTypeFormAddNewAffTypeEvent)
   }
 }

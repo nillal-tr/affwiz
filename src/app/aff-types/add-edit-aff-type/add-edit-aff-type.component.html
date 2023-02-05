@@ -23,11 +23,7 @@
           *ngIf="accordionItem.expanded"
         >
         </mat-icon>
-        <mat-icon
-          aria-hidden="false"
-          fontIcon="check_circle_outline"
-          *ngIf=""
-        >
+        <mat-icon aria-hidden="false" fontIcon="check_circle_outline" *ngIf="">
         </mat-icon>
       </span>
     </div>
@@ -42,25 +38,40 @@
 
       <app-new-aff-type
         *ngIf="index === 0"
-        (affTypeFormAddNewAffTypeEvent)="addItem($event)"
-        ></app-new-aff-type
-      >
+        (affTypeFormAddNewAffTypeEvent)="addItemNewAffType($event)"
+        (innerSaveBtnEvent)="innerBtnSave()"
+      ></app-new-aff-type>
+
       <app-categories
         *ngIf="index === 1"
-        (affTypeFormCategoriesEvent)="addItem($event)"
+        (affTypeFormCategoriesEvent)="addItemCategories($event)"
       ></app-categories>
-      <app-commission-type *ngIf="index === 2"></app-commission-type>
+
+      <app-commission-type
+      *ngIf="index === 2"
+      (affTypeFormComissionTypeEvent)="addItemComissionTypes($event)"
+      ></app-commission-type>
+
       <app-tiered-aff-display-options
         *ngIf="index === 3"
+        (affTypeFormTieredAffDisplayOptionEvent)="addItemOther($event)"
       ></app-tiered-aff-display-options>
-      <app-other *ngIf="index === 4"></app-other>
+
+      <app-other 
+      *ngIf="index === 4"
+      (affTypeFormOtherEvent)="addItemOther($event)"
+      ></app-other>
     </div>
+
   </cdk-accordion-item>
 </cdk-accordion>
 
 <!-- Button -->
 <div class="btn-box">
-  <button type="submit" mat-button class="add-btn" (click)="onSubmit()">
+  <button 
+  type="submit" 
+  mat-button class="add-btn" 
+  (click)="onSubmit()">
     Add New Affiliate Type
   </button>
 </div>

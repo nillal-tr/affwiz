@@ -4,6 +4,7 @@
       <mat-checkbox
         formControlName="registrationCommissionsCheckbox"
         #registrationCommissions
+        (change)="addNewItem()"
         >Per Registration Commissions</mat-checkbox
       >
     </section>
@@ -23,9 +24,13 @@
             matInput
             placeholder=""
             formControlName="registrationCommissionsValue"
+            (change)="addNewItem()"
           /><span matTextPrefix>$&nbsp;</span>
         </mat-form-field>
-        <app-countries-modal [rateType]="rateTypeParent"></app-countries-modal>
+        <app-countries-modal 
+        [rateType]="rateTypeParent"
+        
+        ></app-countries-modal>
       </div>
     </div>
     <!-- end of NESTED -->

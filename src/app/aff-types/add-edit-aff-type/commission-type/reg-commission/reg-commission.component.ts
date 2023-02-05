@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { countries } from 'src/app/data-countries';
 
 @Component({
@@ -11,8 +11,24 @@ export class RegCommissionComponent {
   countryitems = countries;
   rateTypeParent = 'registration';
   
-  affTypeFormCommissionTypeRegCommission = new FormGroup({
-    registrationCommissionsCheckbox: new FormControl(''),
-    registrationCommissionsValue: new FormControl(''),
-  })
+  affTypeFormCommissionTypeRegCommission: FormGroup;
+
+  
+  @Output() affTypeFormCommissionTypeRegCommissionEvent = new EventEmitter<any>();
+  
+  constructor(private formBuilder: FormBuilder) {
+    this.affTypeFormCommissionTypeRegCommission = this.formBuilder.group({
+      registrationCommissionsCheckbox: new FormControl(''),
+      registrationCommissionsValue: new FormControl(''),
+    })
+  }
+
+    // output of the form to the parent component
+    addNewItem() {
+      console.log('add new item func runs');
+      if (this.affTypeFormCommissionTypeRegCommission.valid) {
+        this.affTypeFormCommissionTypeRegCommissionEvent.emit(this.affTypeFormCommissionTypeRegCommission.controls);
+        console.log(this.affTypeFormCommissionTypeRegCommission.controls);
+      }
+    }  
 }

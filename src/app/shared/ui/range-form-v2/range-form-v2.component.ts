@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 export interface IField {
   fieldName: string;
   placeholder: number;
@@ -15,6 +15,7 @@ export interface IField {
     '../../ui/form-style.css',
   ],
 })
+
 export class RangeFormV2Component {
   @Input() fieldOne: IField = {
     fieldName: 'field1',
@@ -43,26 +44,6 @@ export class RangeFormV2Component {
   @Input() unitSymbol: string = '$';
   @Input() maxPleaceholder = 999;
 
-  rangeForm = new FormGroup({
-    field1: new FormControl(this.fieldOne.placeholder, [
-      Validators.max(this.maxPleaceholder),
-      Validators.min(this.fieldOne.label),
-    ]),
-    field2: new FormControl(19, [
-      Validators.max(this.maxPleaceholder),
-      Validators.min(this.fieldTwo.label),
-    ]),
-    field3: new FormControl(this.fieldThree.placeholder, [
-      Validators.max(this.maxPleaceholder),
-      Validators.min(this.fieldThree.label),
-    ]),
-
-    field4: new FormControl('', Validators.min(0)),
-    field5: new FormControl('', Validators.min(0)),
-    field6: new FormControl('', Validators.min(0)),
-    field7: new FormControl('', Validators.min(0)),
-  });
-
 
   mapping: {[index: string]:any} = {
     field1: (event: any) => {
@@ -78,6 +59,42 @@ export class RangeFormV2Component {
       this.label4 = this['fieldThree'].placeholderAfter as number;
     },
   }
+
+  rangeForm: FormGroup;
+
+  @Output() affTypeFormFormRangeEvent = new EventEmitter<any>();
+
+  constructor(private formBuilder: FormBuilder) {
+    this.rangeForm = this.formBuilder.group({
+      field1: new FormControl(this.fieldOne.placeholder, [
+        Validators.max(this.maxPleaceholder),
+        Validators.min(this.fieldOne.label),
+      ]),
+      field2: new FormControl(19, [
+        Validators.max(this.maxPleaceholder),
+        Validators.min(this.fieldTwo.label),
+      ]),
+      field3: new FormControl(this.fieldThree.placeholder, [
+        Validators.max(this.maxPleaceholder),
+        Validators.min(this.fieldThree.label),
+      ]),
+  
+      field4: new FormControl('', Validators.min(0)),
+      field5: new FormControl('', Validators.min(0)),
+      field6: new FormControl('', Validators.min(0)),
+      field7: new FormControl('', Validators.min(0)),
+    })
+  }
+
+  // output of the form to the parent component
+  addNewItem() {
+    console.log('add new item func runs');
+    if (this.rangeForm.valid) {
+      this.affTypeFormFormRangeEvent.emit(this.rangeForm.controls);
+      console.log(this.rangeForm.controls);
+    }
+  }
+
 
   formFunctionality(event: any) {
     let fieldName = event.target?.name;
@@ -99,14 +116,14 @@ export class RangeFormV2Component {
 
     // reset the validators based on changes in the form
     if (this.fieldTwo.placeholder !== this.fieldTwo.placeholderAfter) {
-      this.rangeForm.controls.field2.setValidators([
+      this.rangeForm.controls['field2'].setValidators([
         Validators.max(this.maxPleaceholder),
         Validators.min(this.fieldTwo.label),
       ]);
     }
 
     if (this.fieldThree.placeholder !== this.fieldThree.placeholderAfter) {
-      this.rangeForm.controls.field3.setValidators([
+      this.rangeForm.controls['field3'].setValidators([
         Validators.max(this.maxPleaceholder),
         Validators.min(this.fieldThree.label),
       ]);

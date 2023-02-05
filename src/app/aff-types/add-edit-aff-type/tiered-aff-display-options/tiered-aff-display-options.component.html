@@ -1,21 +1,21 @@
-  <!-- Tiered Affiliate Display Options -->
-  <form [formGroup]="affTypeFormTieredAffDisplayOption">
+<!-- Tiered Affiliate Display Options -->
+<form [formGroup]="affTypeFormTieredAffDisplayOption">
+  <div class="form-element">
+    <section class="checkbox">
+      <mat-checkbox formControlName="viewTieredAffCount" (change)="addNewItem()"
+        >Allow Affiliates to View Tiered Affiliate Count</mat-checkbox
+      >
+    </section>
+  </div>
 
-    <div class="form-element">
-      <section class="checkbox">
-        <mat-checkbox formControlName="viewTieredAffCount"
-          >Allow Affiliates to View Tiered Affiliate Count</mat-checkbox
-        >
-      </section>
-    </div>
-
-    <div class="form-element">
-      <section class="checkbox">
-        <mat-checkbox
-          formControlName="viewTieredAffDetail"
-          matTooltip=" Note: Fields displayed include Affiliate ID, Email, Contact Name, and Web Site URL"
-          >Allow Affiliates to View Tiered Affiliate Detail</mat-checkbox
-        >
-      </section>
-    </div>
-  </form>
+  <div class="form-element">
+    <section class="checkbox">
+      <mat-checkbox
+        formControlName="viewTieredAffDetail"
+        (change)="addNewItem()"
+        matTooltip=" Note: Fields displayed include Affiliate ID, Email, Contact Name, and Web Site URL"
+        >Allow Affiliates to View Tiered Affiliate Detail</mat-checkbox
+      >
+    </section>
+  </div>
+</form>

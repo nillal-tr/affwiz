@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {MDCTextField} from '@material/textfield';
 
 @Component({
@@ -38,17 +38,31 @@ export class DepositCommissionComponent {
   ];
 
   // fields
-  affTypeFormCommissionTypeDepositCommission = new FormGroup({
-    depositCommissionCheckbox: new FormControl(''),
-    commissionDropDown: new FormControl('Please select'),
-    depositCommissionCPADFTD: new FormControl('',Validators.min(0)),
-    depositCommissionCPADPercentDeposit: new FormControl('',Validators.min(0)),
-    depositCommissionCPADMinComissionPerTrade: new FormControl('',Validators.min(0)),
-    openPositionReq: new FormControl(''),
-  });
+  affTypeFormCommissionTypeDepositCommission: FormGroup;
 
+  @Output() affTypeFormCommissionTypeDepositCommissionEvent = new EventEmitter<any>();
+  
+  constructor(private formBuilder: FormBuilder) {
+    this.affTypeFormCommissionTypeDepositCommission = this.formBuilder.group({
+      depositCommissionCheckbox: new FormControl(''),
+      commissionDropDown: new FormControl('Please select'),
+      depositCommissionCPADFTD: new FormControl('',Validators.min(0)),
+      depositCommissionCPADPercentDeposit: new FormControl('',Validators.min(0)),
+      depositCommissionCPADMinComissionPerTrade: new FormControl('',Validators.min(0)),
+      openPositionReq: new FormControl(''),  
+    })
+  }
 
+    // output of the form to the parent component
+    addNewItem() {
+      console.log('add new item func runs');
+      if (this.affTypeFormCommissionTypeDepositCommission.valid) {
+        this.affTypeFormCommissionTypeDepositCommissionEvent.emit(this.affTypeFormCommissionTypeDepositCommission.controls);
+        console.log(this.affTypeFormCommissionTypeDepositCommission.controls);
+      }
+    }
 
+    
   // Per Deposit Commissions > CPAD > clicking on Btn to add extra option
   onClickExtraPlanBtn() {
     console.log("onClickExtraPlanBtn function");
@@ -71,18 +85,13 @@ export class DepositCommissionComponent {
 
   
 
-  onClickCloseIcon(event: any) {
+  onClickCloseIcon(event: any, i: number) {
     console.log("onClickCloseIcon function");
     const id = Number(event.srcElement.parentElement.attributes.id.nodeValue);
     console.log(id);
-    if(id === 0) {
-      this.extraPlanOptions.shift();
-    } else if (id > 1) {
-      this.extraPlanOptions.splice(id, id-1);
-    } else if (id === 1 ) {
-      this.extraPlanOptions.splice(id, id);
-
-    }
+    console.log(i);
+    this.extraPlanOptions.splice(id, 1);
+    
     console.log("extraPlanOptions:");
     console.log(this.extraPlanOptions);
   }

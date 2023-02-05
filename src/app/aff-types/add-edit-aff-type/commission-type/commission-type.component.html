@@ -14,6 +14,7 @@
         matInput
         placeholder=""
         formControlName="minCommissionPayout"
+        (change)="addNewItem()"
       /><span matTextPrefix>$&nbsp;</span>
     </mat-form-field>
   </div>
@@ -21,35 +22,45 @@
   <div class="divider-container"><hr class="main-divider" /></div>
 
   <div class="checkbox-section">
-    <app-copy-trader-commission></app-copy-trader-commission>
+    <app-copy-trader-commission
+    (affTypeFormCommissionTypeCopyTraderEvent)="addItemCopyTraderCheckbox($event)"
+    ></app-copy-trader-commission>
   </div>
 
   <div class="divider-container"><hr class="main-divider" /></div>
 
 
   <div class="checkbox-section">
-    <app-deposit-commission></app-deposit-commission>
+    <app-deposit-commission
+    (affTypeFormCommissionTypeDepositCommissionEvent)="addItemDepositComissionCheckbox($event)"
+    ></app-deposit-commission>
   </div>
 
   <div class="divider-container"><hr class="main-divider" /></div>
 
 
   <div class="checkbox-section">
-    <app-sale-commission></app-sale-commission>
+    <app-sale-commission
+    (affTypeFormCommissionTypeSaleCommissionEvent)="addItemSaleCheckbox($event)"
+    ></app-sale-commission>
   </div>
 
   <div class="divider-container"><hr class="main-divider" /></div>
 
 
   <div class="checkbox-section">
-    <app-lead-commission></app-lead-commission>
+    <app-lead-commission
+    (affTypeFormCommissionTypeLeadCommissionEvent)="addItemLeadCheckbox($event)"
+    ></app-lead-commission>
   </div>
 
   <div class="divider-container"><hr class="main-divider" /></div>
 
 
   <div class="checkbox-section">
-    <app-reg-commission></app-reg-commission>
+    <app-reg-commission
+    (affTypeFormCommissionTypeRegCommissionEvent)="addItemRegistrationCheckbox($event)"
+    ></app-reg-commission>
   </div>
 
   

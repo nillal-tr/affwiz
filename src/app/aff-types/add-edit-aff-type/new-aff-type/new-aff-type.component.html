@@ -29,14 +29,20 @@
   </div>
 
   <div class="form-element">
-    <mat-form-field appearance="fill" class="field" color="primary" appearance="outline">
+    <mat-form-field
+      appearance="fill"
+      class="field"
+      color="primary"
+      appearance="outline"
+    >
       <mat-label class="label">Tier Calculation Method</mat-label>
-      <mat-select formControlName="tierMethod">
+      <mat-select 
+      formControlName="tierMethod" 
+      (selectionChange)="addNewItem()">
         <mat-option
           *ngFor="let tierOption of tierOptions"
           [value]="tierOption.value"
           #tierMethod
-          (change)="addNewItem()"
         >
           {{ tierOption.viewValue }}
         </mat-option>
@@ -45,12 +51,18 @@
   </div>
 
   <div class="form-element row">
-    <mat-form-field appearance="fill" class="field" color="primary" appearance="outline">
+    <mat-form-field
+      appearance="fill"
+      class="field"
+      color="primary"
+      appearance="outline"
+      (change)="addNewItem()"
+    >
       <mat-label class="label">Tiers</mat-label>
       <mat-select
         formControlName="tiers"
         #tiersField
-        (selectionChange)="onSelectChange($event)"
+        (selectionChange)="onSelectChangeTiersDropdown($event)"
       >
         <mat-option *ngFor="let tier of tiers" [value]="tier.value">
           {{ tier.viewValue }}
@@ -124,4 +136,9 @@
       >
     </section>
   </div>
+  <button 
+  mat-button 
+  class="inner-save-btn"
+  (click)="onClickinnerBtnSave()"
+  >Save and next</button>
 </form>

@@ -15,6 +15,7 @@
           formControlName="{{ fieldOne.fieldName }}"
           matTooltip="Up to {{ maxPleaceholder }}"
           (input)="formFunctionality($event)"
+          (change)="addNewItem()"
         />
       </mat-form-field>
 
@@ -30,6 +31,7 @@
           matInput
           placeholder=""
           formControlName="field4"
+          (change)="addNewItem()"
         /><span matTextPrefix>{{ unitSymbol }}&nbsp;</span>
       </mat-form-field>
     </div>
@@ -50,6 +52,7 @@
           formControlName="{{ fieldTwo.fieldName }}"
           matTooltip="Up to {{ maxPleaceholder }}"
           (input)="formFunctionality($event)"
+          (change)="addNewItem()"
         />
       </mat-form-field>
       <span class="nested-label-top-rows">{{ unit }} =</span>
@@ -64,6 +67,7 @@
           matInput
           placeholder=""
           formControlName="field5"
+          (change)="addNewItem()"
         /><span matTextPrefix>{{ unitSymbol }}&nbsp;</span>
       </mat-form-field>
     </div>
@@ -85,6 +89,7 @@
           formControlName="{{ fieldThree.fieldName }}"
           matTooltip="Up to {{ maxPleaceholder }}"
           (input)="formFunctionality($event)"
+          (change)="addNewItem()"
         />
       </mat-form-field>
       <span class="nested-label-top-rows">{{ unit }} =</span>
@@ -99,6 +104,7 @@
           matInput
           placeholder=""
           formControlName="field6"
+          (change)="addNewItem()"
         /><span matTextPrefix>{{ unitSymbol }}&nbsp;</span>
       </mat-form-field>
     </div>
@@ -121,6 +127,7 @@
           matInput
           placeholder=""
           formControlName="field7"
+          (change)="addNewItem()"
         /><span matTextPrefix>{{ unitSymbol }}&nbsp;</span>
       </mat-form-field>
     </div>

@@ -1,7 +1,7 @@
 <form [formGroup]="affTypeFormCommissionTypeLeadCommission">
   <div class="form-element">
     <section class="checkbox">
-      <mat-checkbox formControlName="leadCommissionsCheckbox" #leadCommissions
+      <mat-checkbox formControlName="leadCommissionsCheckbox" #leadCommissions (change)="addNewItem()"
         >Per Lead Commissions</mat-checkbox
       >
     </section>
@@ -21,6 +21,7 @@
             matInput
             placeholder=""
             formControlName="leadCommissionsValue"
+            (change)="addNewItem()"
           /><span matTextPrefix>$&nbsp;</span>
         </mat-form-field>
         <app-countries-modal [rateType]="rateTypeParent"></app-countries-modal>
