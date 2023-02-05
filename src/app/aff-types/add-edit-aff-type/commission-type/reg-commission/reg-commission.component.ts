@@ -12,11 +12,7 @@ export class RegCommissionComponent {
   rateTypeParent = 'registration';
   
   affTypeFormCommissionTypeRegCommission = new FormGroup({
-
-    registrationCommissions: new FormControl(''),
-    registrationCommissions1: new FormControl(''),
-    registrationCommissions2: new FormControl(''),
-    regRateCountryBasedCheckbox: new FormControl(''),
-    regRateCountryBasedInput: new FormControl(''),
+    registrationCommissionsCheckbox: new FormControl(''),
+    registrationCommissionsValue: new FormControl(''),
   })
 }

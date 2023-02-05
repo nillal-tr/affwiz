@@ -20,7 +20,7 @@ export class CopyTraderCommissionComponent {
 
 
   affTypeFormCommissionTypeCopyTrader = new FormGroup({
-    copyTrader: new FormControl(''),
+    copyTraderCheckbox: new FormControl(''),
   })
 }
 

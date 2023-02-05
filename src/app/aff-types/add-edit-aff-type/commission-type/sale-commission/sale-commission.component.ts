@@ -21,6 +21,6 @@ export class SaleCommissionComponent {
 
 
   affTypeFormCommissionTypeSaleCommission = new FormGroup({
-    saleCommission: new FormControl(''),
+    saleCommissionCheckbox: new FormControl(''),
   })
 }

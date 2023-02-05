@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { countries } from 'src/app/data-countries';
 
 @Component({
@@ -12,10 +12,7 @@ export class LeadCommissionComponent {
   rateTypeParent = 'lead';
   
   affTypeFormCommissionTypeLeadCommission = new FormGroup({
-    leadCommissions: new FormControl(''),
-    leadCommissions1: new FormControl(''),
-    leadCommissions2: new FormControl(''),
-    leadCRateCountryBasedCheckbox: new FormControl(''),
-    leadCRateCountryBasedInput: new FormControl(''),
+    leadCommissionsCheckbox: new FormControl(''),
+    leadCommissionsValue: new FormControl('', Validators.min(0)),
   });
 }

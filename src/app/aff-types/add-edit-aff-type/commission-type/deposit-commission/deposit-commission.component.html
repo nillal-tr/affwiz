@@ -2,7 +2,7 @@
   <div class="form-element">
     <section class="checkbox">
       <mat-checkbox
-        formControlName="depositCommission"
+        formControlName="depositCommissionCheckbox"
         #depositCommission
         class="main-checkbox"
         >Per Deposit Commissions
@@ -60,7 +60,7 @@
                   matInput
                   placeholder=""
                   max="999"
-                  formControlName="depositCommissionCPAD1"
+                  formControlName="depositCommissionCPADFTD"
                 /><span matTextPrefix>$&nbsp;</span>
               </mat-form-field>
             </div>
@@ -75,7 +75,7 @@
                 <input
                   type="number"
                   matInput
-                  formControlName="depositCommissionCPAD2"
+                  formControlName="depositCommissionCPADPercentDeposit"
                   matTooltip="1 for 100%, 0.2 for 20%"
                 />
               </mat-form-field>
@@ -99,7 +99,7 @@
                   matInput
                   placeholder=""
                   max="999"
-                  formControlName="depositCommissionCPAD3"
+                  formControlName="depositCommissionCPADMinComissionPerTrade"
                 /><span matTextPrefix>$&nbsp;</span>
               </mat-form-field>
             </div>

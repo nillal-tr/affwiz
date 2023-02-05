@@ -47,7 +47,7 @@
               (click)="optionClick()"
               *ngFor="let country of countryList | filter : searchCat"
               [value]="country"
-              #countries
+              #countriesDropdown
               class="label country-name-input"
               >{{ country.name }}
             </mat-option>

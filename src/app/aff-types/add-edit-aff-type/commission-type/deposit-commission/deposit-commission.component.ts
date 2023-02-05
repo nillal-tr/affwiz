@@ -39,11 +39,11 @@ export class DepositCommissionComponent {
 
   // fields
   affTypeFormCommissionTypeDepositCommission = new FormGroup({
-    depositCommission: new FormControl(''),
+    depositCommissionCheckbox: new FormControl(''),
     commissionDropDown: new FormControl('Please select'),
-    depositCommissionCPAD1: new FormControl(''),
-    depositCommissionCPAD2: new FormControl(''),
-    depositCommissionCPAD3: new FormControl(''),
+    depositCommissionCPADFTD: new FormControl('',Validators.min(0)),
+    depositCommissionCPADPercentDeposit: new FormControl('',Validators.min(0)),
+    depositCommissionCPADMinComissionPerTrade: new FormControl('',Validators.min(0)),
     openPositionReq: new FormControl(''),
   });
 

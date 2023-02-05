@@ -4,6 +4,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  MinValidator,
   Validators,
 } from '@angular/forms';
 import { FormSubmittingService } from 'src/app/shared/bl/form-control/form-submitting.service';
@@ -81,8 +82,8 @@ export class NewAffTypeComponent {
     }
     for (let i = 1; i < event.value; i++) {
       this.tiersSubFields.push(i);
-      const control = new FormControl('', [Validators.required]);
-      this.affTypeFormAddNew.addControl(`tier${i + 1}Rate`, control);
+      const controlTierSubRate = new FormControl('', [Validators.required, Validators.min(0)]);
+      this.affTypeFormAddNew.addControl(`tier${i + 1}Rate`, controlTierSubRate);
     }
     // console.log(this.tiersSubFields);
 

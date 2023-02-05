@@ -1,6 +1,6 @@
 import {Component, Inject, Input, ViewChild} from '@angular/core';
 import {Dialog, DialogRef, DIALOG_DATA} from '@angular/cdk/dialog';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { countries, ICountryItem } from 'src/app/data-countries';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
@@ -42,8 +42,8 @@ export class countriesModalPopupComponent {
 
   ratePerCountry = new FormGroup({
     checkboxRatePerCountry: new FormControl(''),
-    valueRatePerCountry: new FormControl(''),
-    countries: new FormControl(''),
+    valueRatePerCountry: new FormControl('', Validators.min(0)),
+    countriesDropdown: new FormControl(''),
     searchcountries: new FormControl('')
   });
 

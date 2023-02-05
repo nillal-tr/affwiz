@@ -10,10 +10,5 @@ export class TieredAffDisplayOptionsComponent {
   affTypeFormTieredAffDisplayOption = new FormGroup({
     viewTieredAffCount: new FormControl(''),
     viewTieredAffDetail: new FormControl(''),
-
   })
-
-  constructor() {}
-  ngOnInit() {}
-
 }

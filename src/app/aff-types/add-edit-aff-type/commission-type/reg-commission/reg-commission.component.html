@@ -2,7 +2,7 @@
   <div class="form-element">
     <section class="checkbox">
       <mat-checkbox
-        formControlName="registrationCommissions"
+        formControlName="registrationCommissionsCheckbox"
         #registrationCommissions
         >Per Registration Commissions</mat-checkbox
       >
@@ -22,7 +22,7 @@
             type="number"
             matInput
             placeholder=""
-            formControlName="registrationCommissions1"
+            formControlName="registrationCommissionsValue"
           /><span matTextPrefix>$&nbsp;</span>
         </mat-form-field>
         <app-countries-modal [rateType]="rateTypeParent"></app-countries-modal>
