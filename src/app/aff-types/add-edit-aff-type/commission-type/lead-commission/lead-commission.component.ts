@@ -5,7 +5,7 @@ import { countries } from 'src/app/data-countries';
 @Component({
   selector: 'app-lead-commission',
   templateUrl: './lead-commission.component.html',
-  styleUrls: ['./lead-commission.component.css', '../../../../shared/bl/form-control/form-style.css'],
+  styleUrls: ['./lead-commission.component.css', '../../../../shared/ui/form-style.css'],
 })
 export class LeadCommissionComponent {
   countryitems = countries;

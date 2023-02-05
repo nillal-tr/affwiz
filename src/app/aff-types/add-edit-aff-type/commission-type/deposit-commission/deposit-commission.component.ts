@@ -5,7 +5,7 @@ import {MDCTextField} from '@material/textfield';
 @Component({
   selector: 'app-deposit-commission',
   templateUrl: './deposit-commission.component.html',
-  styleUrls: ['./deposit-commission.component.css', '../../../../shared/bl/form-control/form-style.css'],
+  styleUrls: ['./deposit-commission.component.css', '../../../../shared/ui/form-style.css'],
 })
 export class DepositCommissionComponent {
   

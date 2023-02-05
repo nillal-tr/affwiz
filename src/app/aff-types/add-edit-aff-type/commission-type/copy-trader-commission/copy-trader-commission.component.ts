@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-copy-trader-commission',
   templateUrl: './copy-trader-commission.component.html',
-  styleUrls: ['./copy-trader-commission.component.css', '../../../../shared/bl/form-control/form-style.css']
+  styleUrls: ['./copy-trader-commission.component.css', '../../../../shared/ui/form-style.css']
 })
 export class CopyTraderCommissionComponent {
   placeholderParent1 = 9;

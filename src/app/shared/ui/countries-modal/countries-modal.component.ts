@@ -9,7 +9,7 @@ import { MatSelect } from '@angular/material/select';
 @Component({
   selector: 'app-countries-modal',
   templateUrl: './countries-modal.component.html',
-  styleUrls: ['./countries-modal.component.less', '../../bl/form-control/form-style.css']
+  styleUrls: ['./countries-modal.component.less', '../../ui/form-style.css']
 })
 export class countriesModalComponent {
   countryRate: ICountryItem[] | undefined;
@@ -34,16 +34,17 @@ export class countriesModalComponent {
 @Component({
   selector: 'app-countries-modal-popup',
   templateUrl: './countries-modal-popup.component.html',
-  styleUrls: ['../../bl/form-control/form-style.css', './countries-modal-popup.component.css']
+  styleUrls: ['../../ui/form-style.css', './countries-modal-popup.component.css']
 })
 export class countriesModalPopupComponent {
   countryList: ICountryItem[] = countries;
   searchCat = '';
 
   ratePerCountry = new FormGroup({
+    countriesDropdown: new FormControl(''),
     checkboxRatePerCountry: new FormControl(''),
     valueRatePerCountry: new FormControl('', Validators.min(0)),
-    countriesDropdown: new FormControl(''),
+    countryOption: new FormControl(''),
     searchcountries: new FormControl('')
   });
 

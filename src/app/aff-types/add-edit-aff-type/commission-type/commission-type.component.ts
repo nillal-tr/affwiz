@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-commission-type',
   templateUrl: './commission-type.component.html',
-  styleUrls: ['./commission-type.component.css', '../../../shared/bl/form-control/form-style.css'],
+  styleUrls: ['./commission-type.component.css', '../../../shared/ui/form-style.css'],
 })
 export class CommissionTypeComponent {
 

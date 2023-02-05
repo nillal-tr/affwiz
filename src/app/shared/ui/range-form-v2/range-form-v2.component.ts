@@ -12,7 +12,7 @@ export interface IField {
   templateUrl: './range-form-v2.component.html',
   styleUrls: [
     './range-form-v2.component.less',
-    '../../bl/form-control/form-style.css',
+    '../../ui/form-style.css',
   ],
 })
 export class RangeFormV2Component {

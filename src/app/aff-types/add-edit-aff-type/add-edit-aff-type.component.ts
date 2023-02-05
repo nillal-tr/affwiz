@@ -5,7 +5,7 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-add-edit-aff-type',
   templateUrl: './add-edit-aff-type.component.html',
-  styleUrls: ['./add-edit-aff-type.component.css', '../../shared/bl/form-control/form-style.css'],
+  styleUrls: ['./add-edit-aff-type.component.css', '../../shared/ui/form-style.css'],
 })
 export class AddEditAffTypeComponent implements OnInit {
   

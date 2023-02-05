@@ -9,7 +9,7 @@ import { Output, EventEmitter } from '@angular/core';
   templateUrl: './categories.component.html',
   styleUrls: [
     './categories.component.css',
-    '../../../shared/bl/form-control/form-style.css',
+    '../../../shared/ui/form-style.css',
   ],
 })
 export class CategoriesComponent {

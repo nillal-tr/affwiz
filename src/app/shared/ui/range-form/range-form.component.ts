@@ -6,7 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './range-form.component.html',
   styleUrls: [
     './range-form.component.less',
-    '../../bl/form-control/form-style.css',
+    '../../ui/form-style.css',
   ],
 })
 export class RangeFormComponent {

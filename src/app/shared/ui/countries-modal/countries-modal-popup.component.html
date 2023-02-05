@@ -18,7 +18,7 @@
     >
       <!-- fix: when focus on "search" input: bug when clicking ctrl a is selects all -->
       <mat-label class="label">Countries</mat-label>
-      <mat-select multiple formControlName="countries" #selectcountries>
+      <mat-select multiple formControlName="countriesDropdown" #selectcountries>
         <mat-form-field class="search-field" appearance="outline">
           <mat-label class="label">Search</mat-label>
           <input
@@ -47,7 +47,7 @@
               (click)="optionClick()"
               *ngFor="let country of countryList | filter : searchCat"
               [value]="country"
-              #countriesDropdown
+              #countryOption
               class="label country-name-input"
               >{{ country.name }}
             </mat-option>
