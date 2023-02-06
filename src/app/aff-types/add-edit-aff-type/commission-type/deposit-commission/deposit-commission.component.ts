@@ -49,10 +49,10 @@ export class DepositCommissionComponent {
     { blockNumber: 'Fourth' },
   ];
 
-  dataDepositComissionCheckbox: any[] = [];
   // fields
   affTypeFormCommissionTypeDepositCommission: FormGroup;
 
+  dataDepositComissionCheckbox: any[] = [];
   dataComissionTypeDepositComission: any = [];
 
   @Output() affTypeFormCommissionTypeDepositCommissionEvent =
@@ -80,7 +80,9 @@ export class DepositCommissionComponent {
     console.log('add new item func runs');
     if (this.affTypeFormCommissionTypeDepositCommission.valid) {
       this.affTypeFormCommissionTypeDepositCommissionEvent.emit(
-        this.affTypeFormCommissionTypeDepositCommission.controls
+        [this.affTypeFormCommissionTypeDepositCommission.controls,
+        this.dataDepositComissionCheckbox,
+      this.dataComissionTypeDepositComission]
       );
       console.log(this.affTypeFormCommissionTypeDepositCommission.controls);
     }

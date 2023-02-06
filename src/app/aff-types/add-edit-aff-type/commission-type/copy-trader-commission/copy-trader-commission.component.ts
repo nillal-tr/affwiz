@@ -36,7 +36,10 @@ export class CopyTraderCommissionComponent {
     addNewItem() {
       // console.log('add new item func runs');
       if (this.affTypeFormCommissionTypeCopyTrader.valid) {
-        this.affTypeFormCommissionTypeCopyTraderEvent.emit(this.affTypeFormCommissionTypeCopyTrader.controls);
+        this.affTypeFormCommissionTypeCopyTraderEvent.emit(
+          [this.affTypeFormCommissionTypeCopyTrader.controls,
+            this.dataComissionTypeCopyTrader
+          ]);
         // console.log(this.affTypeFormCommissionTypeCopyTrader.controls);
       }
     }
