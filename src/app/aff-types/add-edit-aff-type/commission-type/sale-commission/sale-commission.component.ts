@@ -27,6 +27,7 @@ export class SaleCommissionComponent {
   unitSymbolParent = '$';
 
   dataComissionTypeSale: any = [];
+  dataSaleCheckbox: any[] = [];
 
   affTypeFormCommissionTypeSaleCommission: FormGroup;
 
@@ -52,6 +53,6 @@ export class SaleCommissionComponent {
 
   // push data to array and push it parent
   addItemFormRange(data: FormGroup) {
-    this.dataComissionTypeSale.push(data);
+    this.dataSaleCheckbox.push(data);
   }
 }

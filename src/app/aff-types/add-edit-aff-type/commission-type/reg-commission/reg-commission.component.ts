@@ -5,30 +5,42 @@ import { countries } from 'src/app/data-countries';
 @Component({
   selector: 'app-reg-commission',
   templateUrl: './reg-commission.component.html',
-  styleUrls: ['./reg-commission.component.css', '../../../../shared/ui/form-style.css']
+  styleUrls: [
+    './reg-commission.component.css',
+    '../../../../shared/ui/form-style.css',
+  ],
 })
 export class RegCommissionComponent {
   countryitems = countries;
   rateTypeParent = 'registration';
-  
+
   affTypeFormCommissionTypeRegCommission: FormGroup;
 
-  
-  @Output() affTypeFormCommissionTypeRegCommissionEvent = new EventEmitter<any>();
-  
+  dataRegistrationCheckbox: any[] = [];
+
+  @Output() affTypeFormCommissionTypeRegCommissionEvent =
+    new EventEmitter<any>();
+
   constructor(private formBuilder: FormBuilder) {
     this.affTypeFormCommissionTypeRegCommission = this.formBuilder.group({
       registrationCommissionsCheckbox: new FormControl(''),
       registrationCommissionsValue: new FormControl(''),
-    })
+    });
   }
 
-    // output of the form to the parent component
-    addNewItem() {
-      console.log('add new item func runs');
-      if (this.affTypeFormCommissionTypeRegCommission.valid) {
-        this.affTypeFormCommissionTypeRegCommissionEvent.emit(this.affTypeFormCommissionTypeRegCommission.controls);
-        console.log(this.affTypeFormCommissionTypeRegCommission.controls);
-      }
-    }  
+  // output of the form to the parent component
+  addNewItem() {
+    console.log('add new item func runs');
+    if (this.affTypeFormCommissionTypeRegCommission.valid) {
+      this.affTypeFormCommissionTypeRegCommissionEvent.emit(
+        this.affTypeFormCommissionTypeRegCommission.controls
+      );
+      console.log(this.affTypeFormCommissionTypeRegCommission.controls);
+    }
+  }
+
+  // push data to array and push it parent
+  addItemFormRange(data: FormGroup) {
+    this.dataRegistrationCheckbox.push(data);
+  }
 }

@@ -33,6 +33,7 @@
 
   <div class="checkbox-section">
     <app-deposit-commission
+    [dataComissionTypes]="dataDepositComissionCheckbox"
     (affTypeFormCommissionTypeDepositCommissionEvent)="addItemDepositComissionCheckbox($event)"
     ></app-deposit-commission>
   </div>
@@ -42,6 +43,7 @@
 
   <div class="checkbox-section">
     <app-sale-commission
+    [dataComissionTypes]="dataSaleCheckbox"
     (affTypeFormCommissionTypeSaleCommissionEvent)="addItemSaleCheckbox($event)"
     ></app-sale-commission>
   </div>
@@ -51,6 +53,7 @@
 
   <div class="checkbox-section">
     <app-lead-commission
+    [dataComissionTypes]="dataLeadCheckbox"
     (affTypeFormCommissionTypeLeadCommissionEvent)="addItemLeadCheckbox($event)"
     ></app-lead-commission>
   </div>
@@ -60,6 +63,7 @@
 
   <div class="checkbox-section">
     <app-reg-commission
+    [dataComissionTypes]="dataRegistrationCheckbox"
     (affTypeFormCommissionTypeRegCommissionEvent)="addItemRegistrationCheckbox($event)"
     ></app-reg-commission>
   </div>

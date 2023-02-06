@@ -49,6 +49,7 @@ export class DepositCommissionComponent {
     { blockNumber: 'Fourth' },
   ];
 
+  dataDepositComissionCheckbox: any[] = [];
   // fields
   affTypeFormCommissionTypeDepositCommission: FormGroup;
 
@@ -87,8 +88,10 @@ export class DepositCommissionComponent {
 
   // push data to array and push it parent
   addItemFormRange(data: FormGroup) {
-    this.dataComissionTypeDepositComission.push(data);
+    this.dataDepositComissionCheckbox.push(data);
   }
+
+  
 
   // Per Deposit Commissions > CPAD > clicking on Btn to add extra option
   onClickExtraPlanBtn() {

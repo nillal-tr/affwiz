@@ -52,35 +52,39 @@ export class CommissionTypeComponent {
     if (this.affTypeFormCommissionType.valid) {
       this.affTypeFormComissionTypeEvent.emit(
         [this.affTypeFormCommissionType.controls,
-        this.dataCopyTraderCheckbox],
+        this.dataCopyTraderCheckbox,
+        this.dataDepositComissionCheckbox,
+        this.dataSaleCheckbox,
+        this.dataLeadCheckbox,
+        this.dataRegistrationCheckbox],
       )
     }
-    console.log("addNewItem done");
-    console.log(this.affTypeFormCommissionType.controls); 
   }
 
   // add data from nested components to the array
   addItemCopyTraderCheckbox(data: FormGroup) {
     this.dataCopyTraderCheckbox.push(data);
-    console.log("addItemCopyTraderCheckbox");
-    console.log(this.dataCopyTraderCheckbox);
     this.addNewItem();
   }
 
   addItemDepositComissionCheckbox(data: FormGroup) {
     this.dataDepositComissionCheckbox.push(data);
+    this.addNewItem();
   }
 
   addItemSaleCheckbox(data: FormGroup) {
     this.dataSaleCheckbox.push(data);
+    this.addNewItem();
   }
 
   addItemLeadCheckbox(data: FormGroup) {
     this.dataLeadCheckbox.push(data);
+    this.addNewItem();
   }
 
   addItemRegistrationCheckbox(data: FormGroup) {
     this.dataRegistrationCheckbox.push(data);
+    this.addNewItem();
   }
 
 
