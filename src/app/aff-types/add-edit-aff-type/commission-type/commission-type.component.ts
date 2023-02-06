@@ -41,33 +41,30 @@ export class CommissionTypeComponent {
 
   constructor(private formBuilder: FormBuilder) {
     this.affTypeFormCommissionType = this.formBuilder.group({
-      minCommissionPayout: new FormControl('0', Validators.required),
+      minCommissionPayout: new FormControl('0', Validators.required)
     });
   }
 
-  ngOnChanges() {
-    this.dataComissionType.push("test")
-    console.log("ng on change:")
-    console.log(this.dataComissionType);
-  }
-
-  
 
   // output of the form to the parent component
   addNewItem() {
     console.log('add new item func runs');
     if (this.affTypeFormCommissionType.valid) {
       this.affTypeFormComissionTypeEvent.emit(
-        this.affTypeFormCommissionType.controls
-      );
-      console.log(this.affTypeFormCommissionType.controls);
+        [this.affTypeFormCommissionType.controls,
+        this.dataCopyTraderCheckbox],
+      )
     }
+    console.log("addNewItem done");
+    console.log(this.affTypeFormCommissionType.controls); 
   }
 
   // add data from nested components to the array
   addItemCopyTraderCheckbox(data: FormGroup) {
     this.dataCopyTraderCheckbox.push(data);
-    console.log(this.dataCopyTraderCheckbox)
+    console.log("addItemCopyTraderCheckbox");
+    console.log(this.dataCopyTraderCheckbox);
+    this.addNewItem();
   }
 
   addItemDepositComissionCheckbox(data: FormGroup) {

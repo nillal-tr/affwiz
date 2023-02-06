@@ -23,6 +23,7 @@
 
   <div class="checkbox-section">
     <app-copy-trader-commission
+    [dataComissionTypes]="dataCopyTraderCheckbox"
     (affTypeFormCommissionTypeCopyTraderEvent)="addItemCopyTraderCheckbox($event)"
     ></app-copy-trader-commission>
   </div>

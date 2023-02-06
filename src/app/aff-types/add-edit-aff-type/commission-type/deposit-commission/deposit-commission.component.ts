@@ -93,29 +93,23 @@ export class DepositCommissionComponent {
   // Per Deposit Commissions > CPAD > clicking on Btn to add extra option
   onClickExtraPlanBtn() {
     console.log('onClickExtraPlanBtn function');
-    this.clickedNewExtraPlanBtn++;
-    this.extraPlanOptions.push(
-      this.contentNewExtraPlan[this.extraPlanOptions.length]
-    );
 
-    // old
-    // if (this.clickedNewExtraPlanBtn++ < this.contentNewExtraPlan.length + 1) {
-    //   this.extraPlanOptions.push(
-    //     this.contentNewExtraPlan[this.clickedNewExtraPlanBtn - 1]
-    //   );
-    // }
-    // console.log("clickedNewExtraPlanBtn:");
-    // console.log(this.clickedNewExtraPlanBtn);
-    console.log('extraPlanOptions:');
+    //old
+    // this.clickedNewExtraPlanBtn++;
+    // this.extraPlanOptions.push(
+    //   this.contentNewExtraPlan[this.extraPlanOptions.length]
+    // );
+
+    //new
+    this.extraPlanOptions.push(this.clickedNewExtraPlanBtn);
+    this.clickedNewExtraPlanBtn++;
     console.log(this.extraPlanOptions);
   }
 
-  onClickCloseIcon(event: any, i: number) {
+  onClickCloseIcon(i: number) {
     console.log('onClickCloseIcon function');
-    const id = Number(event.srcElement.parentElement.attributes.id.nodeValue);
-    console.log(id);
     console.log(i);
-    this.extraPlanOptions.splice(id, 1);
+    this.extraPlanOptions.splice(i, 1);
 
     console.log('extraPlanOptions:');
     console.log(this.extraPlanOptions);

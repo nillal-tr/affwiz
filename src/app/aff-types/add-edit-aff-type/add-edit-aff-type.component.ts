@@ -1,4 +1,4 @@
-import { Component, VERSION, OnInit, ViewChild } from '@angular/core';
+import { Component, VERSION, OnInit, ViewChild, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 
@@ -12,7 +12,8 @@ export class AddEditAffTypeComponent implements OnInit {
   // get data from nested components (accordion sections)
   dataNewAffType: any = [];
   dataCategories: any = [];
-  dataComissionTypes: any = [];
+  @Input() dataComissionTypes: any = [];
+  dataComissionTypes2: any = [];
   dataTieredAffDisplayOptions: any = [];
   dataOther: any = [];
 
@@ -34,7 +35,7 @@ export class AddEditAffTypeComponent implements OnInit {
   }
 
   addItemComissionTypes(data: FormGroup) {
-    this.dataComissionTypes.push(data);
+    this.dataComissionTypes2.push(data);
   }
 
   addItemTieredAffDisplayOptions(data: FormGroup) {
@@ -63,14 +64,14 @@ export class AddEditAffTypeComponent implements OnInit {
     console.log("SUBMITTING:");
     console.log(this.dataNewAffType);
     console.log(this.dataCategories);
-    console.log(this.dataComissionTypes);
+    console.log(this.dataComissionTypes2);
     console.log(this.dataTieredAffDisplayOptions);
     console.log(this.dataOther);
 
     // push all arrays to one array
     this.dataAddAffTypeForm.push(this.dataNewAffType);
     this.dataAddAffTypeForm.push(this.dataCategories);
-    this.dataAddAffTypeForm.push(this.dataComissionTypes);
+    this.dataAddAffTypeForm.push(this.dataComissionTypes2);
     this.dataAddAffTypeForm.push(this.dataTieredAffDisplayOptions);
     this.dataAddAffTypeForm.push(this.dataOther);
 

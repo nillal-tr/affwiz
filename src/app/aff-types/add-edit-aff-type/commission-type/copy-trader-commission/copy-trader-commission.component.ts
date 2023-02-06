@@ -34,10 +34,10 @@ export class CopyTraderCommissionComponent {
 
     // output of the form to the parent component
     addNewItem() {
-      console.log('add new item func runs');
+      // console.log('add new item func runs');
       if (this.affTypeFormCommissionTypeCopyTrader.valid) {
         this.affTypeFormCommissionTypeCopyTraderEvent.emit(this.affTypeFormCommissionTypeCopyTrader.controls);
-        console.log(this.affTypeFormCommissionTypeCopyTrader.controls);
+        // console.log(this.affTypeFormCommissionTypeCopyTrader.controls);
       }
     }
 
