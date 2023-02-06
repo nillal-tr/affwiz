@@ -10,7 +10,8 @@
     <div class="form-element view-to-the-right" *ngIf="copyTrader.checked">
       <div class="nested-div">
       <app-range-form-v2
-        [placeholder1]="placeholderParent1"
+      (affTypeFormFormRangeEvent)="addItemFormRange($event)"  
+      [placeholder1]="placeholderParent1"
         [placeholder2]="placeholderParent2"
         [placeholder3]="placeholderParent3"
         [label1]="labelParent1"

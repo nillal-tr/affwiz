@@ -13,6 +13,7 @@ import { MatSelect } from '@angular/material/select';
 })
 export class countriesModalComponent {
   countryRate: ICountryItem[] | undefined;
+  
   @Input() rateType: string = '';
   
   constructor(public dialog: Dialog) {}

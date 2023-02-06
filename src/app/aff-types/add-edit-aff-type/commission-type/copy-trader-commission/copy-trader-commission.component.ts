@@ -21,6 +21,9 @@ export class CopyTraderCommissionComponent {
 
   affTypeFormCommissionTypeCopyTrader: FormGroup;
 
+  dataComissionTypeCopyTrader: any = [];
+
+  
   @Output() affTypeFormCommissionTypeCopyTraderEvent = new EventEmitter<any>();
   
   constructor(private formBuilder: FormBuilder) {
@@ -37,6 +40,10 @@ export class CopyTraderCommissionComponent {
         console.log(this.affTypeFormCommissionTypeCopyTrader.controls);
       }
     }
-  
+
+    // push data to array and push it parent
+    addItemFormRange(data: FormGroup) {
+      this.dataComissionTypeCopyTrader.push(data);
+    }
 }
 

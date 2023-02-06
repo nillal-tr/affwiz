@@ -10,6 +10,7 @@
     <div class="form-element" *ngIf="saleCommission.checked">
       <div class="nested-div">
         <app-range-form-v2
+        (affTypeFormFormRangeEvent)="addItemFormRange($event)"
           [placeholder1]="placeholderParent1"
           [placeholder2]="placeholderParent2"
           [placeholder3]="placeholderParent3"

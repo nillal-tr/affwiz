@@ -67,6 +67,7 @@ export class CommissionTypeComponent {
   // add data from nested components to the array
   addItemCopyTraderCheckbox(data: FormGroup) {
     this.dataCopyTraderCheckbox.push(data);
+    console.log(this.dataCopyTraderCheckbox)
   }
 
   addItemDepositComissionCheckbox(data: FormGroup) {
