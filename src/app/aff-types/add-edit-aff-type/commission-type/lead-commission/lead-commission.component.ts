@@ -21,7 +21,7 @@ export class LeadCommissionComponent {
 
   affTypeFormCommissionTypeLeadCommission: FormGroup;
   dataLeadCheckbox: any[] = [];
-
+  dataCountries: any[] = [];
   @Output() affTypeFormCommissionTypeLeadCommissionEvent =
     new EventEmitter<any>();
 
@@ -36,15 +36,16 @@ export class LeadCommissionComponent {
   addNewItem() {
     console.log('add new item func runs');
     if (this.affTypeFormCommissionTypeLeadCommission.valid) {
-      this.affTypeFormCommissionTypeLeadCommissionEvent.emit(
-        this.affTypeFormCommissionTypeLeadCommission.controls
-      );
+      this.affTypeFormCommissionTypeLeadCommissionEvent.emit([
+        this.affTypeFormCommissionTypeLeadCommission.controls,
+        this.dataCountries,
+      ]);
       console.log(this.affTypeFormCommissionTypeLeadCommission.controls);
     }
   }
 
   // push data to array and push it parent
-  addItemFormRange(data: FormGroup) {
-    this.dataLeadCheckbox.push(data);
+  addItemCountries(data: FormGroup) {
+    this.dataCountries.push(data);
   }
 }

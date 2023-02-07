@@ -48,8 +48,8 @@
       ></app-categories>
 
       <app-commission-type
-      *ngIf="index === 2"
-      (affTypeFormComissionTypeEvent)="addItemComissionTypes($event)"
+        *ngIf="index === 2"
+        (affTypeFormComissionTypeEvent)="addItemComissionTypes($event)"
       ></app-commission-type>
 
       <app-tiered-aff-display-options
@@ -57,21 +57,17 @@
         (affTypeFormTieredAffDisplayOptionEvent)="addItemOther($event)"
       ></app-tiered-aff-display-options>
 
-      <app-other 
-      *ngIf="index === 4"
-      (affTypeFormOtherEvent)="addItemOther($event)"
+      <app-other
+        *ngIf="index === 4"
+        (affTypeFormOtherEvent)="addItemOther($event)"
       ></app-other>
     </div>
-
   </cdk-accordion-item>
 </cdk-accordion>
 
 <!-- Button -->
 <div class="btn-box">
-  <button 
-  type="submit" 
-  mat-button class="add-btn" 
-  (click)="onSubmit()">
+  <button type="submit" mat-button class="add-btn" (click)="onSubmit()">
     Add New Affiliate Type
   </button>
 </div>

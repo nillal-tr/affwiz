@@ -43,7 +43,8 @@ import { RegCommissionComponent } from './aff-types/add-edit-aff-type/commission
 import { RangeFormComponent } from './shared/ui/range-form/range-form.component';
 import { RangeFormV2Component } from './shared/ui/range-form-v2/range-form-v2.component';
 import {DialogModule} from '@angular/cdk/dialog';
-import { countriesModalComponent, countriesModalPopupComponent } from './shared/ui/countries-modal/countries-modal.component';
+import { CountriesModalComponent } from './shared/ui/countries-modal/countries-modal.component';
+import { CountriesModalPopupComponent } from './shared/ui/countries-modal/countries-modal-popup.component';
 
 
 @NgModule({
@@ -74,8 +75,8 @@ import { countriesModalComponent, countriesModalPopupComponent } from './shared/
     RegCommissionComponent,
     RangeFormComponent,
     RangeFormV2Component,
-    countriesModalComponent,
-    countriesModalPopupComponent
+    CountriesModalComponent,
+    CountriesModalPopupComponent
   ],
   imports: [
     BrowserModule,

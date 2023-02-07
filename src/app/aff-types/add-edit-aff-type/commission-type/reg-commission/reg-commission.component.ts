@@ -17,7 +17,7 @@ export class RegCommissionComponent {
   affTypeFormCommissionTypeRegCommission: FormGroup;
 
   dataRegistrationCheckbox: any[] = [];
-
+  dataCountries: any[] = [];
   @Output() affTypeFormCommissionTypeRegCommissionEvent =
     new EventEmitter<any>();
 
@@ -33,14 +33,15 @@ export class RegCommissionComponent {
     console.log('add new item func runs');
     if (this.affTypeFormCommissionTypeRegCommission.valid) {
       this.affTypeFormCommissionTypeRegCommissionEvent.emit(
-        this.affTypeFormCommissionTypeRegCommission.controls
+        [this.affTypeFormCommissionTypeRegCommission.controls,
+        this.dataCountries]
       );
       console.log(this.affTypeFormCommissionTypeRegCommission.controls);
     }
   }
 
   // push data to array and push it parent
-  addItemFormRange(data: FormGroup) {
-    this.dataRegistrationCheckbox.push(data);
+  addItemCountries(data: FormGroup) {
+    this.dataCountries.push(data);
   }
 }

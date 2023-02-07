@@ -11,12 +11,12 @@ export class AddEditAffTypeComponent implements OnInit {
   
   // get data from nested components (accordion sections)
   @Input() dataComissionTypes: any = [];
-  dataNewAffType: any = [];
-  dataCategories: any = [];
-  dataTieredAffDisplayOptions: any = [];
-  dataOther: any = [];
+  dataNewAffType: any = ['New Affiliate Type:'];
+  dataCategories: any = ['Categories:'];
+  dataTieredAffDisplayOptions: any = ['Tiered Affiliate Display Options:'];
+  dataOther: any = ['Other:'];
 
-  dataComissionTypesWithData: any = [];
+  dataComissionTypesWithData: any = ['Commission Types'];
 
   // get data all accordions together
   dataAddAffTypeForm: any = [];

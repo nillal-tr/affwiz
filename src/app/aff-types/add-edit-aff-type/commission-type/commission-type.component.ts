@@ -37,12 +37,16 @@ export class CommissionTypeComponent {
 
   affTypeFormCommissionType: FormGroup;
 
+  itemsChecked: boolean[] = [];
+
   @Output() affTypeFormComissionTypeEvent = new EventEmitter<any>();
 
   constructor(private formBuilder: FormBuilder) {
     this.affTypeFormCommissionType = this.formBuilder.group({
       minCommissionPayout: new FormControl('0', Validators.required)
     });
+
+    this.itemsChecked.fill(false);
   }
 
 
@@ -61,10 +65,18 @@ export class CommissionTypeComponent {
     }
   }
 
+
+
   // add data from nested components to the array
   addItemCopyTraderCheckbox(data: FormGroup) {
-    this.dataCopyTraderCheckbox.push(data);
-    this.addNewItem();
+    // check the checkbox value - true | false
+    // const isChecked = data.controls['copyTraderCheckbox'].value;
+    // this.itemsChecked[0] = isChecked;
+    
+    // if (isChecked) {
+      this.dataCopyTraderCheckbox.push(data);
+      this.addNewItem();
+    // }
   }
 
   addItemDepositComissionCheckbox(data: FormGroup) {

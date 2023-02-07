@@ -27,9 +27,9 @@
             (change)="addNewItem()"
           /><span matTextPrefix>$&nbsp;</span>
         </mat-form-field>
-        <app-countries-modal 
+        <app-countries-modal
+        (countriesEvent)="addItemCountries($event)"
         [rateType]="rateTypeParent"
-        
         ></app-countries-modal>
       </div>
     </div>
