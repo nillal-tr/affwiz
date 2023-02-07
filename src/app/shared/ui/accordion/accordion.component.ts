@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./accordion.component.css']
 })
 export class AccordionComponent {
-  showAccordionContent: boolean = false;
-  btnActiveStyle: string = 'btn-notactive';
+  showAccordionContent = false;
+  btnActiveStyle = 'btn-notactive';
 
   onClickAccordionBtn() {
     if(this.showAccordionContent) {

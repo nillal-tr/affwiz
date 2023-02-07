@@ -23,12 +23,10 @@ export class TieredAffDisplayOptionsComponent {
 
   // output of the form to the parent component
   addNewItem() {
-    console.log('add new item func runs');
     if (this.affTypeFormTieredAffDisplayOption.valid) {
       this.affTypeFormTieredAffDisplayOptionEvent.emit(
         this.affTypeFormTieredAffDisplayOption.controls
       );
-      console.log(this.affTypeFormTieredAffDisplayOption.controls);
     }
   }
 }

@@ -34,13 +34,11 @@ export class LeadCommissionComponent {
 
   // output of the form to the parent component
   addNewItem() {
-    console.log('add new item func runs');
     if (this.affTypeFormCommissionTypeLeadCommission.valid) {
       this.affTypeFormCommissionTypeLeadCommissionEvent.emit([
         this.affTypeFormCommissionTypeLeadCommission.controls,
         this.dataCountries,
       ]);
-      console.log(this.affTypeFormCommissionTypeLeadCommission.controls);
     }
   }
 

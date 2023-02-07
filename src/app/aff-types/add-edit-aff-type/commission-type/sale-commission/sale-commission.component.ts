@@ -42,12 +42,10 @@ export class SaleCommissionComponent {
 
   // output of the form to the parent component
   addNewItem() {
-    console.log('add new item func runs');
     if (this.affTypeFormCommissionTypeSaleCommission.valid) {
       this.affTypeFormCommissionTypeSaleCommissionEvent.emit(
         this.affTypeFormCommissionTypeSaleCommission.controls
       );
-      console.log(this.affTypeFormCommissionTypeSaleCommission.controls);
     }
   }
 

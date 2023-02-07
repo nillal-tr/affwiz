@@ -32,6 +32,8 @@ export class DepositCommissionComponent {
   unitParent = 'FTDs';
   unitSymbolParent = '$';
 
+  
+  // mock
   commissions: any[] = [
     { value: 'CPA', viewValue: 'CPA' },
     { value: 'CPAD', viewValue: 'CPAD' },
@@ -77,14 +79,12 @@ export class DepositCommissionComponent {
 
   // output of the form to the parent component
   addNewItem() {
-    console.log('add new item func runs');
     if (this.affTypeFormCommissionTypeDepositCommission.valid) {
       this.affTypeFormCommissionTypeDepositCommissionEvent.emit(
         [this.affTypeFormCommissionTypeDepositCommission.controls,
         this.dataDepositComissionCheckbox,
       this.dataComissionTypeDepositComission]
       );
-      console.log(this.affTypeFormCommissionTypeDepositCommission.controls);
     }
   }
 
@@ -97,26 +97,13 @@ export class DepositCommissionComponent {
 
   // Per Deposit Commissions > CPAD > clicking on Btn to add extra option
   onClickExtraPlanBtn() {
-    console.log('onClickExtraPlanBtn function');
-
-    //old
-    // this.clickedNewExtraPlanBtn++;
-    // this.extraPlanOptions.push(
-    //   this.contentNewExtraPlan[this.extraPlanOptions.length]
-    // );
-
-    //new
     this.extraPlanOptions.push(this.clickedNewExtraPlanBtn);
     this.clickedNewExtraPlanBtn++;
-    console.log(this.extraPlanOptions);
+    // console.log(this.extraPlanOptions);
   }
 
   onClickCloseIcon(i: number) {
-    console.log('onClickCloseIcon function');
-    console.log(i);
+    // console.log(i);
     this.extraPlanOptions.splice(i, 1);
-
-    console.log('extraPlanOptions:');
-    console.log(this.extraPlanOptions);
   }
 }

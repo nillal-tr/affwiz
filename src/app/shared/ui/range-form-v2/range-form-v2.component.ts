@@ -44,6 +44,8 @@ export class RangeFormV2Component {
   @Input() unitSymbol: string = '$';
   @Input() maxPleaceholder = 999;
 
+  @Output() affTypeFormFormRangeEvent = new EventEmitter<any>();
+
 
   mapping: {[index: string]:any} = {
     field1: (event: any) => {
@@ -61,8 +63,6 @@ export class RangeFormV2Component {
   }
 
   rangeForm: FormGroup;
-
-  @Output() affTypeFormFormRangeEvent = new EventEmitter<any>();
 
   constructor(private formBuilder: FormBuilder) {
     this.rangeForm = this.formBuilder.group({
@@ -88,10 +88,8 @@ export class RangeFormV2Component {
 
   // output of the form to the parent component
   addNewItem() {
-    console.log('add new item func runs');
     if (this.rangeForm.valid) {
       this.affTypeFormFormRangeEvent.emit(this.rangeForm.controls);
-      console.log(this.rangeForm.controls);
     }
   }
 

@@ -15,6 +15,7 @@ import {
   ],
 })
 export class CommissionTypeComponent {
+  
   // accordion commission type
   commissionTypes = [
     'Per Copy Trader Commissions',
@@ -23,7 +24,7 @@ export class CommissionTypeComponent {
     'Per Lead Commissions',
     'Per Registration Commissions',
   ];
-  expandedIndex = 0;
+  
 
   
   // get data from nested components (all checkboxes)
@@ -34,9 +35,7 @@ export class CommissionTypeComponent {
   dataRegistrationCheckbox: any = [];
 
   dataComissionType: any = [];
-
   affTypeFormCommissionType: FormGroup;
-
   itemsChecked: boolean[] = [];
 
   @Output() affTypeFormComissionTypeEvent = new EventEmitter<any>();
@@ -52,7 +51,6 @@ export class CommissionTypeComponent {
 
   // output of the form to the parent component
   addNewItem() {
-    console.log('add new item func runs');
     if (this.affTypeFormCommissionType.valid) {
       this.affTypeFormComissionTypeEvent.emit(
         [this.affTypeFormCommissionType.controls,
@@ -65,18 +63,21 @@ export class CommissionTypeComponent {
     }
   }
 
+  
 
+  // add data from nested components to the array ---- NEW version ?
+  addItemCopyTraderCheckbox(data: any[]) {
+  
+    const formControl = Object.values(data[0])[0] as FormGroup;
 
-  // add data from nested components to the array
-  addItemCopyTraderCheckbox(data: FormGroup) {
     // check the checkbox value - true | false
-    // const isChecked = data.controls['copyTraderCheckbox'].value;
-    // this.itemsChecked[0] = isChecked;
+    const isChecked = formControl.value
+    this.itemsChecked.push(isChecked);
     
-    // if (isChecked) {
+    if (isChecked) {
       this.dataCopyTraderCheckbox.push(data);
       this.addNewItem();
-    // }
+    }
   }
 
   addItemDepositComissionCheckbox(data: FormGroup) {

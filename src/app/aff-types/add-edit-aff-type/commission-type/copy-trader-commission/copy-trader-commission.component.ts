@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-copy-trader-commission',
@@ -22,7 +22,6 @@ export class CopyTraderCommissionComponent {
   affTypeFormCommissionTypeCopyTrader: FormGroup;
 
   dataComissionTypeCopyTrader: any = [];
-
   
   @Output() affTypeFormCommissionTypeCopyTraderEvent = new EventEmitter<any>();
   
@@ -34,13 +33,11 @@ export class CopyTraderCommissionComponent {
 
     // output of the form to the parent component
     addNewItem() {
-      // console.log('add new item func runs');
       if (this.affTypeFormCommissionTypeCopyTrader.valid) {
         this.affTypeFormCommissionTypeCopyTraderEvent.emit(
           [this.affTypeFormCommissionTypeCopyTrader.controls,
             this.dataComissionTypeCopyTrader
           ]);
-        // console.log(this.affTypeFormCommissionTypeCopyTrader.controls);
       }
     }
 

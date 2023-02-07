@@ -94,6 +94,7 @@ export class NewAffTypeComponent {
     this.addNewItem();
   }
 
+  // not ready!
   onClickinnerBtnSave() {
     console.log(Object.values(this.affTypeFormAddNew.controls)[0].valid);
     let x = Object.values(this.affTypeFormAddNew.controls);

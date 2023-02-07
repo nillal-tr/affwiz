@@ -42,7 +42,7 @@ export class CategoriesComponent {
     });
   }
 
-  // output of the form to the parent component - based on to service
+  // output of the form to the parent component
   addNewItem() {
     console.log('add new item func runs');
     if (this.affTypeFormCategories.valid) {

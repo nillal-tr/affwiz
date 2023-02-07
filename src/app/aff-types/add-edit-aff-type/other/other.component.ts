@@ -21,10 +21,8 @@ export class OtherComponent {
 
     // output of the form to the parent component
     addNewItem() {
-      console.log('add new item func runs');
       if (this.affTypeFormOther.valid) {
         this.affTypeFormOtherEvent.emit(this.affTypeFormOther.controls);
-        console.log(this.affTypeFormOther.controls);
       }
     }
 }

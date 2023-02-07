@@ -30,13 +30,11 @@ export class RegCommissionComponent {
 
   // output of the form to the parent component
   addNewItem() {
-    console.log('add new item func runs');
     if (this.affTypeFormCommissionTypeRegCommission.valid) {
       this.affTypeFormCommissionTypeRegCommissionEvent.emit(
         [this.affTypeFormCommissionTypeRegCommission.controls,
         this.dataCountries]
       );
-      console.log(this.affTypeFormCommissionTypeRegCommission.controls);
     }
   }
 
