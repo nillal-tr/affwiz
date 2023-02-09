@@ -13,5 +13,4 @@ export const AffTypeFormControlSettings: any[] = [
     name: 'createCustomLinksAffConsole2',
     validators: [Validators.required]
   }
-
 ]
