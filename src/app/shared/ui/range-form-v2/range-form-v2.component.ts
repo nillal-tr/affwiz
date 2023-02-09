@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControlService } from '../../bl/form-control/form-control.service'
+
 export interface IField {
   fieldName: string;
   placeholder: number;
@@ -16,7 +18,7 @@ export interface IField {
   ],
 })
 
-export class RangeFormV2Component {
+export class RangeFormV2Component implements OnInit {
   @Input() fieldOne: IField = {
     fieldName: 'field1',
     label: 1,
@@ -64,7 +66,7 @@ export class RangeFormV2Component {
 
   rangeForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private formControlService: FormControlService) {
     this.rangeForm = this.formBuilder.group({
       field1: new FormControl(this.fieldOne.placeholder, [
         Validators.max(this.maxPleaceholder),
@@ -84,6 +86,10 @@ export class RangeFormV2Component {
       field6: new FormControl('', Validators.min(0)),
       field7: new FormControl('', Validators.min(0)),
     })
+  }
+
+  ngOnInit() {
+    // this.formControlService.setFormControls()
   }
 
   // output of the form to the parent component

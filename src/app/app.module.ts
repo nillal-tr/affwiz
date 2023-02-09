@@ -45,6 +45,7 @@ import { RangeFormV2Component } from './shared/ui/range-form-v2/range-form-v2.co
 import {DialogModule} from '@angular/cdk/dialog';
 import { CountriesModalComponent } from './shared/ui/countries-modal/countries-modal.component';
 import { CountriesModalPopupComponent } from './shared/ui/countries-modal/countries-modal-popup.component';
+import { ExampleComponent } from './aff-types/add-edit-aff-type/example.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { CountriesModalPopupComponent } from './shared/ui/countries-modal/countr
     RangeFormComponent,
     RangeFormV2Component,
     CountriesModalComponent,
-    CountriesModalPopupComponent
+    CountriesModalPopupComponent,
+    ExampleComponent,
   ],
   imports: [
     BrowserModule,

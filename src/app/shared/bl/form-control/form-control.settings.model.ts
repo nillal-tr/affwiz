@@ -1,5 +1,5 @@
 export interface FormControlsSettings {
   name:string,
-  validations:any[],
+  validators:any[],
   othersControls:string[]
 }
