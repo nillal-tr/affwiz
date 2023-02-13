@@ -8,7 +8,64 @@
 </div>
 
 <form [formGroup]="ratePerCountry">
-  <div class="form-element">
+  <div class="search-area">
+    <mat-form-field class="" appearance="outline">
+      <mat-label class="label">Search</mat-label>
+      <input
+        formControlName="searchcountries"
+        type="text"
+        matInput
+        placeholder=""
+        [(ngModel)]="searchCat"
+      />
+    </mat-form-field>
+  </div>
+
+  <ul class="list-countries">
+    <li
+      class="row-countries"
+      *ngFor="let country of countryList | filter : searchCat; let i = index"
+    >
+      <span>
+        <mat-checkbox (change)="addNewItem()" formArrayName="chekboxName" [(ngModel)]="country.isEnabled">
+          {{ country.name }}
+        </mat-checkbox>
+      </span>
+      <span class="country-input-span">
+        <mat-form-field
+          class="rate-country-input"
+          color="primary"
+          appearance="outline"
+        >
+          <mat-label class="label"></mat-label>
+          <input
+            class="short-input"
+            matInput
+            placeholder=""
+            formControlName="valueRatePerCountry"
+            [(ngModel)]="country.rate"
+            (change)="addNewItem()"
+          />
+        </mat-form-field>
+      </span>
+    </li>
+  </ul>
+
+  <div class="submit-area">
+    <button
+      type="button"
+      mat-button
+      class="save-btn-rate-per-country"
+      (click)="dialogRef.close('hello')"
+      appearance="outline"
+    >
+      Save
+    </button>
+  </div>
+</form>
+
+<!-- OLD -->
+<!-- <div class="form-element">
     <mat-form-field
       class="countries-field"
       appearance="fill"
@@ -16,7 +73,7 @@
       color="primary"
       appearance="outline"
     >
-      <!-- fix: when focus on "search" input: bug when clicking ctrl a is selects all -->
+      
       <mat-label class="label">Countries</mat-label>
       <mat-select multiple formControlName="countriesDropdown" #selectcountries>
         <mat-form-field class="search-field" appearance="outline">
@@ -40,9 +97,9 @@
           >Select All
         </mat-checkbox>
 
-        <!-- options dropdown -->
+        
         <div class="options-container">
-          <!-- checkbox country -->
+          
           <div class="checkbox-country">
             <mat-option
               (click)="optionClick()"
@@ -53,7 +110,7 @@
               >{{ country.name }}
             </mat-option>
           </div>
-          <!-- input for rate per country -->
+
           <div class="input-country">
             <mat-form-field
               *ngFor="let country of countryList | filter : searchCat"
@@ -104,4 +161,4 @@
   >
     Save
   </button>
-</div>
+</div> -->

@@ -39,16 +39,17 @@ export class CountriesModalComponent {
       CountriesModalPopupComponent,
       {
         width: '450px',
+        height: '450px',
         data: { countryRate: this.countryRate },
       }
     );
 
-    console.log(dialogRef);
+    // console.log(dialogRef);
     (
       dialogRef.componentInstance as CountriesModalPopupComponent
     ).affTypeFormratePerCountryEvent.subscribe((data) => {
       this.countryData.push(data);
-      console.log(this.countryData);
+      // console.log(this.countryData);
       this.countriesEvent.emit(this.countryData);
     });
 

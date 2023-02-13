@@ -15,15 +15,11 @@ export interface formControlsOption<T> {
 export class FormControlService {
   constructor() {}
 
-  
   setFormControls<T>(settings: formControlsOption<T>) {
     settings.controlsSettings.forEach((control) => {
-
       settings.fg.addControl(
         control.name,
-        settings.fb.control('',
-          control.validators
-        )
+        settings.fb.control('', control.validators)
       );
     });
   }

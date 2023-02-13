@@ -2,6 +2,7 @@
 export interface ICountryItem {
   name: string;
   rate?: number;
+  isEnabled: boolean;
 }
 
 // this should come from the server
@@ -9,25 +10,69 @@ export interface ICountryItem {
 const countries: ICountryItem[] = [
   {
     name: 'Israel',
-    rate: 0
+    rate: 0,
+    isEnabled: false,
   },
   {
     name: 'Poland',
-    rate: 0
+    rate: 0,
+    isEnabled: true,
   },
   {
     name: 'Brazil',
-    rate: 0
+    rate: 0,
+    isEnabled: false,
   },
   {
     name: 'Italy',
-    rate: 0
+    rate: 0,
+    isEnabled: false,
   },
   {
     name: 'United States',
-    rate: 0
+    rate: 0,
+    isEnabled: false,
   },
-
+  {
+    name: 'Israel',
+    rate: 0,
+    isEnabled: false,
+  },
+  {
+    name: 'Poland',
+    rate: 0,
+    isEnabled: false,
+  },
+  {
+    name: 'Brazil',
+    rate: 0,
+    isEnabled: false,
+  },
+  {
+    name: 'Italy',
+    rate: 50,
+    isEnabled: false,
+  },
+  {
+    name: 'United States',
+    rate: 10,
+    isEnabled: false,
+  },
+  {
+    name: 'Israel',
+    rate: 5,
+    isEnabled: false,
+  },
+  {
+    name: 'Poland',
+    rate: 0,
+    isEnabled: false,
+  },
+  {
+    name: 'Brazil',
+    rate: 999,
+    isEnabled: false,
+  },
 ]
 
 export { countries };

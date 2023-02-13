@@ -2,9 +2,8 @@ import {
   Component,
   EventEmitter,
   Inject,
-  Input,
   Output,
-  ViewChild,
+  OnInit,
 } from '@angular/core';
 import { Dialog, DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import {
@@ -16,6 +15,7 @@ import {
 import { countries, ICountryItem } from 'src/app/data-countries';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
+import { Event } from '@angular/router';
 
 @Component({
   selector: 'app-countries-modal-popup',
@@ -25,11 +25,15 @@ import { MatSelect } from '@angular/material/select';
     './countries-modal-popup.component.css',
   ],
 })
-export class CountriesModalPopupComponent {
+export class CountriesModalPopupComponent implements OnInit {
   countryList: ICountryItem[] = countries;
   searchCat = '';
+  ratePerCountry: FormGroup = new FormGroup({});
+  
+  // Search option in the countries field
+  searchValue = '';
+  filteredcountriesList: string[] = [];
 
-  ratePerCountry: FormGroup;
 
   @Output() affTypeFormratePerCountryEvent = new EventEmitter<any>();
 
@@ -38,50 +42,86 @@ export class CountriesModalPopupComponent {
     @Inject(DIALOG_DATA) public data: ICountryItem[],
     private formBuilder: FormBuilder
   ) {
+    
+  }
+  ngOnInit() {
+    // this.buildCheckboxFormGroup();
+    this.createForm();
+    console.log(this.ratePerCountry)
+    }
+
+  createForm(){
     this.ratePerCountry = this.formBuilder.group({
-      countriesDropdown: new FormControl(''),
-      checkboxRatePerCountry: new FormControl(''),
-      valueRatePerCountry: new FormControl('', Validators.min(0)),
-      countryOption: new FormControl(''),
+      chekboxName: this.formBuilder.array(this.createCheckboxList()),
+      checkboxRate: this.formBuilder.array(this.createRateList()),
+      checkboxRatePerCountry: new FormControl(),
+      valueRatePerCountry: new FormControl(),
       searchcountries: new FormControl(''),
     });
   }
 
-  // select all in countries
-  @ViewChild('selectcountries')
-  selectcountries!: MatSelect;
-  allSelected: boolean = false;
+  createCheckboxList(): Array<any> {
+    let checkboxList = [];
+    checkboxList = this.countryList.map(country => country.name);
+    return checkboxList;
+    
+    // //return array of objects
+    // {
+    //   countryName: 'checkboxState'
+    // }
+  }
 
-  // Search option in the countries field
-  searchValue = '';
-  filteredcountriesList: string[] = [];
+  createRateList(){
+    let RateList = [];
+    RateList = this.countryList.map(country => country.rate);
+    return RateList;
+  }
+
+  buildCheckboxFormGroup() {
+    // this.countryList.forEach((country) => {
+    //   this.checkbox = this.formBuilder.array([{
+    //     [country.name]: new FormControl(country.isEnabled),
+    //   }]);
+    //   console.log(this.ratePerCountry);
+    // });
+    // console.log('done');
+  }
 
   // output of the form to the parent component
   addNewItem() {
     if (this.ratePerCountry.valid) {
       this.affTypeFormratePerCountryEvent.emit(this.ratePerCountry.controls);
     }
+    console.log(this.ratePerCountry.controls)
+    console.log(this.countryList[0].isEnabled)
   }
 
-  // Select All in Cateories
-  toggleAllSelection() {
-    if (this.allSelected) {
-      this.selectcountries.options.forEach((item: MatOption) => item.select());
-    } else {
-      this.selectcountries.options.forEach((item: MatOption) =>
-        item.deselect()
-      );
-    }
-  }
 
-  optionClick() {
-    this.addNewItem();
-    let itemSelected = true;
-    this.selectcountries.options.forEach((item: MatOption) => {
-      if (!item.selected) {
-        itemSelected = false;
-      }
-    });
-    this.allSelected = itemSelected;
-  }
+
+  // select all in countries
+  // @ViewChild('selectcountries')
+  // selectcountries!: MatSelect;
+  // allSelected = false;
+
+  // // Select All in Cateories
+  // toggleAllSelection() {
+  //   if (this.allSelected) {
+  //     this.selectcountries.options.forEach((item: MatOption) => item.select());
+  //   } else {
+  //     this.selectcountries.options.forEach((item: MatOption) =>
+  //       item.deselect()
+  //     );
+  //   }
+  // }
+
+  // optionClick() {
+  //   this.addNewItem();
+  //   let itemSelected = true;
+  //   this.selectcountries.options.forEach((item: MatOption) => {
+  //     if (!item.selected) {
+  //       itemSelected = false;
+  //     }
+  //   });
+  //   this.allSelected = itemSelected;
+  // }
 }
