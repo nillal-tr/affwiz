@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<form [formGroup]="ratePerCountry">
+<form [formGroup]="ratePerCountryForm">
   <div class="search-area">
     <mat-form-field class="" appearance="outline">
       <mat-label class="label">Search</mat-label>
@@ -22,35 +22,27 @@
   </div>
 
   <ul class="list-countries">
-    <li
-      class="row-countries"
-      *ngFor="let country of countryList | filter : searchCat; let i = index"
-    >
+    <li class="row-countries" *ngFor="let country of countryList | filter : searchCat; let i = index" >
       <span>
-        <mat-checkbox (change)="addNewItem()" formArrayName="chekboxName" [(ngModel)]="country.isEnabled">
-          {{ country.name }}
+        <mat-checkbox #checkbox (change)="addNewItem(checkbox)" >
+          {{country.name}}
         </mat-checkbox>
       </span>
       <span class="country-input-span">
-        <mat-form-field
-          class="rate-country-input"
-          color="primary"
-          appearance="outline"
-        >
+        <mat-form-field class="rate-country-input" color="primary" appearance="outline">
           <mat-label class="label"></mat-label>
           <input
+            formControlName="{{country.name + 'Rate'}}"
+            [(ngModel)]="country.rate"
             class="short-input"
             matInput
-            placeholder=""
-            formControlName="valueRatePerCountry"
-            [(ngModel)]="country.rate"
-            (change)="addNewItem()"
+            type="number"
+            (change)="addNewItem(checkbox)"
           />
         </mat-form-field>
       </span>
     </li>
   </ul>
-
   <div class="submit-area">
     <button
       type="button"

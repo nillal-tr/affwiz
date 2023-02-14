@@ -50,17 +50,17 @@ const countries: ICountryItem[] = [
   },
   {
     name: 'Italy',
-    rate: 50,
+    rate: 0,
     isEnabled: false,
   },
   {
     name: 'United States',
-    rate: 10,
+    rate: 0,
     isEnabled: false,
   },
   {
     name: 'Israel',
-    rate: 5,
+    rate: 0,
     isEnabled: false,
   },
   {
@@ -70,7 +70,7 @@ const countries: ICountryItem[] = [
   },
   {
     name: 'Brazil',
-    rate: 999,
+    rate: 0,
     isEnabled: false,
   },
 ]

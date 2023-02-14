@@ -1,16 +1,11 @@
-import {
-  Component,
-  EventEmitter,
-  Inject,
-  Output,
-  OnInit,
-} from '@angular/core';
+import { Component, EventEmitter, Inject, Output, OnInit } from '@angular/core';
 import { Dialog, DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import {
   FormGroup,
   FormControl,
   Validators,
   FormBuilder,
+  FormArray,
 } from '@angular/forms';
 import { countries, ICountryItem } from 'src/app/data-countries';
 import { MatOption } from '@angular/material/core';
@@ -28,75 +23,64 @@ import { Event } from '@angular/router';
 export class CountriesModalPopupComponent implements OnInit {
   countryList: ICountryItem[] = countries;
   searchCat = '';
-  ratePerCountry: FormGroup = new FormGroup({});
-  
+  ratePerCountryForm: FormGroup = new FormGroup({});
+
   // Search option in the countries field
   searchValue = '';
   filteredcountriesList: string[] = [];
-
 
   @Output() affTypeFormratePerCountryEvent = new EventEmitter<any>();
 
   constructor(
     public dialogRef: DialogRef<string>,
     @Inject(DIALOG_DATA) public data: ICountryItem[],
-    private formBuilder: FormBuilder
-  ) {
-    
-  }
+    private fb: FormBuilder
+  ) {}
   ngOnInit() {
-    // this.buildCheckboxFormGroup();
     this.createForm();
-    console.log(this.ratePerCountry)
-    }
+  }
 
-  createForm(){
-    this.ratePerCountry = this.formBuilder.group({
-      chekboxName: this.formBuilder.array(this.createCheckboxList()),
-      checkboxRate: this.formBuilder.array(this.createRateList()),
-      checkboxRatePerCountry: new FormControl(),
-      valueRatePerCountry: new FormControl(),
-      searchcountries: new FormControl(''),
+  createForm() {
+    this.ratePerCountryForm = this.fb.group({
+      searchcountries: new FormControl(),
+    });
+
+    this.countryList.forEach((country) => {
+      this.ratePerCountryForm.addControl(
+        `${country.name}Rate`,
+        this.fb.control(country.rate)
+      );
     });
   }
 
-  createCheckboxList(): Array<any> {
-    let checkboxList = [];
-    checkboxList = this.countryList.map(country => country.name);
-    return checkboxList;
-    
-    // //return array of objects
-    // {
-    //   countryName: 'checkboxState'
-    // }
-  }
-
-  createRateList(){
-    let RateList = [];
-    RateList = this.countryList.map(country => country.rate);
-    return RateList;
-  }
-
-  buildCheckboxFormGroup() {
-    // this.countryList.forEach((country) => {
-    //   this.checkbox = this.formBuilder.array([{
-    //     [country.name]: new FormControl(country.isEnabled),
-    //   }]);
-    //   console.log(this.ratePerCountry);
-    // });
-    // console.log('done');
-  }
-
   // output of the form to the parent component
-  addNewItem() {
-    if (this.ratePerCountry.valid) {
-      this.affTypeFormratePerCountryEvent.emit(this.ratePerCountry.controls);
+  addNewItem(checkbox: any) {
+    if (!checkbox.checked) return;
+    if (this.ratePerCountryForm.valid) {
+      this.affTypeFormratePerCountryEvent.emit(
+        this.ratePerCountryForm.controls
+      );
     }
-    console.log(this.ratePerCountry.controls)
-    console.log(this.countryList[0].isEnabled)
+    console.log(this.ratePerCountryForm.controls);
   }
 
+  // createCheckboxList(): Array<any> {
+  //   return this.countryList.map(country => country.name);
+  // }
 
+  // createRateList(){
+  //   return this.countryList.map(country => country.rate);
+  // }
+
+  // buildCheckboxFormGroup() {
+  //   this.countryList.forEach((country) => {
+  //     this.checkbox = this.formBuilder.array([{
+  //       [country.name]: new FormControl(country.isEnabled),
+  //     }]);
+  //     console.log(this.ratePerCountry);
+  //   });
+  //   console.log('done');
+  // }
 
   // select all in countries
   // @ViewChild('selectcountries')
