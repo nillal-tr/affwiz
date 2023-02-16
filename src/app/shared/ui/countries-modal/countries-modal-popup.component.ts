@@ -12,6 +12,7 @@ import { countries, ICountryItem } from 'src/app/data-countries';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { Event } from '@angular/router';
+import { addItem, removeItem, updateItem } from '../../bl/helper';
 
 @Component({
   selector: 'app-countries-modal-popup',
@@ -55,19 +56,6 @@ export class CountriesModalPopupComponent implements OnInit {
     });
   }
 
-  // form changes methods
-  addItem(country: ICountryItem) {
-    this.selectedDataByUser.push(country);
-  }
-
-  removeItem(country: ICountryItem, itemToRemoveIndex: number) {
-    this.selectedDataByUser.splice(itemToRemoveIndex, 1);
-  }
-
-  updateItem(country: ICountryItem, itemToRemoveIndex: number) {
-    this.selectedDataByUser[itemToRemoveIndex] = country;
-  }
-
   changeItem(checked: boolean, country: ICountryItem) {
     let itemToRemoveIndex = Number(
       this.selectedDataByUser.findIndex(
@@ -81,31 +69,29 @@ export class CountriesModalPopupComponent implements OnInit {
       country.rate > 0 &&
       itemToRemoveIndex === -1
     ) {
-      this.addItem(country);
+      addItem(country, this.selectedDataByUser);
     } else if (
       checked &&
       country.rate &&
       country.rate > 0 &&
       itemToRemoveIndex > -1
     ) {
-      this.updateItem(country, itemToRemoveIndex);
+      updateItem(country, itemToRemoveIndex, this.selectedDataByUser);
     } else if (
       checked &&
       country.rate &&
       country.rate <= 0 &&
       itemToRemoveIndex > -1
     ) {
-      // remove from array the specific element
-      this.removeItem(country, itemToRemoveIndex);
+      removeItem(country, itemToRemoveIndex, this.selectedDataByUser);
     } else if (!checked && itemToRemoveIndex > -1) {
-      this.removeItem(country, itemToRemoveIndex);
+      removeItem(country, itemToRemoveIndex, this.selectedDataByUser);
     }
     console.log(this.selectedDataByUser);
   }
 
   saveForm() {
     this.dialogRef.close();
-    console.log('save');
     this.affTypeFormratePerCountryEvent.emit(this.selectedDataByUser);
   }
 }
