@@ -1,13 +1,16 @@
 <form [formGroup]="affTypeFormCommissionTypeLeadCommission">
   <div class="form-element">
     <section class="checkbox">
-      <mat-checkbox formControlName="leadCommissionsCheckbox" #leadCommissions (change)="addNewItem()"
+      <mat-checkbox
+        formControlName="leadCommissionsCheckbox"
+        #leadCommissions
+        (change)="addNewItem()"
         >Per Lead Commissions</mat-checkbox
       >
     </section>
 
     <!-- NESTED -->
-    <div class="" *ngIf="leadCommissions.checked">
+    <div class="inner-component" *ngIf="leadCommissions.checked">
       <div class="nested-div container-div">
         <span class="nested-label">Lead Rate</span
         ><mat-form-field
@@ -24,11 +27,11 @@
             (change)="addNewItem()"
           /><span matTextPrefix>$&nbsp;</span>
         </mat-form-field>
-        <app-countries-modal 
+      </div>
+      <app-countries-modal
         (countriesEvent)="addItemCountries($event)"
         [rateType]="rateTypeParent"
-        ></app-countries-modal>
-      </div>
+      ></app-countries-modal>
     </div>
     <!-- end of NESTED -->
   </div>

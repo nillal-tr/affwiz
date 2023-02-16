@@ -55,7 +55,6 @@ export class CountriesModalPopupComponent implements OnInit {
     });
   }
 
-
   // form changes methods
   addItem(country: ICountryItem) {
     this.selectedDataByUser.push(country);
@@ -71,13 +70,10 @@ export class CountriesModalPopupComponent implements OnInit {
 
   changeItem(checked: boolean, country: ICountryItem) {
     let itemToRemoveIndex = Number(
-      this.selectedDataByUser?.findIndex(
+      this.selectedDataByUser.findIndex(
         (countryArr) => countryArr.name === country.name // BUG!
       )
     );
-    // itemToRemoveIndex === undefined : meaning country value doesn't exist yet
-
-    // console.log(itemToRemoveIndex);
 
     if (
       checked &&
@@ -85,7 +81,6 @@ export class CountriesModalPopupComponent implements OnInit {
       country.rate > 0 &&
       itemToRemoveIndex === -1
     ) {
-      // add to the array
       this.addItem(country);
     } else if (
       checked &&
@@ -93,9 +88,6 @@ export class CountriesModalPopupComponent implements OnInit {
       country.rate > 0 &&
       itemToRemoveIndex > -1
     ) {
-      // remove from array the specific element
-      // add the new item
-
       this.updateItem(country, itemToRemoveIndex);
     } else if (
       checked &&
@@ -106,7 +98,6 @@ export class CountriesModalPopupComponent implements OnInit {
       // remove from array the specific element
       this.removeItem(country, itemToRemoveIndex);
     } else if (!checked && itemToRemoveIndex > -1) {
-      // remove from array the specific element
       this.removeItem(country, itemToRemoveIndex);
     }
     console.log(this.selectedDataByUser);
@@ -114,34 +105,7 @@ export class CountriesModalPopupComponent implements OnInit {
 
   saveForm() {
     this.dialogRef.close();
-    console.log("save")
+    console.log('save');
     this.affTypeFormratePerCountryEvent.emit(this.selectedDataByUser);
-
   }
-
-  //********************************************* */
-
-  // unchecked item --- remove
-  // checkboxChanged(checked: boolean, country: ICountryItem) {
-  //   console.log('checkbox changed');
-  //   if (!checked) {
-  //     console.log('checkbox unchecked');
-  //     this.removeItem(country);
-  //   }
-  //   if (checked) {
-  //     this.addItem(country);
-  //   }
-  //   console.log(this.selectedDataByUser);
-  // }
-
-  // // input was changed
-  // inputWasChanged(checked: boolean, country: ICountryItem) {
-  //   if (checked && country.rate && country.rate > 0) {
-  //     this.addItem(country);
-  //   }
-
-  //   console.log(this.selectedDataByUser);
-
-  //   // this.affTypeFormratePerCountryEvent.emit({country, action});
-  // }
 }

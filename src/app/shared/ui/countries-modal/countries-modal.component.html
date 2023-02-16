@@ -1,9 +1,10 @@
-<button class="open-modal-btn" (click)="setRatePerCountry()">
-  Set {{ rateType }} rate per country
-</button>
-<div *ngIf="countryData.length > 0">
-  Your selection:
-  <div *ngFor="let countryRateItem of countryData; let i = index">
-    {{ countryData[i].name }}: {{ countryData[i].rate }} $
+<div class="nested-div">
+  <button class="open-modal-btn" (click)="setRatePerCountry()">
+    Set {{ rateType }} rate per country
+  </button>
+  <div *ngIf="countryData.length > 0">
+    <div class="country-data-selected" *ngFor="let countryRateItem of countryData; let i = index">
+      {{ countryData[i].name }}: {{ countryData[i].rate }} $
+    </div>
   </div>
 </div>

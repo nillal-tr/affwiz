@@ -27,11 +27,11 @@
             (change)="addNewItem()"
           /><span matTextPrefix>$&nbsp;</span>
         </mat-form-field>
-        <app-countries-modal
+      </div>
+      <app-countries-modal
         (countriesEvent)="addItemCountries($event)"
         [rateType]="rateTypeParent"
-        ></app-countries-modal>
-      </div>
+      ></app-countries-modal>
     </div>
     <!-- end of NESTED -->
   </div>
