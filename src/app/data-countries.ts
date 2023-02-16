@@ -1,8 +1,8 @@
 
 export interface ICountryItem {
   name: string;
-  rate?: number;
-  isEnabled: boolean;
+  rate: number;
+  isEnabled?: boolean;
 }
 
 // this should come from the server
@@ -16,7 +16,7 @@ const countries: ICountryItem[] = [
   {
     name: 'Poland',
     rate: 0,
-    isEnabled: true,
+    isEnabled: false,
   },
   {
     name: 'Brazil',

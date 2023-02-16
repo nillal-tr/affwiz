@@ -24,7 +24,7 @@
   <ul class="list-countries">
     <li class="row-countries" *ngFor="let country of countryList | filter : searchCat; let i = index" >
       <span>
-        <mat-checkbox #checkbox (change)="addNewItem(checkbox)" >
+        <mat-checkbox #checkbox (change)="changeItem(checkbox.checked, country)" >
           {{country.name}}
         </mat-checkbox>
       </span>
@@ -37,7 +37,7 @@
             class="short-input"
             matInput
             type="number"
-            (change)="addNewItem(checkbox)"
+            (change)="changeItem(checkbox.checked, country)"
           />
         </mat-form-field>
       </span>
@@ -48,7 +48,8 @@
       type="button"
       mat-button
       class="save-btn-rate-per-country"
-      (click)="dialogRef.close('hello')"
+      (click)="saveForm()"
+
       appearance="outline"
     >
       Save

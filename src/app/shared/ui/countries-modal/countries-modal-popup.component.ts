@@ -6,6 +6,7 @@ import {
   Validators,
   FormBuilder,
   FormArray,
+  AbstractControl,
 } from '@angular/forms';
 import { countries, ICountryItem } from 'src/app/data-countries';
 import { MatOption } from '@angular/material/core';
@@ -24,12 +25,13 @@ export class CountriesModalPopupComponent implements OnInit {
   countryList: ICountryItem[] = countries;
   searchCat = '';
   ratePerCountryForm: FormGroup = new FormGroup({});
+  selectedDataByUser: ICountryItem[] = [];
 
   // Search option in the countries field
   searchValue = '';
   filteredcountriesList: string[] = [];
 
-  @Output() affTypeFormratePerCountryEvent = new EventEmitter<any>();
+  @Output() affTypeFormratePerCountryEvent = new EventEmitter<ICountryItem[]>();
 
   constructor(
     public dialogRef: DialogRef<string>,
@@ -48,64 +50,98 @@ export class CountriesModalPopupComponent implements OnInit {
     this.countryList.forEach((country) => {
       this.ratePerCountryForm.addControl(
         `${country.name}Rate`,
-        this.fb.control(country.rate)
+        this.fb.control(country.rate, Validators.min(0))
       );
     });
   }
 
-  // output of the form to the parent component
-  addNewItem(checkbox: any) {
-    if (!checkbox.checked) return;
-    if (this.ratePerCountryForm.valid) {
-      this.affTypeFormratePerCountryEvent.emit(
-        this.ratePerCountryForm.controls
-      );
-    }
-    console.log(this.ratePerCountryForm.controls);
+
+  // form changes methods
+  addItem(country: ICountryItem) {
+    this.selectedDataByUser.push(country);
   }
 
-  // createCheckboxList(): Array<any> {
-  //   return this.countryList.map(country => country.name);
-  // }
+  removeItem(country: ICountryItem, itemToRemoveIndex: number) {
+    this.selectedDataByUser.splice(itemToRemoveIndex, 1);
+  }
 
-  // createRateList(){
-  //   return this.countryList.map(country => country.rate);
-  // }
+  updateItem(country: ICountryItem, itemToRemoveIndex: number) {
+    this.selectedDataByUser[itemToRemoveIndex] = country;
+  }
 
-  // buildCheckboxFormGroup() {
-  //   this.countryList.forEach((country) => {
-  //     this.checkbox = this.formBuilder.array([{
-  //       [country.name]: new FormControl(country.isEnabled),
-  //     }]);
-  //     console.log(this.ratePerCountry);
-  //   });
-  //   console.log('done');
-  // }
+  changeItem(checked: boolean, country: ICountryItem) {
+    let itemToRemoveIndex = Number(
+      this.selectedDataByUser?.findIndex(
+        (countryArr) => countryArr.name === country.name // BUG!
+      )
+    );
+    // itemToRemoveIndex === undefined : meaning country value doesn't exist yet
 
-  // select all in countries
-  // @ViewChild('selectcountries')
-  // selectcountries!: MatSelect;
-  // allSelected = false;
+    // console.log(itemToRemoveIndex);
 
-  // // Select All in Cateories
-  // toggleAllSelection() {
-  //   if (this.allSelected) {
-  //     this.selectcountries.options.forEach((item: MatOption) => item.select());
-  //   } else {
-  //     this.selectcountries.options.forEach((item: MatOption) =>
-  //       item.deselect()
-  //     );
+    if (
+      checked &&
+      country.rate &&
+      country.rate > 0 &&
+      itemToRemoveIndex === -1
+    ) {
+      // add to the array
+      this.addItem(country);
+    } else if (
+      checked &&
+      country.rate &&
+      country.rate > 0 &&
+      itemToRemoveIndex > -1
+    ) {
+      // remove from array the specific element
+      // add the new item
+
+      this.updateItem(country, itemToRemoveIndex);
+    } else if (
+      checked &&
+      country.rate &&
+      country.rate <= 0 &&
+      itemToRemoveIndex > -1
+    ) {
+      // remove from array the specific element
+      this.removeItem(country, itemToRemoveIndex);
+    } else if (!checked && itemToRemoveIndex > -1) {
+      // remove from array the specific element
+      this.removeItem(country, itemToRemoveIndex);
+    }
+    console.log(this.selectedDataByUser);
+  }
+
+  saveForm() {
+    this.dialogRef.close();
+    console.log("save")
+    this.affTypeFormratePerCountryEvent.emit(this.selectedDataByUser);
+
+  }
+
+  //********************************************* */
+
+  // unchecked item --- remove
+  // checkboxChanged(checked: boolean, country: ICountryItem) {
+  //   console.log('checkbox changed');
+  //   if (!checked) {
+  //     console.log('checkbox unchecked');
+  //     this.removeItem(country);
   //   }
+  //   if (checked) {
+  //     this.addItem(country);
+  //   }
+  //   console.log(this.selectedDataByUser);
   // }
 
-  // optionClick() {
-  //   this.addNewItem();
-  //   let itemSelected = true;
-  //   this.selectcountries.options.forEach((item: MatOption) => {
-  //     if (!item.selected) {
-  //       itemSelected = false;
-  //     }
-  //   });
-  //   this.allSelected = itemSelected;
+  // // input was changed
+  // inputWasChanged(checked: boolean, country: ICountryItem) {
+  //   if (checked && country.rate && country.rate > 0) {
+  //     this.addItem(country);
+  //   }
+
+  //   console.log(this.selectedDataByUser);
+
+  //   // this.affTypeFormratePerCountryEvent.emit({country, action});
   // }
 }
