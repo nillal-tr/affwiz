@@ -1,4 +1,4 @@
-import { Validators, FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 export const FormControlSettingsExample: any[] = [
   {

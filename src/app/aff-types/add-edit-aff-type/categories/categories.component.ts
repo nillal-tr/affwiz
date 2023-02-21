@@ -1,7 +1,17 @@
 import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
+import {
+  CategoryList,
+  FormControlSettingsCategories,
+} from 'src/app/models/form-control-settings-categories.model';
+import { FormControlService } from 'src/app/shared/bl/form-control/form-control.service';
 
 @Component({
   selector: 'app-categories',
@@ -12,14 +22,8 @@ import { MatSelect } from '@angular/material/select';
   ],
 })
 export class CategoriesComponent {
-
-  // Categories field (mock)
-  categoryList: any[] = [
-    { name: 'Arabic Stock Material' },
-    { name: 'Arabic_Bigger_Banners' },
-    { name: 'Arabic_e-course (GIF)' },
-  ];
-
+  categoryList = CategoryList;
+  affTypeFormCategoriesGroup: FormGroup = this.fb.group({});
   searchCat = '';
 
   // select all in Categories
@@ -31,24 +35,27 @@ export class CategoriesComponent {
   searchValue: string = '';
   filteredCategoriesList: string[] = [];
 
-  affTypeFormCategories: FormGroup;
-
   @Output() affTypeFormCategoriesEvent = new EventEmitter<any>();
 
-  constructor(private formBuilder: FormBuilder) {
-    this.affTypeFormCategories = this.formBuilder.group({
-      categories: new FormControl(''),
-      searchCategories: new FormControl(''),
-    });
+  constructor(
+    private fb: FormBuilder,
+    private formControlService: FormControlService
+  ) {}
+
+  ngOnInit() {
+    this.createForm();
+
+    setTimeout(() => {
+      this.affTypeFormCategoriesGroup;
+    }, 10000);
   }
 
-  // output of the form to the parent component
-  addNewItem() {
-    console.log('add new item func runs');
-    if (this.affTypeFormCategories.valid) {
-      this.affTypeFormCategoriesEvent.emit(this.affTypeFormCategories.controls);
-      console.log(this.affTypeFormCategories.controls);
-    }
+  createForm() {
+    this.formControlService.setFormControls({
+      fb: this.fb,
+      fg: this.affTypeFormCategoriesGroup,
+      controlsSettings: FormControlSettingsCategories,
+    });
   }
 
   // Select All in Cateories
@@ -71,5 +78,16 @@ export class CategoriesComponent {
       }
     });
     this.allSelected = newStatus;
+  }
+
+  // not ready! -- transfer data to parent component
+  addNewItem() {
+    console.log('add new item func runs');
+    if (this.affTypeFormCategoriesGroup.valid) {
+      this.affTypeFormCategoriesEvent.emit(
+        this.affTypeFormCategoriesGroup.controls
+      );
+      console.log(this.affTypeFormCategoriesGroup.controls);
+    }
   }
 }
