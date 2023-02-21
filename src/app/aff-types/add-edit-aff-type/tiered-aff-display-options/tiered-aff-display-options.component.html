@@ -1,8 +1,10 @@
 <!-- Tiered Affiliate Display Options -->
-<form [formGroup]="affTypeFormTieredAffDisplayOption">
+<form [formGroup]="affTypeFormTieredAffDisplayGroup">
   <div class="form-element">
     <section class="checkbox">
-      <mat-checkbox formControlName="viewTieredAffCount" (change)="addNewItem()"
+      <mat-checkbox 
+      formControlName="viewTieredAffCount" 
+      (change)="addNewItem()"
         >Allow Affiliates to View Tiered Affiliate Count</mat-checkbox
       >
     </section>
