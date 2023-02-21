@@ -59,7 +59,7 @@ export class CountriesModalPopupComponent implements OnInit {
   changeItem(checked: boolean, country: ICountryItem) {
     let itemToRemoveIndex = Number(
       this.selectedDataByUser.findIndex(
-        (countryArr) => countryArr.name === country.name // BUG!
+        (countryArr) => countryArr.name === country.name
       )
     );
 

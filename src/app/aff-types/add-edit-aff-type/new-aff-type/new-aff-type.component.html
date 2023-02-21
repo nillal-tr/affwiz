@@ -1,5 +1,5 @@
 <!-- Add A New Affiliate Type -->
-<form [formGroup]="affTypeFormAddNew">
+<form [formGroup]="affTypeFormNewAffGroup">
   <div class="form-element">
     <mat-form-field class="field" color="primary" appearance="outline">
       <mat-label class="label">Description</mat-label>
@@ -42,6 +42,7 @@
         <mat-option
           *ngFor="let tierOption of tierOptions"
           [value]="tierOption.value"
+          
           #tierMethod
         >
           {{ tierOption.viewValue }}
@@ -88,6 +89,7 @@
               matInput
               placeholder=""
               max="1"
+              min="1"
               formControlName="tier{{ i + 2 }}Rate"
               color="primary"
               appearance="outline"
@@ -109,6 +111,7 @@
         type="number"
         matInput
         placeholder=""
+        min="0"
         #cookieExpiration
         (change)="addNewItem()"
       /><span matSuffix class="suffix">days</span>
@@ -140,5 +143,5 @@
   mat-button 
   class="inner-save-btn"
   (click)="onClickinnerBtnSave()"
-  >Save and next</button>
+  >Continue</button>
 </form>

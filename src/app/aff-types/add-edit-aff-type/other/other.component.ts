@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { FormControlService } from '../../../shared/bl/form-control/form-control.service';
-import { AffTypeFormControlSettings } from '../../../models/aff-types.model'
 @Component({
   selector: 'app-other',
   templateUrl: './other.component.html',

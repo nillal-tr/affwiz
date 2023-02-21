@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormControlService } from '../../shared/bl/form-control/form-control.service';
-import { AffTypeFormControlSettings } from '../../models/aff-types.model';
+import { FormControlSettingsExample } from '../../models/form-control-settings-example.model';
 
 @Component({
   selector: 'app-example',
@@ -28,7 +28,7 @@ export class ExampleComponent implements OnInit {
     this.formControlService.setFormControls({
       fb: this.fb,
       fg: this.affTypeFormOtherGroup,
-      controlsSettings: AffTypeFormControlSettings,
+      controlsSettings: FormControlSettingsExample,
     });
   }
 }

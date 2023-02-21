@@ -1,6 +1,6 @@
 import { Validators, FormControl } from '@angular/forms';
 
-export const AffTypeFormControlSettings: any[] = [
+export const FormControlSettingsExample: any[] = [
   {
     name: 'exampleField1',
     validators: [Validators.required]

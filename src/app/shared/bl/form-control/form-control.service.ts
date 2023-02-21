@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AffTypeFormControlSettings } from '../../../models/aff-types.model';
 import { FormControlsSettings } from './form-control.settings.model';
 
 export interface formControlsOption<T> {
