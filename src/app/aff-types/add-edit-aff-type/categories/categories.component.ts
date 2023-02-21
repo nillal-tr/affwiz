@@ -90,4 +90,10 @@ export class CategoriesComponent {
       console.log(this.affTypeFormCategoriesGroup.controls);
     }
   }
+
+    // not ready!
+    onClickinnerBtnSave() {
+      
+    }
+  
 }

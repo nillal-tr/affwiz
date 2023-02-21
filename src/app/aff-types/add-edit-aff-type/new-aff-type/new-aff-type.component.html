@@ -36,13 +36,10 @@
       appearance="outline"
     >
       <mat-label class="label">Tier Calculation Method</mat-label>
-      <mat-select 
-      formControlName="tierMethod" 
-      (selectionChange)="addNewItem()">
+      <mat-select formControlName="tierMethod" (selectionChange)="addNewItem()">
         <mat-option
           *ngFor="let tierOption of tierOptions"
           [value]="tierOption.value"
-          
           #tierMethod
         >
           {{ tierOption.viewValue }}
@@ -139,9 +136,14 @@
       >
     </section>
   </div>
-  <button 
-  mat-button 
-  class="inner-save-btn"
-  (click)="onClickinnerBtnSave()"
-  >Continue</button>
+
+  <div class="form-element">
+    <button
+      mat-button
+      class="inner-continue-btn"
+      (click)="onClickinnerBtnSave()"
+    >
+      Continue
+    </button>
+  </div>
 </form>

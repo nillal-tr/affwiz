@@ -19,55 +19,68 @@
       /><span matTextPrefix>$&nbsp;</span>
     </mat-form-field>
   </div>
-  
+
   <div class="divider-container"><hr class="main-divider" /></div>
 
   <div class="checkbox-section">
     <app-copy-trader-commission
-    [dataComissionTypes]="dataCopyTraderCheckbox"
-    (affTypeFormCommissionTypeCopyTraderEvent)="addItemCopyTraderCheckbox($event)"
+      [dataComissionTypes]="dataCopyTraderCheckbox"
+      (affTypeFormCommissionTypeCopyTraderEvent)="
+        addItemCopyTraderCheckbox($event)
+      "
     ></app-copy-trader-commission>
   </div>
 
   <div class="divider-container"><hr class="main-divider" /></div>
 
-
   <div class="checkbox-section">
     <app-deposit-commission
-    [dataComissionTypes]="dataDepositComissionCheckbox"
-    (affTypeFormCommissionTypeDepositCommissionEvent)="addItemDepositComissionCheckbox($event)"
+      [dataComissionTypes]="dataDepositComissionCheckbox"
+      (affTypeFormCommissionTypeDepositCommissionEvent)="
+        addItemDepositComissionCheckbox($event)
+      "
     ></app-deposit-commission>
   </div>
 
   <div class="divider-container"><hr class="main-divider" /></div>
 
-
   <div class="checkbox-section">
     <app-sale-commission
-    [dataComissionTypes]="dataSaleCheckbox"
-    (affTypeFormCommissionTypeSaleCommissionEvent)="addItemSaleCheckbox($event)"
+      [dataComissionTypes]="dataSaleCheckbox"
+      (affTypeFormCommissionTypeSaleCommissionEvent)="
+        addItemSaleCheckbox($event)
+      "
     ></app-sale-commission>
   </div>
 
   <div class="divider-container"><hr class="main-divider" /></div>
 
-
   <div class="checkbox-section">
     <app-lead-commission
-    [dataComissionTypes]="dataLeadCheckbox"
-    (affTypeFormCommissionTypeLeadCommissionEvent)="addItemLeadCheckbox($event)"
+      [dataComissionTypes]="dataLeadCheckbox"
+      (affTypeFormCommissionTypeLeadCommissionEvent)="
+        addItemLeadCheckbox($event)
+      "
     ></app-lead-commission>
   </div>
 
   <div class="divider-container"><hr class="main-divider" /></div>
 
-
   <div class="checkbox-section">
     <app-reg-commission
-    [dataComissionTypes]="dataRegistrationCheckbox"
-    (affTypeFormCommissionTypeRegCommissionEvent)="addItemRegistrationCheckbox($event)"
+      [dataComissionTypes]="dataRegistrationCheckbox"
+      (affTypeFormCommissionTypeRegCommissionEvent)="
+        addItemRegistrationCheckbox($event)
+      "
     ></app-reg-commission>
   </div>
-
-  
+  <div class="form-element">
+    <button
+      mat-button
+      class="inner-continue-btn"
+      (click)="onClickinnerBtnSave()"
+    >
+      Continue
+    </button>
+  </div>
 </form>

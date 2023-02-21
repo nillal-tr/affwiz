@@ -116,5 +116,7 @@ export class CommissionTypeComponent {
     this.addNewItem();
   }
 
-
+  onClickinnerBtnSave() {
+    
+  }
 }
