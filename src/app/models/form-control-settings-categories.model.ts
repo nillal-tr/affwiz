@@ -17,6 +17,6 @@ export const FormControlSettingsCategories: any[] = [
   },
   {
     name: 'searchCategories',
-    validators: [Validators.required]
+    validators: []
   }
 ]

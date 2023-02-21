@@ -7,6 +7,6 @@ export const FormControlSettingsLead: any[] = [
   },
   {
     name: 'leadCommissionsValue',
-    validators: [Validators.min(0)]
+    validators: [Validators.required, Validators.min(0)]
   }
 ]

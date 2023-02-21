@@ -7,19 +7,22 @@ export const FormControlSettingsDeposit: any[] = [
   },
   {
     name: 'commissionDropDown',
-    validators: []
+    validators: [Validators.required],
   },
   {
     name: 'depositCommissionCPADFTD',
-    validators: [Validators.min(0)]
+    validators: [Validators.required, Validators.min(1)],
+    placeholder: 1
   },
   {
     name: 'depositCommissionCPADPercentDeposit',
-    validators: [Validators.min(0)]
+    validators: [Validators.required, Validators.min(0)],
+    placeholder: 0
   },
   {
     name: 'depositCommissionCPADMinComissionPerTrade',
-    validators: [Validators.min(0)]
+    validators: [Validators.required, Validators.min(0)],
+    placeholder: 0
   },
   {
     name: 'openPositionReq',

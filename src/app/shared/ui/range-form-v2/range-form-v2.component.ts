@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormControlService } from '../../bl/form-control/form-control.service'
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { FormControlService } from '../../bl/form-control/form-control.service';
 
 export interface IField {
   fieldName: string;
@@ -12,12 +17,8 @@ export interface IField {
 @Component({
   selector: 'app-range-form-v2',
   templateUrl: './range-form-v2.component.html',
-  styleUrls: [
-    './range-form-v2.component.less',
-    '../../ui/form-style.css',
-  ],
+  styleUrls: ['./range-form-v2.component.less', '../../ui/form-style.css'],
 })
-
 export class RangeFormV2Component implements OnInit {
   @Input() fieldOne: IField = {
     fieldName: 'field1',
@@ -40,7 +41,6 @@ export class RangeFormV2Component implements OnInit {
     placeholderAfter: 29,
   };
 
-
   @Input() label4 = this.fieldThree.placeholder;
   @Input() unit: string = 'FTDs';
   @Input() unitSymbol: string = '$';
@@ -48,8 +48,7 @@ export class RangeFormV2Component implements OnInit {
 
   @Output() affTypeFormFormRangeEvent = new EventEmitter<any>();
 
-
-  mapping: {[index: string]:any} = {
+  mapping: { [index: string]: any } = {
     field1: (event: any) => {
       this['fieldOne'].placeholderAfter = event.target.value;
       this['fieldTwo'].label = this['fieldOne'].placeholderAfter as number;
@@ -62,30 +61,48 @@ export class RangeFormV2Component implements OnInit {
       this['fieldThree'].placeholderAfter = event.target.value;
       this.label4 = this['fieldThree'].placeholderAfter as number;
     },
-  }
+  };
 
   rangeForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private formControlService: FormControlService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private formControlService: FormControlService
+  ) {
     this.rangeForm = this.formBuilder.group({
       field1: new FormControl(this.fieldOne.placeholder, [
+        Validators.required,
         Validators.max(this.maxPleaceholder),
         Validators.min(this.fieldOne.label),
       ]),
       field2: new FormControl(19, [
+        Validators.required,
         Validators.max(this.maxPleaceholder),
         Validators.min(this.fieldTwo.label),
       ]),
       field3: new FormControl(this.fieldThree.placeholder, [
+        Validators.required,
         Validators.max(this.maxPleaceholder),
         Validators.min(this.fieldThree.label),
       ]),
-  
-      field4: new FormControl('', Validators.min(0)),
-      field5: new FormControl('', Validators.min(0)),
-      field6: new FormControl('', Validators.min(0)),
-      field7: new FormControl('', Validators.min(0)),
-    })
+
+      field4: new FormControl('0', [
+        Validators.required, 
+        Validators.min(0)
+      ]),
+      field5: new FormControl('0', [
+        Validators.required, 
+        Validators.min(0)
+      ]),
+      field6: new FormControl('0', [
+        Validators.required, 
+        Validators.min(0)
+      ]),
+      field7: new FormControl('0', [
+        Validators.required, 
+        Validators.min(0)
+      ]),
+    });
   }
 
   ngOnInit() {
@@ -99,14 +116,13 @@ export class RangeFormV2Component implements OnInit {
     }
   }
 
-
   formFunctionality(event: any) {
     let fieldName = event.target?.name;
 
     this.fieldOne.placeholderAfter = this.fieldOne.placeholder;
     this.fieldTwo.placeholderAfter = this.fieldTwo.placeholder;
     this.fieldThree.placeholderAfter = this.fieldThree.placeholder;
-    
+
     this.mapping[fieldName](event);
 
     // reset the placeholders based on changes in the form
@@ -116,7 +132,6 @@ export class RangeFormV2Component implements OnInit {
       this.fieldTwo.placeholder++;
     if (this.fieldThree.placeholder <= this.fieldThree.label)
       this.fieldThree.placeholder++;
-
 
     // reset the validators based on changes in the form
     if (this.fieldTwo.placeholder !== this.fieldTwo.placeholderAfter) {
@@ -143,4 +158,3 @@ export class RangeFormV2Component implements OnInit {
     }
   }
 }
-

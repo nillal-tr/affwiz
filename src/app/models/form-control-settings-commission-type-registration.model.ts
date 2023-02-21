@@ -7,6 +7,6 @@ export const FormControlSettingsRegistration: any[] = [
   },
   {
     name: 'registrationCommissionsValue',
-    validators: [Validators.min(0)]
+    validators: [Validators.required, Validators.min(0)]
   }
 ]
