@@ -1,35 +1,43 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormControlSettingsOther } from 'src/app/models/form-control-settings-other.model';
 import { FormControlService } from '../../../shared/bl/form-control/form-control.service';
 @Component({
   selector: 'app-other',
   templateUrl: './other.component.html',
-  styleUrls: ['./other.component.css','../../../shared/ui/form-style.css']
+  styleUrls: ['./other.component.css', '../../../shared/ui/form-style.css'],
 })
-
-
 export class OtherComponent implements OnInit {
   rateTypeParent = 'lead';
-
-  affTypeFormOther: FormGroup;
+  affTypeFormOtherGroup: FormGroup = this.fb.group({});
 
   @Output() affTypeFormOtherEvent = new EventEmitter<any>();
 
-  constructor(private formBuilder: FormBuilder, private formControlService: FormControlService) {
-    this.affTypeFormOther = this.formBuilder.group({
-      createCustomLinksAffConsole: new FormControl('checked'),
-    })
+  constructor(
+    private fb: FormBuilder,
+    private formControlService: FormControlService
+  ) {}
+
+  // output of the form to the parent component
+  addNewItem() {
+    if (this.affTypeFormOtherGroup.valid) {
+      this.affTypeFormOtherEvent.emit(this.affTypeFormOtherGroup.controls);
+    }
   }
 
   ngOnInit() {
-    // this.formControlService.setFormControls();
+    this.createForm();
+
+    setTimeout(() => {
+      this.affTypeFormOtherGroup;
+    }, 10000);
   }
 
-    // output of the form to the parent component
-    addNewItem() {
-      if (this.affTypeFormOther.valid) {
-        this.affTypeFormOtherEvent.emit(this.affTypeFormOther.controls);
-      }
-    }
+  createForm() {
+    this.formControlService.setFormControls({
+      fb: this.fb,
+      fg: this.affTypeFormOtherGroup,
+      controlsSettings: FormControlSettingsOther,
+    });
+  }
 }
-
