@@ -13,6 +13,8 @@ import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { Event } from '@angular/router';
 import { addItem, removeItem, updateItem } from '../../bl/helper';
+import { FormControlService } from '../../bl/form-control/form-control.service';
+import { FormControlSettingsCountriesModal } from 'src/app/models/form-control-settings-countriesmodal.model';
 
 @Component({
   selector: 'app-countries-modal-popup',
@@ -23,9 +25,9 @@ import { addItem, removeItem, updateItem } from '../../bl/helper';
   ],
 })
 export class CountriesModalPopupComponent implements OnInit {
+  affTypeFormCountriesModalGroup: FormGroup = this.fb.group({});
   countryList: ICountryItem[] = countries;
   searchCat = '';
-  ratePerCountryForm: FormGroup = new FormGroup({});
   selectedDataByUser: ICountryItem[] = [];
 
   // Search option in the countries field
@@ -33,23 +35,27 @@ export class CountriesModalPopupComponent implements OnInit {
   filteredcountriesList: string[] = [];
 
   @Output() affTypeFormratePerCountryEvent = new EventEmitter<ICountryItem[]>();
-
+  
   constructor(
     public dialogRef: DialogRef<string>,
     @Inject(DIALOG_DATA) public data: ICountryItem[],
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private formControlService: FormControlService
   ) {}
+
   ngOnInit() {
     this.createForm();
   }
 
   createForm() {
-    this.ratePerCountryForm = this.fb.group({
-      searchcountries: new FormControl(),
+    this.formControlService.setFormControls({
+      fb: this.fb,
+      fg: this.affTypeFormCountriesModalGroup,
+      controlsSettings: FormControlSettingsCountriesModal,
     });
 
     this.countryList.forEach((country) => {
-      this.ratePerCountryForm.addControl(
+      this.affTypeFormCountriesModalGroup.addControl(
         `${country.name}Rate`,
         this.fb.control(country.rate, Validators.min(0))
       );

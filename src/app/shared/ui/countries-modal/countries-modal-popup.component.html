@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<form [formGroup]="ratePerCountryForm">
+<form [formGroup]="affTypeFormCountriesModalGroup">
   <div class="search-area">
     <mat-form-field class="" appearance="outline">
       <mat-label class="label">Search</mat-label>
@@ -36,9 +36,10 @@
             [(ngModel)]="country.rate"
             class="short-input"
             matInput
+            min="0"
             type="number"
             (change)="changeItem(checkbox.checked, country)"
-          />
+          /><span matTextPrefix>$&nbsp;</span>
         </mat-form-field>
       </span>
     </li>
@@ -56,102 +57,3 @@
     </button>
   </div>
 </form>
-
-<!-- OLD -->
-<!-- <div class="form-element">
-    <mat-form-field
-      class="countries-field"
-      appearance="fill"
-      matTooltip="Select at least one"
-      color="primary"
-      appearance="outline"
-    >
-      
-      <mat-label class="label">Countries</mat-label>
-      <mat-select multiple formControlName="countriesDropdown" #selectcountries>
-        <mat-form-field class="search-field" appearance="outline">
-          <mat-label class="label">Search</mat-label>
-          <input
-            formControlName="searchcountries"
-            #searchcountries
-            type="text"
-            matInput
-            placeholder=""
-            [(ngModel)]="searchCat"
-          />
-        </mat-form-field>
-
-        <mat-checkbox
-          class="select-all-cb"
-          [(ngModel)]="allSelected"
-          [ngModelOptions]="{ standalone: true }"
-          (change)="toggleAllSelection()"
-          (change)="addNewItem()"
-          >Select All
-        </mat-checkbox>
-
-        
-        <div class="options-container">
-          
-          <div class="checkbox-country">
-            <mat-option
-              (click)="optionClick()"
-              *ngFor="let country of countryList | filter : searchCat"
-              [value]="country"
-              #countryOption
-              class="label country-name-input"
-              >{{ country.name }}
-            </mat-option>
-          </div>
-
-          <div class="input-country">
-            <mat-form-field
-              *ngFor="let country of countryList | filter : searchCat"
-              class="rate-country-input"
-              color="primary"
-              appearance="outline"
-            >
-              <mat-label class="label"></mat-label>
-              <input
-                class="short-input"
-                type="number"
-                matInput
-                placeholder=""
-                formControlName="valueRatePerCountry"
-                [(ngModel)]="country.rate"
-                (change)="addNewItem()"
-              />
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="submit-area">
-          <button
-            type="button"
-            #extraPlanBtn
-            [disabled]="!selectcountries.value.length"
-            mat-button
-            class="save-btn-rate-per-country"
-            (click)="dialogRef.close(selectcountries.value)"
-            appearance="outline"
-          >
-            Save
-          </button>
-        </div>
-      </mat-select>
-    </mat-form-field>
-  </div>
-</form>
-
-<div class="submit-area">
-  <button
-    type="button"
-    #extraPlanBtn
-    [disabled]="!selectcountries.value.length"
-    mat-button
-    class="save-btn-rate-per-country"
-    (click)="dialogRef.close(selectcountries.value)"
-    appearance="outline"
-  >
-    Save
-  </button>
-</div> -->
