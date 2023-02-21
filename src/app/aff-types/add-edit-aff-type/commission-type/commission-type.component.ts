@@ -5,6 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { FormControlSettingsCommissionType } from 'src/app/models/form-control-settings-commission-type.model';
+import { FormControlService } from 'src/app/shared/bl/form-control/form-control.service';
 
 @Component({
   selector: 'app-commission-type',
@@ -15,7 +17,8 @@ import {
   ],
 })
 export class CommissionTypeComponent {
-  
+  affTypeFormCommissionTypeGroup: FormGroup = this.fb.group({});
+
   // accordion commission type
   commissionTypes = [
     'Per Copy Trader Commissions',
@@ -34,26 +37,39 @@ export class CommissionTypeComponent {
   dataLeadCheckbox: any = [];
   dataRegistrationCheckbox: any = [];
 
-  dataComissionType: any = [];
-  affTypeFormCommissionType: FormGroup;
   itemsChecked: boolean[] = [];
 
   @Output() affTypeFormComissionTypeEvent = new EventEmitter<any>();
 
-  constructor(private formBuilder: FormBuilder) {
-    this.affTypeFormCommissionType = this.formBuilder.group({
-      minCommissionPayout: new FormControl('0', Validators.required)
-    });
-
+  constructor(
+    private fb: FormBuilder,
+    private formControlService: FormControlService
+    ) {
     this.itemsChecked.fill(false);
+  }
+
+  ngOnInit() {
+    this.createForm();
+
+    setTimeout(() => {
+      this.affTypeFormCommissionTypeGroup;
+    }, 10000);
+  }
+
+  createForm() {
+    this.formControlService.setFormControls({
+      fb: this.fb,
+      fg: this.affTypeFormCommissionTypeGroup,
+      controlsSettings: FormControlSettingsCommissionType,
+    });
   }
 
 
   // output of the form to the parent component
   addNewItem() {
-    if (this.affTypeFormCommissionType.valid) {
+    if (this.affTypeFormCommissionTypeGroup.valid) {
       this.affTypeFormComissionTypeEvent.emit(
-        [this.affTypeFormCommissionType.controls,
+        [this.affTypeFormCommissionTypeGroup.controls,
         this.dataCopyTraderCheckbox,
         this.dataDepositComissionCheckbox,
         this.dataSaleCheckbox,

@@ -5,6 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { FormControlSettingsSale } from 'src/app/models/form-control-settings-commission-type-sale.model';
+import { FormControlService } from 'src/app/shared/bl/form-control/form-control.service';
 
 @Component({
   selector: 'app-sale-commission',
@@ -15,10 +17,11 @@ import {
   ],
 })
 export class SaleCommissionComponent {
+  affTypeFormSaleGroup: FormGroup = this.fb.group({});
+  
   placeholderParent1 = 9;
   placeholderParent2 = 19;
   placeholderParent3 = 29;
-
   labelParent1 = 1;
   labelParent2 = this.placeholderParent1;
   labelParent3 = this.placeholderParent2;
@@ -29,22 +32,36 @@ export class SaleCommissionComponent {
   dataComissionTypeSale: any = [];
   dataSaleCheckbox: any[] = [];
 
-  affTypeFormCommissionTypeSaleCommission: FormGroup;
+  constructor(
+    private fb: FormBuilder,
+    private formControlService: FormControlService
+    ) {}
 
-  constructor(private formBuilder: FormBuilder) {
-    this.affTypeFormCommissionTypeSaleCommission = this.formBuilder.group({
-      saleCommissionCheckbox: new FormControl(''),
-    });
-  }
 
   @Output() affTypeFormCommissionTypeSaleCommissionEvent =
     new EventEmitter<any>();
 
+    ngOnInit() {
+      this.createForm();
+  
+      setTimeout(() => {
+        this.affTypeFormSaleGroup;
+      }, 10000);
+    }
+  
+    createForm() {
+      this.formControlService.setFormControls({
+        fb: this.fb,
+        fg: this.affTypeFormSaleGroup,
+        controlsSettings: FormControlSettingsSale,
+      });
+    }
+
   // output of the form to the parent component
   addNewItem() {
-    if (this.affTypeFormCommissionTypeSaleCommission.valid) {
+    if (this.affTypeFormSaleGroup.valid) {
       this.affTypeFormCommissionTypeSaleCommissionEvent.emit(
-        this.affTypeFormCommissionTypeSaleCommission.controls
+        this.affTypeFormSaleGroup.controls
       );
     }
   }

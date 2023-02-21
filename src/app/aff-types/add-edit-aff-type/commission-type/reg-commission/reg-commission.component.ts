@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { countries } from 'src/app/data-countries';
+import { FormControlSettingsRegistration } from 'src/app/models/form-control-settings-commission-type-registration.model';
+import { FormControlService } from 'src/app/shared/bl/form-control/form-control.service';
 import { addItem, removeItem, updateItem } from 'src/app/shared/bl/helper';
 
 @Component({
@@ -12,9 +14,9 @@ import { addItem, removeItem, updateItem } from 'src/app/shared/bl/helper';
   ],
 })
 export class RegCommissionComponent {
+  affTypeFormRegGroup: FormGroup = this.fb.group({});
   countryitems = countries;
   rateTypeParent = 'registration';
-  affTypeFormCommissionTypeRegCommission: FormGroup;
 
   formDataByUser = [];
 
@@ -23,10 +25,24 @@ export class RegCommissionComponent {
   @Output() affTypeFormCommissionTypeRegCommissionEvent =
     new EventEmitter<any>();
 
-  constructor(private formBuilder: FormBuilder) {
-    this.affTypeFormCommissionTypeRegCommission = this.formBuilder.group({
-      registrationCommissionsCheckbox: new FormControl(''),
-      registrationCommissionsValue: new FormControl(''),
+  constructor(
+    private fb: FormBuilder,
+    private formControlService: FormControlService
+    ) {}
+
+  ngOnInit() {
+    this.createForm();
+
+    setTimeout(() => {
+      this.affTypeFormRegGroup;
+    }, 10000);
+  }
+
+  createForm() {
+    this.formControlService.setFormControls({
+      fb: this.fb,
+      fg: this.affTypeFormRegGroup,
+      controlsSettings: FormControlSettingsRegistration,
     });
   }
 
@@ -60,7 +76,7 @@ export class RegCommissionComponent {
 
   // output of the form to the parent component
   addNewItem() {
-    if (this.affTypeFormCommissionTypeRegCommission.valid) {
+    if (this.affTypeFormRegGroup.valid) {
       this.affTypeFormCommissionTypeRegCommissionEvent.emit([
         this.formDataByUser,
         this.dataCountries,

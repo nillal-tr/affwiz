@@ -1,5 +1,6 @@
 export interface FormControlsSettings {
   name:string,
   validators:any[],
-  othersControls:string[]
+  othersControls:string[],
+  placeholder?: string | number
 }

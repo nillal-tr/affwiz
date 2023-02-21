@@ -18,7 +18,7 @@ export class FormControlService {
     settings.controlsSettings.forEach((control) => {
       settings.fg.addControl(
         control.name,
-        settings.fb.control('', control.validators)
+        settings.fb.control(control.placeholder, control.validators)
       );
     });
   }

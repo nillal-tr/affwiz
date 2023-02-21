@@ -1,6 +1,6 @@
 <!-- Commission Types/Minimum Payout Amount -->
 
-<form [formGroup]="affTypeFormCommissionType">
+<form [formGroup]="affTypeFormCommissionTypeGroup">
   <!-- Minimum Commission Payout -->
   <div class="form-element">
     <span class="label">Minimum Commission Payout</span>
@@ -13,6 +13,7 @@
         type="number"
         matInput
         placeholder=""
+        min="0"
         formControlName="minCommissionPayout"
         (change)="addNewItem()"
       /><span matTextPrefix>$&nbsp;</span>

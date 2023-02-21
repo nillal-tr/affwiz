@@ -6,6 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { MDCTextField } from '@material/textfield';
+import { FormControlSettingsDeposit } from 'src/app/models/form-control-settings-commission-type-deposit.model';
+import { FormControlService } from 'src/app/shared/bl/form-control/form-control.service';
 
 export interface IExtraPlanOptions {
   blockNumber: string;
@@ -21,10 +23,12 @@ export interface IExtraPlanOptions {
   ],
 })
 export class DepositCommissionComponent {
+  affTypeFormDepositGroup: FormGroup = this.fb.group({});
+  
+  
   placeholderParent1 = 9;
   placeholderParent2 = 19;
   placeholderParent3 = 29;
-
   labelParent1 = 1;
   labelParent2 = this.placeholderParent1;
   labelParent3 = this.placeholderParent2;
@@ -52,7 +56,7 @@ export class DepositCommissionComponent {
   ];
 
   // fields
-  affTypeFormCommissionTypeDepositCommission: FormGroup;
+  // affTypeFormCommissionTypeDepositCommission: FormGroup;
 
   dataDepositComissionCheckbox: any[] = [];
   dataComissionTypeDepositComission: any = [];
@@ -60,28 +64,59 @@ export class DepositCommissionComponent {
   @Output() affTypeFormCommissionTypeDepositCommissionEvent =
     new EventEmitter<any>();
 
-  constructor(private formBuilder: FormBuilder) {
-    this.affTypeFormCommissionTypeDepositCommission = this.formBuilder.group({
-      depositCommissionCheckbox: new FormControl(''),
-      commissionDropDown: new FormControl('Please select'),
-      depositCommissionCPADFTD: new FormControl('', Validators.min(0)),
-      depositCommissionCPADPercentDeposit: new FormControl(
-        '',
-        Validators.min(0)
-      ),
-      depositCommissionCPADMinComissionPerTrade: new FormControl(
-        '',
-        Validators.min(0)
-      ),
-      openPositionReq: new FormControl(''),
-    });
+  constructor(
+    // private formBuilder: FormBuilder,
+    private fb: FormBuilder,
+    private formControlService: FormControlService
+    ) {
+    // this.affTypeFormCommissionTypeDepositCommission = this.formBuilder.group({
+    //   depositCommissionCheckbox: new FormControl(''),
+    //   commissionDropDown: new FormControl('Please select'),
+    //   depositCommissionCPADFTD: new FormControl('', Validators.min(0)),
+    //   depositCommissionCPADPercentDeposit: new FormControl(
+    //     '',
+    //     Validators.min(0)
+    //   ),
+    //   depositCommissionCPADMinComissionPerTrade: new FormControl(
+    //     '',
+    //     Validators.min(0)
+    //   ),
+    //   openPositionReq: new FormControl(''),
+    // });
   }
+
+  ngOnInit() {
+    this.createForm();
+
+    setTimeout(() => {
+      this.affTypeFormDepositGroup;
+    }, 10000);
+  }
+
+  createForm() {
+    this.formControlService.setFormControls({
+      fb: this.fb,
+      fg: this.affTypeFormDepositGroup,
+      controlsSettings: FormControlSettingsDeposit,
+    });
+  }  
+  
+  // Per Deposit Commissions > CPAD > clicking on Btn to add extra option
+  onClickExtraPlanBtn() {
+    this.extraPlanOptions.push(this.clickedNewExtraPlanBtn);
+    this.clickedNewExtraPlanBtn++;
+  }
+
+  onClickCloseIcon(i: number) {
+    this.extraPlanOptions.splice(i, 1);
+  }
+
 
   // output of the form to the parent component
   addNewItem() {
-    if (this.affTypeFormCommissionTypeDepositCommission.valid) {
+    if (this.affTypeFormDepositGroup.valid) {
       this.affTypeFormCommissionTypeDepositCommissionEvent.emit(
-        [this.affTypeFormCommissionTypeDepositCommission.controls,
+        [this.affTypeFormDepositGroup.controls,
         this.dataDepositComissionCheckbox,
       this.dataComissionTypeDepositComission]
       );
@@ -93,17 +128,4 @@ export class DepositCommissionComponent {
     this.dataDepositComissionCheckbox.push(data);
   }
 
-  
-
-  // Per Deposit Commissions > CPAD > clicking on Btn to add extra option
-  onClickExtraPlanBtn() {
-    this.extraPlanOptions.push(this.clickedNewExtraPlanBtn);
-    this.clickedNewExtraPlanBtn++;
-    // console.log(this.extraPlanOptions);
-  }
-
-  onClickCloseIcon(i: number) {
-    // console.log(i);
-    this.extraPlanOptions.splice(i, 1);
-  }
 }

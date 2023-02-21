@@ -1,4 +1,4 @@
-<form [formGroup]="affTypeFormCommissionTypeRegCommission">
+<form [formGroup]="affTypeFormRegGroup">
   <div class="form-element">
     <section class="checkbox">
       <mat-checkbox
@@ -24,6 +24,7 @@
             matInput
             placeholder=""
             formControlName="registrationCommissionsValue"
+            min="0"
             (change)="changeItem($event)"
           /><span matTextPrefix>$&nbsp;</span>
         </mat-form-field>

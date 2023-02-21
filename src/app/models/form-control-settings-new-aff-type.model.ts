@@ -47,7 +47,8 @@ export const FormControlSettingsNewAffType: any[] = [
   // },
   {
     name: 'cookieExpiration',
-    validators: [Validators.required, Validators.min(0)]
+    validators: [Validators.required, Validators.min(0)],
+    placeholder: 60
   },
   {
     name: 'hideTrackingLinks',
