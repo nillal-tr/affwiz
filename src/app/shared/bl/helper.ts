@@ -1,7 +1,5 @@
 // methods for multi-select field
 
-import { Form } from "@angular/forms";
-
 export function addItem(formValue: any, formDataByUser: any[]) {
     formDataByUser.push(formValue);
   }
@@ -14,6 +12,8 @@ export function addItem(formValue: any, formDataByUser: any[]) {
     formDataByUser[itemToRemoveIndex] = formValue;
   }
 
+
+  // methods for field with only one option
   export interface FormDataByUser {
     fieldName: string;
     fieldValue: any;
@@ -22,7 +22,6 @@ export function addItem(formValue: any, formDataByUser: any[]) {
   export interface FormDataByUser extends Array<FormDataByUser>{}
 
 
-  // methods for field with only one option
   let data = {
     fieldName: '',
     fieldValue: ''
@@ -30,12 +29,12 @@ export function addItem(formValue: any, formDataByUser: any[]) {
 
 
   export function createItemToPush(fieldName: string, fieldValue: any) {
-    const formName = Object.create(data);
-    console.log(formName);
-    formName.fieldName = fieldName;
-    formName.fieldValue = fieldValue;
-    console.log(formName);
-    return formName;
+    const formData = Object.create(data);
+    console.log(formData);
+    formData.fieldName = fieldName;
+    formData.fieldValue = fieldValue;
+    console.log(formData);
+    return formData;
   }
 
   export function addItemSingleField(formValue: any, formDataByUser: FormDataByUser[]) {

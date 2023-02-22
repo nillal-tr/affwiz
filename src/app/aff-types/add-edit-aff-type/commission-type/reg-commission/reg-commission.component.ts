@@ -25,11 +25,9 @@ export class RegCommissionComponent {
   rateTypeParent = 'registration';
 
   formDataRegCom: FormDataByUser[] = [];
-
-  dataRegistrationCheckbox: any[] = [];
   dataCountries: FormDataByUser[] = [];
-  @Output() pushDataEvent =
-    new EventEmitter<any>();
+
+  @Output() pushDataEvent = new EventEmitter<any>();
 
   constructor(
     private fb: FormBuilder,
@@ -51,12 +49,14 @@ export class RegCommissionComponent {
       controlsSettings: FormControlSettingsRegistration,
     });
   }
+  checkedItem(isChecked: boolean) {
+    // create
+  }
 
-  // event change on input
+  // Get data from the UI
   changeItem(event: any) {
     console.log(event);
-    // this is relevant for field with only one option:
-    let item = Number(event.target.value);
+    let item = Number(event?.target?.value);
     const fieldName = event.target.getAttribute('formControlName');
 
     // if item > 0 && formDataByUser is empty => add
@@ -91,18 +91,16 @@ export class RegCommissionComponent {
     console.log(this.formDataRegCom);
   }
 
-  // OLD: output of the form to the parent component
-  addNewItem() {
-    if (this.affTypeFormRegGroup.valid) {
-      this.pushDataEvent.emit([
-        this.formDataRegCom
-      ]);
-    }
+  // data from nested component inside this component - push to the main data array:
+  getNestedData(data: FormDataByUser) {
+    this.dataCountries.push(data);
+    this.formDataRegCom.push(this.dataCountries[0]);
   }
 
-  // push data to array and push it parent
-  addItemCountries(data: FormDataByUser) {
-    this.dataCountries.push(data);
-    this.formDataRegCom.push(this.dataCountries[0])
+  // Transfer data from this component (and it's nested component(s)) to parent component
+  transferDataToParent() {
+    if (this.affTypeFormRegGroup.valid) {
+      this.pushDataEvent.emit([this.formDataRegCom]);
+    }
   }
 }

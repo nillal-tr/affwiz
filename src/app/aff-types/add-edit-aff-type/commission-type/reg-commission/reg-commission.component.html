@@ -4,7 +4,7 @@
       <mat-checkbox
         formControlName="registrationCommissionsCheckbox"
         #registrationCommissions
-        (change)="addNewItem()"
+        (change)="checkedItem(registrationCommissions.checked)"
         >Per Registration Commissions</mat-checkbox
       >
     </section>
@@ -30,7 +30,7 @@
         </mat-form-field>
       </div>
       <app-countries-modal
-        (countriesEvent)="addItemCountries($event)"
+        (countriesEvent)="getNestedData($event)"
         [rateType]="rateTypeParent"
       ></app-countries-modal>
     </div>
