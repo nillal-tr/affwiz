@@ -17,6 +17,7 @@ import { countries, ICountryItem } from 'src/app/data-countries';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { CountriesModalPopupComponent } from './countries-modal-popup.component';
+import { FormDataByUser } from '../../bl/helper';
 
 @Component({
   selector: 'app-countries-modal',
@@ -24,8 +25,7 @@ import { CountriesModalPopupComponent } from './countries-modal-popup.component'
   styleUrls: ['./countries-modal.component.less', '../../ui/form-style.css'],
 })
 export class CountriesModalComponent {
-  // countryItems: ICountryItem[] | undefined;
-  countryData: ICountryItem[] = [];
+  countryData: FormDataByUser[] = [];
 
   @Input() rateType: string = '';
   @Output() countriesEvent = new EventEmitter<any>();
@@ -38,7 +38,6 @@ export class CountriesModalComponent {
       {
         width: '450px',
         height: '450px',
-        // data: { countryRate: this.countryItems },
       }
     );
 
@@ -50,6 +49,7 @@ export class CountriesModalComponent {
       console.log(event);
       this.countryData = event;
       console.log(this.countryData);
+      this.countriesEvent.emit(this.countryData);
     });
   }
 }

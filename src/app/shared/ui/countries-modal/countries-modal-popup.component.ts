@@ -1,18 +1,12 @@
 import { Component, EventEmitter, Inject, Output, OnInit } from '@angular/core';
-import { Dialog, DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
+import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import {
   FormGroup,
-  FormControl,
   Validators,
   FormBuilder,
-  FormArray,
-  AbstractControl,
 } from '@angular/forms';
 import { countries, ICountryItem } from 'src/app/data-countries';
-import { MatOption } from '@angular/material/core';
-import { MatSelect } from '@angular/material/select';
-import { Event } from '@angular/router';
-import { addItem, removeItem, updateItem } from '../../bl/helper';
+import { addItem, FormDataByUser, removeItem, updateItem } from '../../bl/helper';
 import { FormControlService } from '../../bl/form-control/form-control.service';
 import { FormControlSettingsCountriesModal } from 'src/app/models/form-control-settings-countriesmodal.model';
 
@@ -28,13 +22,13 @@ export class CountriesModalPopupComponent implements OnInit {
   affTypeFormCountriesModalGroup: FormGroup = this.fb.group({});
   countryList: ICountryItem[] = countries;
   searchCat = '';
-  selectedDataByUser: ICountryItem[] = [];
+  selectedDataByUser: FormDataByUser[] = [];
 
   // Search option in the countries field
   searchValue = '';
   filteredcountriesList: string[] = [];
 
-  @Output() affTypeFormratePerCountryEvent = new EventEmitter<ICountryItem[]>();
+  @Output() affTypeFormratePerCountryEvent = new EventEmitter<FormDataByUser[]>();
   
   constructor(
     public dialogRef: DialogRef<string>,
@@ -56,37 +50,37 @@ export class CountriesModalPopupComponent implements OnInit {
 
     this.countryList.forEach((country) => {
       this.affTypeFormCountriesModalGroup.addControl(
-        `${country.name}Rate`,
-        this.fb.control(country.rate, Validators.min(0))
+        `${country.fieldName}Rate`,
+        this.fb.control(country.fieldValue, Validators.min(0))
       );
     });
   }
 
-  changeItem(checked: boolean, country: ICountryItem) {
+  changeItem(checked: boolean, country: FormDataByUser) {
     let itemToRemoveIndex = Number(
       this.selectedDataByUser.findIndex(
-        (countryArr) => countryArr.name === country.name
+        (countryArr) => countryArr.fieldName === country.fieldName
       )
     );
 
     if (
       checked &&
-      country.rate &&
-      country.rate > 0 &&
+      country.fieldValue &&
+      country.fieldValue > 0 &&
       itemToRemoveIndex === -1
     ) {
       addItem(country, this.selectedDataByUser);
     } else if (
       checked &&
-      country.rate &&
-      country.rate > 0 &&
+      country.fieldValue &&
+      country.fieldValue > 0 &&
       itemToRemoveIndex > -1
     ) {
       updateItem(country, itemToRemoveIndex, this.selectedDataByUser);
     } else if (
       checked &&
-      country.rate &&
-      country.rate <= 0 &&
+      country.fieldValue &&
+      country.fieldValue <= 0 &&
       itemToRemoveIndex > -1
     ) {
       removeItem(country, itemToRemoveIndex, this.selectedDataByUser);

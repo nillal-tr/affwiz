@@ -4,7 +4,7 @@
   </button>
   <div *ngIf="countryData.length > 0">
     <div class="country-data-selected" *ngFor="let countryRateItem of countryData; let i = index">
-      {{ countryData[i].name }}: {{ countryData[i].rate }} $
+      {{ countryData[i].fieldName }}: {{ countryData[i].fieldValue }} $
     </div>
   </div>
 </div>

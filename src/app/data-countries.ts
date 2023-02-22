@@ -1,7 +1,7 @@
 
 export interface ICountryItem {
-  name: string;
-  rate: number;
+  fieldName: string;
+  fieldValue: number;
   isEnabled?: boolean;
 }
 
@@ -9,68 +9,68 @@ export interface ICountryItem {
 
 const countries: ICountryItem[] = [
   {
-    name: 'Israel',
-    rate: 0,
+    fieldName: 'Israel',
+    fieldValue: 0,
     isEnabled: false,
   },
   {
-    name: 'Poland',
-    rate: 0,
+    fieldName: 'Poland',
+    fieldValue: 0,
     isEnabled: false,
   },
   {
-    name: 'Brazil',
-    rate: 0,
+    fieldName: 'Brazil',
+    fieldValue: 0,
     isEnabled: false,
   },
   {
-    name: 'Italy',
-    rate: 0,
+    fieldName: 'Italy',
+    fieldValue: 0,
     isEnabled: false,
   },
   {
-    name: 'United States',
-    rate: 0,
+    fieldName: 'United States',
+    fieldValue: 0,
     isEnabled: false,
   },
   {
-    name: 'Israel',
-    rate: 0,
+    fieldName: 'Israel',
+    fieldValue: 0,
     isEnabled: false,
   },
   {
-    name: 'Poland',
-    rate: 0,
+    fieldName: 'Poland',
+    fieldValue: 0,
     isEnabled: false,
   },
   {
-    name: 'Brazil',
-    rate: 0,
+    fieldName: 'Brazil',
+    fieldValue: 0,
     isEnabled: false,
   },
   {
-    name: 'Italy',
-    rate: 0,
+    fieldName: 'Italy',
+    fieldValue: 0,
     isEnabled: false,
   },
   {
-    name: 'United States',
-    rate: 0,
+    fieldName: 'United States',
+    fieldValue: 0,
     isEnabled: false,
   },
   {
-    name: 'Israel',
-    rate: 0,
+    fieldName: 'Israel',
+    fieldValue: 0,
     isEnabled: false,
   },
   {
-    name: 'Poland',
-    rate: 0,
+    fieldName: 'Poland',
+    fieldValue: 0,
     isEnabled: false,
   },
   {
-    name: 'Brazil',
-    rate: 0,
+    fieldName: 'Brazil',
+    fieldValue: 0,
     isEnabled: false,
   },
 ]

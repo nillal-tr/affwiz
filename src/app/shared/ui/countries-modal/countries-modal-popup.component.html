@@ -25,15 +25,15 @@
     <li class="row-countries" *ngFor="let country of countryList | filter : searchCat; let i = index" >
       <span>
         <mat-checkbox #checkbox (change)="changeItem(checkbox.checked, country)" >
-          {{country.name}}
+          {{country.fieldName}}
         </mat-checkbox>
       </span>
       <span class="country-input-span">
         <mat-form-field class="rate-country-input" color="primary" appearance="outline">
           <mat-label class="label"></mat-label>
           <input
-            formControlName="{{country.name + 'Rate'}}"
-            [(ngModel)]="country.rate"
+            formControlName="{{country.fieldName + 'Rate'}}"
+            [(ngModel)]="country.fieldValue"
             class="short-input"
             matInput
             min="0"

@@ -1,9 +1,15 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { countries } from 'src/app/data-countries';
 import { FormControlSettingsRegistration } from 'src/app/models/form-control-settings-commission-type-registration.model';
 import { FormControlService } from 'src/app/shared/bl/form-control/form-control.service';
-import { addItem, removeItem, updateItem } from 'src/app/shared/bl/helper';
+import {
+  addItemSingleField,
+  createItemToPush,
+  FormDataByUser,
+  removeItemSingleField,
+  updateItemSingleField,
+} from 'src/app/shared/bl/helper';
 
 @Component({
   selector: 'app-reg-commission',
@@ -18,17 +24,17 @@ export class RegCommissionComponent {
   countryitems = countries;
   rateTypeParent = 'registration';
 
-  formDataByUser = [];
+  formDataRegCom: FormDataByUser[] = [];
 
   dataRegistrationCheckbox: any[] = [];
-  dataCountries: any[] = [];
-  @Output() affTypeFormCommissionTypeRegCommissionEvent =
+  dataCountries: FormDataByUser[] = [];
+  @Output() pushDataEvent =
     new EventEmitter<any>();
 
   constructor(
     private fb: FormBuilder,
     private formControlService: FormControlService
-    ) {}
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -48,45 +54,55 @@ export class RegCommissionComponent {
 
   // event change on input
   changeItem(event: any) {
+    console.log(event);
+    // this is relevant for field with only one option:
     let item = Number(event.target.value);
+    const fieldName = event.target.getAttribute('formControlName');
 
-    let itemToRemoveIndex = Number(
-      this.formDataByUser.findIndex(
-        (formDataByUserArr) => formDataByUserArr === 0
-      )
-    );
-    // if item > 0 and formDataByUser is empty => add
-    // if item > 0 and formDataByUser is not empty => update
-    // if item = 0 and formDataByUser is not empty => remove
-    // if item = undefined and formDataByUser is not empty => remove
+    // if item > 0 && formDataByUser is empty => add
+    // if item > 0 && formDataByUser is not empty => update
+    // if item = 0 && formDataByUser is not empty => remove
+    // if item = undefined && formDataByUser is not empty => remove
 
-    console.log(!item);
-
-    if (item > 0 && this.formDataByUser.length === 0) {
-      addItem(item, this.formDataByUser);
-    } else if (item > 0 && this.formDataByUser.length !== 0) {
-      updateItem(item, 0, this.formDataByUser);
-    } else if ((item = 0 && this.formDataByUser.length !== 0)) {
-      removeItem(item, 0, this.formDataByUser);
-    } else if (!item && this.formDataByUser.length !== 0) {
-      removeItem(item, 0, this.formDataByUser);
+    if (item > 0 && this.formDataRegCom.length === 0) {
+      addItemSingleField(
+        createItemToPush(fieldName, item),
+        this.formDataRegCom
+      );
+    } else if (item > 0 && this.formDataRegCom.length !== 0) {
+      updateItemSingleField(
+        createItemToPush(fieldName, item),
+        0,
+        this.formDataRegCom
+      );
+    } else if ((item = 0 && this.formDataRegCom.length !== 0)) {
+      removeItemSingleField(
+        createItemToPush(fieldName, item),
+        0,
+        this.formDataRegCom
+      );
+    } else if (!item && this.formDataRegCom.length !== 0) {
+      removeItemSingleField(
+        createItemToPush(fieldName, item),
+        0,
+        this.formDataRegCom
+      );
     }
-    console.log(this.formDataByUser);
+    console.log(this.formDataRegCom);
   }
 
-  // output of the form to the parent component
+  // OLD: output of the form to the parent component
   addNewItem() {
     if (this.affTypeFormRegGroup.valid) {
-      this.affTypeFormCommissionTypeRegCommissionEvent.emit([
-        this.formDataByUser,
-        this.dataCountries,
+      this.pushDataEvent.emit([
+        this.formDataRegCom
       ]);
     }
   }
 
   // push data to array and push it parent
-  addItemCountries(data: FormGroup) {
+  addItemCountries(data: FormDataByUser) {
     this.dataCountries.push(data);
-    console.log(this.dataCountries)
+    this.formDataRegCom.push(this.dataCountries[0])
   }
 }
