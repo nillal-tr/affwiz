@@ -32,6 +32,7 @@ export class CountriesModalPopupComponent implements OnInit {
   // Search option in the countries field
   searchValue = '';
   filteredcountriesList: string[] = [];
+  isValidForm = true;
 
   @Output() affTypeFormratePerCountryEvent = new EventEmitter<
     FormDataByUser[]
@@ -46,11 +47,7 @@ export class CountriesModalPopupComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (submitFormObj['regRatePerCountry'].length === 0) {
-      this.createForm();
-    } else {
-      this.createFormAfterChange();
-    }
+    this.createForm();
   }
 
   createForm() {
@@ -61,35 +58,24 @@ export class CountriesModalPopupComponent implements OnInit {
     });
 
     this.countryList.forEach((country) => {
+      let countryListAfterChange = this.formDataService.getRegRatePerCountry(
+        country.fieldName
+      );
       this.affTypeFormCountriesModalGroup.addControl(
         `${country.fieldName}`,
-        this.fb.control(country.fieldValue, Validators.min(0))
+        this.fb.control(
+          countryListAfterChange ? countryListAfterChange.fieldValue : 0,
+          Validators.min(0)
+        )
       );
     });
   }
 
-  // this doesn't work
-  createFormAfterChange() {
-    this.formControlService.setFormControls({
-      fb: this.fb,
-      fg: this.affTypeFormCountriesModalGroup,
-      controlsSettings: FormControlSettingsCountriesModal,
-    });
-
-    const submitFormArr = Object.entries(submitFormObj);
-    for (let i = 0; i < submitFormArr.length; i++) {
-      console.log(submitFormArr[i]);
-      if (submitFormArr[i][0] === 'regRatePerCountry') {
-        this.affTypeFormCountriesModalGroup.addControl(
-          `${submitFormArr[i][1][0].fieldName}`,
-          this.fb.control(submitFormArr[i][1][0].fieldValue, Validators.min(0))
-        );
-        console.log(submitFormArr[i][1][0].fieldName);
-        console.log(submitFormArr[i][1][0].fieldValue);
-      }
-    }
+  isChecked(country: string): boolean {
+    return this.formDataService.getRegRatePerCountry(country);
   }
-
+  
+  // a lot of bugs here
   changeItem(checked: boolean, country: FormDataByUser) {
     let itemToRemoveIndex = Number(
       this.selectedDataByUser.findIndex(
@@ -104,6 +90,8 @@ export class CountriesModalPopupComponent implements OnInit {
       itemToRemoveIndex === -1
     ) {
       addItem(country, this.selectedDataByUser);
+      this.isValidForm = true;
+
     } else if (
       checked &&
       country.fieldValue &&
@@ -111,6 +99,7 @@ export class CountriesModalPopupComponent implements OnInit {
       itemToRemoveIndex > -1
     ) {
       updateItem(country, itemToRemoveIndex, this.selectedDataByUser);
+      this.isValidForm = true;
     } else if (
       checked &&
       country.fieldValue &&
@@ -120,13 +109,24 @@ export class CountriesModalPopupComponent implements OnInit {
       removeItem(country, itemToRemoveIndex, this.selectedDataByUser);
     } else if (!checked && itemToRemoveIndex > -1) {
       removeItem(country, itemToRemoveIndex, this.selectedDataByUser);
+    } else if (checked && country.fieldValue === 0) {
+      this.isValidForm = false;
+      console.log(this.isValidForm);
+    } else if (!checked && country.fieldValue > 0) {
+      this.isValidForm = false;
+      console.log(this.isValidForm);
     }
-
-    console.log(this.selectedDataByUserFinal);
+    else if (!checked && country.fieldValue === 0) {
+      this.isValidForm = true;
+      console.log(this.isValidForm);
+    }
   }
-
+     
+  
+  
   saveForm() {
     this.dialogRef.close();
+    console.log(this.affTypeFormCountriesModalGroup.valid);
     this.affTypeFormratePerCountryEvent.emit(this.selectedDataByUser);
     this.formDataService.update('regRatePerCountry', this.selectedDataByUser);
   }

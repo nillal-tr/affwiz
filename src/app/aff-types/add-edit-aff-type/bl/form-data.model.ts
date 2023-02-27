@@ -1,4 +1,4 @@
-type FormSubmit = {
+export type FormSubmit = {
   [key: string]: any;
 };
 

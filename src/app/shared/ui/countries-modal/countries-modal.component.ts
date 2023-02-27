@@ -46,9 +46,7 @@ export class CountriesModalComponent {
       dialogRef.componentInstance as CountriesModalPopupComponent
     ).affTypeFormratePerCountryEvent.subscribe((event) => {
       console.log('subscribe function');
-      // console.log(event);
       this.countryData = event;
-      // console.log(this.countryData);
       this.countriesEvent.emit(this.countryData);
     });
   }

@@ -9,7 +9,7 @@ import {
   FormDataByUser,
   removeItemSingleField,
   updateItemSingleField,
-  checkedItem2
+  checkedItem2,
 } from 'src/app/shared/bl/helper';
 import { FormDataService } from '../../bl/form-data.service';
 
@@ -53,10 +53,10 @@ export class RegCommissionComponent {
       controlsSettings: FormControlSettingsRegistration,
     });
   }
-  
+
   checkedItem(isChecked: boolean) {
     console.log(isChecked);
-    this.checked = isChecked
+    this.checked = isChecked;
     console.log(this.checked);
   }
 

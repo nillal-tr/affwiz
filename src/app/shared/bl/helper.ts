@@ -44,10 +44,8 @@ export function updateItem(
 
 export function createItemToPush(fieldName: string, fieldValue: any) {
   const formData = Object.create(data);
-  // console.log(formData);
   formData.fieldName = fieldName;
   formData.fieldValue = fieldValue;
-  // console.log(formData);
   return formData;
 }
 

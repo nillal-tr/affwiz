@@ -8,7 +8,14 @@ import {
 import { countries } from 'src/app/data-countries';
 import { FormControlSettingsLead } from 'src/app/models/form-control-settings-commission-type-lead.model';
 import { FormControlService } from 'src/app/shared/bl/form-control/form-control.service';
-import { addItemSingleField, createItemToPush, FormDataByUser, removeItemSingleField, updateItemSingleField } from 'src/app/shared/bl/helper';
+import {
+  addItemSingleField,
+  createItemToPush,
+  FormDataByUser,
+  removeItemSingleField,
+  updateItemSingleField,
+} from 'src/app/shared/bl/helper';
+import { FormDataService } from '../../bl/form-data.service';
 
 @Component({
   selector: 'app-lead-commission',
@@ -30,14 +37,13 @@ export class LeadCommissionComponent {
   dataCountries: FormDataByUser[] = [];
   checked = false;
 
-  
-  @Output() pushDataEvent =
-    new EventEmitter<any>();
+  @Output() pushDataEvent = new EventEmitter<any>();
 
   constructor(
     private fb: FormBuilder,
-    private formControlService: FormControlService
-    ) {}
+    private formControlService: FormControlService,
+    private formDataService: FormDataService
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -57,7 +63,7 @@ export class LeadCommissionComponent {
 
   checkedItem(isChecked: boolean) {
     console.log(isChecked);
-    this.checked = isChecked
+    this.checked = isChecked;
     console.log(this.checked);
   }
 
@@ -98,7 +104,8 @@ export class LeadCommissionComponent {
     }
     console.log(this.formDataLeadCom);
 
-    this.transferDataToParent();
+    this.formDataService.update('leadRate', this.formDataLeadCom[0].fieldValue);
+
   }
 
   // data from nested component inside this component - push to the main data array:
@@ -106,15 +113,6 @@ export class LeadCommissionComponent {
     this.dataCountries.push(data);
     this.formDataLeadCom.push(this.dataCountries[0]);
   }
-
-  // Transfer data from this component (and it's nested component(s)) to parent component
-  transferDataToParent() {
-    if (this.affTypeFormLeadGroup.valid && this.checked) {
-      console.log("transferDataToParent run")
-      this.pushDataEvent.emit([this.formDataLeadCom]);
-    }
-  }
-
 
   //old
   // output of the form to the parent component
