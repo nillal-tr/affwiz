@@ -4,7 +4,7 @@
       <mat-checkbox
         formControlName="leadCommissionsCheckbox"
         #leadCommissions
-        (change)="addNewItem()"
+        (change)="checkedItem($event.checked)"
         >Per Lead Commissions</mat-checkbox
       >
     </section>
@@ -25,12 +25,12 @@
             placeholder=""
             min="0"
             formControlName="leadCommissionsValue"
-            (change)="addNewItem()"
+            (change)="changeItem($event)"
           /><span matTextPrefix>$&nbsp;</span>
         </mat-form-field>
       </div>
       <app-countries-modal
-        (countriesEvent)="addItemCountries($event)"
+        (countriesEvent)="getNestedData($event)"
         [rateType]="rateTypeParent"
       ></app-countries-modal>
     </div>

@@ -11,6 +11,7 @@ import {
   updateItemSingleField,
   checkedItem2
 } from 'src/app/shared/bl/helper';
+import { FormDataService } from '../../bl/form-data.service';
 
 @Component({
   selector: 'app-reg-commission',
@@ -33,7 +34,8 @@ export class RegCommissionComponent {
 
   constructor(
     private fb: FormBuilder,
-    private formControlService: FormControlService
+    private formControlService: FormControlService,
+    private formDataService: FormDataService
   ) {}
 
   ngOnInit() {
@@ -95,7 +97,9 @@ export class RegCommissionComponent {
     }
     console.log(this.formDataRegCom);
 
-    this.transferDataToParent();
+    this.formDataService.update('regRate', this.formDataRegCom[0].fieldValue);
+
+    // this.transferDataToParent();
   }
 
   // data from nested component inside this component - push to the main data array:
@@ -105,10 +109,10 @@ export class RegCommissionComponent {
   }
 
   // Transfer data from this component (and it's nested component(s)) to parent component
-  transferDataToParent() {
-    if (this.affTypeFormRegGroup.valid && this.checked) {
-      console.log("transferDataToParent run")
-      this.pushDataEvent.emit([this.formDataRegCom]);
-    }
-  }
+  // transferDataToParent() {
+  //   if (this.affTypeFormRegGroup.valid && this.checked) {
+  //     console.log("transferDataToParent run")
+  //     this.pushDataEvent.emit([this.formDataRegCom]);
+  //   }
+  // }
 }
