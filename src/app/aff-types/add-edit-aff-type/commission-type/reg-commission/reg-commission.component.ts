@@ -9,6 +9,7 @@ import {
   FormDataByUser,
   removeItemSingleField,
   updateItemSingleField,
+  checkedItem2
 } from 'src/app/shared/bl/helper';
 
 @Component({
@@ -26,6 +27,7 @@ export class RegCommissionComponent {
 
   formDataRegCom: FormDataByUser[] = [];
   dataCountries: FormDataByUser[] = [];
+  checked = false;
 
   @Output() pushDataEvent = new EventEmitter<any>();
 
@@ -49,13 +51,16 @@ export class RegCommissionComponent {
       controlsSettings: FormControlSettingsRegistration,
     });
   }
+  
   checkedItem(isChecked: boolean) {
-    // create
+    console.log(isChecked);
+    this.checked = isChecked
+    console.log(this.checked);
   }
 
   // Get data from the UI
   changeItem(event: any) {
-    console.log(event);
+    // console.log(event);
     let item = Number(event?.target?.value);
     const fieldName = event.target.getAttribute('formControlName');
 
@@ -89,6 +94,8 @@ export class RegCommissionComponent {
       );
     }
     console.log(this.formDataRegCom);
+
+    this.transferDataToParent();
   }
 
   // data from nested component inside this component - push to the main data array:
@@ -99,7 +106,8 @@ export class RegCommissionComponent {
 
   // Transfer data from this component (and it's nested component(s)) to parent component
   transferDataToParent() {
-    if (this.affTypeFormRegGroup.valid) {
+    if (this.affTypeFormRegGroup.valid && this.checked) {
+      console.log("transferDataToParent run")
       this.pushDataEvent.emit([this.formDataRegCom]);
     }
   }
