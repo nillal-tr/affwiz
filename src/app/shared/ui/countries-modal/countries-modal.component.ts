@@ -41,10 +41,11 @@ export class CountriesModalComponent {
       }
     );
 
+
+    let instance = dialogRef.componentInstance as CountriesModalPopupComponent;
+    instance.type = this.rateType;
     // update countryData array with the values the user selected in the popup:
-    (
-      dialogRef.componentInstance as CountriesModalPopupComponent
-    ).affTypeFormratePerCountryEvent.subscribe((event) => {
+    instance.affTypeFormratePerCountryEvent.subscribe((event) => {
       console.log('subscribe function');
       this.countryData = event;
       this.countriesEvent.emit(this.countryData);

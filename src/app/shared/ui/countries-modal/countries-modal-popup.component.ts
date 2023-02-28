@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, Output, OnInit, Input } from '@angular/core';
 import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { countries, ICountryItem } from 'src/app/data-countries';
@@ -32,7 +32,14 @@ export class CountriesModalPopupComponent implements OnInit {
   // Search option in the countries field
   searchValue = '';
   filteredcountriesList: string[] = [];
-  isValidForm = true;
+  // isValidForm = true;
+
+  fieldMap = {
+    registration: 'regRatePerCountry',
+    lead: 'leadRatePerCountry'
+  }
+
+  @Input() type: string = '';
 
   @Output() affTypeFormratePerCountryEvent = new EventEmitter<
     FormDataByUser[]
@@ -90,7 +97,7 @@ export class CountriesModalPopupComponent implements OnInit {
       itemToRemoveIndex === -1
     ) {
       addItem(country, this.selectedDataByUser);
-      this.isValidForm = true;
+      // this.isValidForm = true;
 
     } else if (
       checked &&
@@ -99,7 +106,7 @@ export class CountriesModalPopupComponent implements OnInit {
       itemToRemoveIndex > -1
     ) {
       updateItem(country, itemToRemoveIndex, this.selectedDataByUser);
-      this.isValidForm = true;
+      // this.isValidForm = true;
     } else if (
       checked &&
       country.fieldValue &&
@@ -110,15 +117,15 @@ export class CountriesModalPopupComponent implements OnInit {
     } else if (!checked && itemToRemoveIndex > -1) {
       removeItem(country, itemToRemoveIndex, this.selectedDataByUser);
     } else if (checked && country.fieldValue === 0) {
-      this.isValidForm = false;
-      console.log(this.isValidForm);
+      // this.isValidForm = false;
+      // console.log(this.isValidForm);
     } else if (!checked && country.fieldValue > 0) {
-      this.isValidForm = false;
-      console.log(this.isValidForm);
+      // this.isValidForm = false;
+      // console.log(this.isValidForm);
     }
     else if (!checked && country.fieldValue === 0) {
-      this.isValidForm = true;
-      console.log(this.isValidForm);
+      // this.isValidForm = true;
+      // console.log(this.isValidForm);
     }
   }
      
@@ -128,6 +135,9 @@ export class CountriesModalPopupComponent implements OnInit {
     this.dialogRef.close();
     console.log(this.affTypeFormCountriesModalGroup.valid);
     this.affTypeFormratePerCountryEvent.emit(this.selectedDataByUser);
+    
     this.formDataService.update('regRatePerCountry', this.selectedDataByUser);
+
+    // this.fieldMap[this.type]
   }
 }

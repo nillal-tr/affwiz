@@ -102,8 +102,6 @@ export class LeadCommissionComponent {
         this.formDataLeadCom
       );
     }
-    console.log(this.formDataLeadCom);
-
     this.formDataService.update('leadRate', this.formDataLeadCom[0].fieldValue);
 
   }
